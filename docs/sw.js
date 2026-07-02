@@ -1,5 +1,5 @@
 /* Risposte reg. 142 — offline cache (static core). Bump VERSION on deploy. */
-const VERSION = "r142-proto1d-2026-07-02";
+const VERSION = "r142-proto1f-2026-07-02";
 const CORE = ["./","index.html","register.html","unit.html","names.html","model.html","colophon.html","corpus.html","decision.html","data.html","dataset-journal.html",
  "assets/style.css","assets/app.js","assets/i18n.js","data/units.js","data/gaps.js","data/hypo.js","data/names_authority.js","data/journal.js","assets/script/words.js",
  "assets/leaflet/leaflet.css","assets/leaflet/leaflet.js","assets/fonts/EBGaramond[wght].ttf","assets/fonts/EBGaramond-Italic[wght].ttf",
