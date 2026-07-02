@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Register &middot; Risposte reg. 142</title>
+<title>Names &amp; places &middot; Risposte reg. 142</title>
 <meta name="theme-color" content="#b01e28" />
+<link rel="stylesheet" href="assets/leaflet/leaflet.css" />
 <link rel="stylesheet" href="assets/style.css" />
 <link rel="manifest" href="manifest.webmanifest" />
 <script src="assets/i18n.js"></script>
@@ -16,9 +17,9 @@
   <p class="sub"><span class="xen">an experiment on the registers of the Cinque Savi alla Mercanzia</span><span class="xit">un esperimento sui registri dei Cinque Savi alla Mercanzia</span></p>
   <nav class="nav">
     <a href="index.html"><span class="xen">Home</span><span class="xit">Home</span></a>
-    <a href="register.html" class="on"><span class="xen">Register</span><span class="xit">Registro</span></a>
+    <a href="register.html"><span class="xen">Register</span><span class="xit">Registro</span></a>
     <a href="corpus.html"><span class="xen">Corpus</span><span class="xit">Corpus</span></a>
-    <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
+    <a href="names.html" class="on"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
     <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
     <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
     <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
@@ -28,10 +29,9 @@
   </nav>
 </header>
 <main id="main" class="pad">
-  <div class="reg2">
-    <div id="register"></div>
-    <aside id="reg-record" aria-live="polite"></aside>
-  </div>
+  <h2 class="hero-title" style="font-size:26px"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></h2>
+  <p class="hero-lead" style="font-size:16px"><span class="xen">An index of the persons and places recorded in the units. Signatories are <b>verified</b> against the subscription blocks of each Risposta; the other names are identified automatically by rule-based procedures and remain <b>preliminary annotations subject to review</b>, each with its context one click away. Normalised forms are marked by their review status; uncertain expansions are never presented as normalised names. Click a unit number to open the Risposta.</span><span class="xit">Un indice delle persone e dei luoghi registrati nelle unit&agrave;. I firmatari sono <b>verificati</b> sui blocchi di sottoscrizione di ciascuna Risposta; gli altri nomi sono identificati automaticamente con procedure basate su regole e restano <b>annotazioni preliminari soggette a revisione</b>, ciascuna con il proprio contesto a un clic. Le forme normalizzate riportano lo stato di revisione; le espansioni incerte non sono mai presentate come nomi normalizzati. Un clic sul numero di unit&agrave; apre la Risposta.</span></p>
+  <div id="names"></div>
 </main>
 <footer class="site-foot">
   <p class="proto">First public prototype &mdash; 2026-07-02</p>
@@ -49,7 +49,9 @@
     <span class="txtmark">ISEM &middot; CNR<br>Istituto di Storia dell'Europa Mediterranea, sede di Venezia</span>
   </div>
 </footer>
+<script src="assets/leaflet/leaflet.js"></script>
 <script src="data/units.js"></script>
+<script src="data/names_authority.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

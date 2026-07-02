@@ -1,0 +1,10 @@
+{
+ "name": "Risposte \u2014 Cinque Savi alla Mercanzia, reg. 142",
+ "short_name": "Risposte 142",
+ "start_url": "./index.html",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#b01e28",
+ "description": "Research website and dataset prototype for the Venetian Risposte (ASVe, reg. 142, 1607\u20131610). First public prototype.",
+ "icons": []
+}
