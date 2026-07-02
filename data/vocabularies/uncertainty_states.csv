@@ -1,0 +1,10 @@
+value,definition
+present,Feature present and verified
+absent,Feature verifiably absent
+not_visible,Not visible on the available image
+not_transcribed,Portion not yet transcribed
+not_checked,Recorded but not yet checked against the source
+uncertain,Reading or value uncertain
+not_applicable,Field not applicable to this unit
+pending_hypothesis,Value proposed by a rule or analyst; awaiting expert validation
+validated,Value accepted by the domain expert
