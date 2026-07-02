@@ -1,0 +1,21 @@
+raw_variant,normalized,status,note
+Hier.mo Corner,Hieronimo Corner,proposed,H:mo / H.mo / Hier.mo = Hieronimo (Girolamo); merge proposed by PI
+H:mo Corner,Hieronimo Corner,proposed,
+H.mo Corner,Hieronimo Corner,proposed,
+Ferigo Dandolo,Federico Dandolo,proposed,Ferigo = Venetian form of Federico; attested usage; raw form kept
+Dn.go Barbarigo,Domenego Barbarigo,proposed,Dn.go = Domenego (Domenico)
+F.co Diedo,Francesco Diedo,proposed,F.co conventionally = Francesco; Fantin unsupported by the abbreviation; Isabella's (?) preserved — to confirm
+H.mo Vendramin,Hieronimo Vendramin,proposed,
+Hier.mo Vendramin,Hieronimo Vendramin,proposed,
+Hieronimo Vendramin,Hieronimo Vendramin,confirmed,full form attested
+Lorenzo Barb°,Lorenzo Barbaro,uncertain,° = truncation mark; Barb° = Barbaro or Barbarigo; resolve with prosopography
+Maffio Michiel,Maffio Michiel,confirmed,
+Maff° Michiel,Maffio Michiel,proposed,° = truncation; Maff° = Maffio
+Ruzier Ruzini,Ruzier Ruzini,proposed,legitimate: Ruzier = Ruggiero (given name) + Ruzini/Ruzzini (family); not an error
+Z: Garzoni,Zuanne Garzoni,proposed,Z: = Zuanne (Giovanni)
+Hier.o Corner,Hieronimo Corner,proposed,
+Marco Bar°,Marco Barbaro,uncertain,° = troncamento; Barbaro o Barbarigo; da prosopografia
+usciti di off°,,exclude,non è una persona: formula 'usciti di officio' catturata dal parser
+Domenico Lion,Domenego Lion,confirmed,"Domenico = Domenego, variante grafica; fusione confermata dal PI (2026-07-02); forma attestata nel registro: Domenego"
+Pietro Soranzo,Piero Soranzo,confirmed,"Pietro = Piero, variante grafica; fusione confermata dal PI (2026-07-02); forma attestata nel registro: Piero"
+Sier Marco da Riva,Marco da Riva,proposed,"'Sier' e' titolo, non parte del nome; fusione proposta"

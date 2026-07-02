@@ -1,0 +1,25 @@
+field,layer,type,values_or_vocabulary,uncertainty_states,source,notes
+unit_id,documentary,string,R142_NNNN,—,project,canonical identifier; stable across versions
+register_id;register_number,documentary,string;int,ASVe_CSM_R142;142,—,source,archival anchor
+folio_raw;folio_start;folio_end;folio_sides,documentary,string,"e.g. cc. 15r–16r","present|uncertain",source,double foliation and open ranges flagged in field_flags
+date_original,documentary,string,verbatim,present|absent|not_visible,source,as written; 'detto' resolved upstream with flag
+date_iso;date_precision,documentary,ISO8601;enum,day|month|year,uncertain,derived,conversion never silently corrects sequence anomalies
+more_veneto,documentary,bool,true only if source marks m.v.,—,source,shift applied only where marked
+date_check,documentary,string,free flags,—,derived,sequence anomalies recorded not corrected
+marginal_note_raw;title_short,documentary,string,verbatim; derived short title,present|absent|not_transcribed,source;derived,title_short is a display derivation (first clause)
+transcription_status,documentary,enum,manual|manual_partial|regest,—,project,expert regest is NOT a transcription
+text_diplomatic,documentary,text,verbatim GT,not_transcribed,I. Cecchini,ground truth; editorial notes split to editorial_notes
+editorial_notes,documentary,list,verbatim bracketed notes,—,I. Cecchini,displayed as editorial voice distinct from source text
+regest_note,documentary,text,verbatim,—,I. Cecchini,summary/pointer for regest units
+signatories_raw;signatories;signatory_count,documentary,string;list;int,verbatim; parsed names,unknown|not_transcribed,I. Cecchini,parsed conservatively from final subscription block
+signatory_status,documentary,enum,complete|absent_named|vacant_seats|blank_signature_space|unanimous_but_names_omitted|unknown|not_transcribed,—,derived,absences are data
+relation_type;related_unit_id;relation_source,documentary,enum;id;string,dissent_to|continuation_of|repeated_supplication|none,—,expert note,variants modelled as relations
+htr_text;htr_coverage;htr_pages_missing,witness,text;enum,full|partial|none,—,F. Boschetti (Kraken/eScriptorium),computational witness; uncollated; never replaces GT
+cer_vs_ground_truth;wer_vs_ground_truth,evaluation,float,unit-level; normalised,not_checked,project,method in data/htr_evaluation_report.md
+reading_reliability,evaluation,enum,A|B|C|D|E|F,—,project,A=GT B=partial C=regest+HTR D=regest E=HTR-only F=none
+hyp.policy_domain,analytical,hypothesis,controlled vocabulary (10 values),pending_hypothesis,rule M_domain_cues,weighted lexical cues; cue term recorded
+hyp.decision_orientation,analytical,hypothesis,controlled vocabulary (10 values),pending_hypothesis,rule M_orientation_from_closing,performative formula span is evidence; label mapping is the fragile step
+hyp.document_trigger,analytical,hypothesis,controlled vocabulary (8 values),pending_hypothesis,rule M_trigger_incipit,from incipit patterns
+terms.deontic|fiscal|monetary|institutions,analytical,list,surface markers with evidence snippets,pending_hypothesis,rules L_*,high-precision string extraction
+persons_hyp,analytical,list,name+rule+evidence,pending_hypothesis,rules P_*,signatories are validated persons and live in the documentary layer
+places,analytical,list,gazetteer canonical+coords,pending_hypothesis,rule G_gazetteer,approx=true for regions; map degrades gracefully
