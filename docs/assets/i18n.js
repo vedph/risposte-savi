@@ -5,7 +5,7 @@
   var LS = "r142-lang";
   function detect() {
     try { var v = localStorage.getItem(LS); if (v) return v; } catch (e) {}
-    return (navigator.language || "en").slice(0, 2) === "it" ? "it" : "en";
+   return "en";
   }
   var LANG = detect();
   document.documentElement.setAttribute("data-lang", LANG);
