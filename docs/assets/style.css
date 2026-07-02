@@ -512,3 +512,17 @@ main.pad{padding:16px 32px 44px}
 .model-layers{display:grid;grid-template-columns:1fr;gap:16px;max-width:850px;margin:14px 0 6px}
 @media(min-width:760px){.model-layers{grid-template-columns:1fr 1fr}}
 .model-layers .cx-card p{font-size:15px;color:var(--ink);line-height:1.6}
+
+/* ===== mobile pass - 2026-07-02: compact header/nav, decorative frieze off ===== */
+@media(max-width:700px){
+  .site{padding:14px 16px 10px;gap:6px 12px}
+  .site h1{font-size:19px}
+  .site .sub{display:none}
+  .nav{margin-left:0;width:100%;gap:6px 12px}
+  .nav a{font-size:10px;letter-spacing:.04em}
+  #home-wordfield{display:none}
+  body{font-size:16.5px}
+  .hero-title{font-size:24px!important}
+  .body2{padding:14px 16px 8px}
+  .cx-reader{padding:18px 16px}
+}
