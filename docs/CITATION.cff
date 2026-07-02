@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this dataset or framework, please cite it as below."
+title: "Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework (research website and dataset prototype)"
+type: dataset
+authors:
+  - family-names: "Carbé"
+    given-names: "Emmanuela"
+    affiliation: "Università Ca' Foscari Venezia / VeDPH"
+    orcid: "https://orcid.org/0000-0001-5504-6899"
+  - family-names: "Boschetti"
+    given-names: "Federico"
+    affiliation: "CNR-ILC / VeDPH / CLARIN Knowledge Centre, Venezia"
+    orcid: "https://orcid.org/0000-0003-2850-2996"
+  - family-names: "Cecchini"
+    given-names: "Isabella"
+    affiliation: "CNR-ISEM, Venezia"
+    orcid: "https://orcid.org/0000-0002-6460-2954"
+repository-code: "https://github.com/vedph/risposte-savi"
+url: "https://vedph.github.io/risposte-savi/"
+version: "Prototype v1"
+date-released: "2026-07-02"
+preferred-citation:
+  type: conference-paper
+  title: "Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework"
+  authors:
+    - family-names: "Carbé"
+      given-names: "Emmanuela"
+    - family-names: "Boschetti"
+      given-names: "Federico"
+    - family-names: "Cecchini"
+      given-names: "Isabella"
+  conference:
+    name: "EADH 2026"
+  year: 2026
