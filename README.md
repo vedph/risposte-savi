@@ -1,4 +1,4 @@
-# The *Risposte* of the Cinque Savi alla Mercanzia — Register 142 (1607–1610)
+# The *Risposte* of the Cinque Savi alla Mercanzia - Register 142 (1607–1610)
 
 **Modelling Early Modern Reasoning for the Venetian *Risposte*: A Scalable Framework**
 
