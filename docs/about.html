@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About &middot; Risposte reg. 142</title>
+<meta name="theme-color" content="#b01e28" />
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/i18n.js"></script>
+</head>
+<body>
+<a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
+<header class="site">
+  <h1><a href="index.html">RISPOSTE</a></h1>
+  <p class="sub"><span class="xen">an experiment on the registers of the Cinque Savi alla Mercanzia</span><span class="xit">un esperimento sui registri dei Cinque Savi alla Mercanzia</span></p>
+  <nav class="nav">
+    <a href="index.html"><span class="xen">Home</span><span class="xit">Home</span></a>
+    <a href="register.html"><span class="xen">Register</span><span class="xit">Registro</span></a>
+    <a href="corpus.html"><span class="xen">Corpus</span><span class="xit">Corpus</span></a>
+    <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
+    <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
+    <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
+    <a href="dataset-journal.html"><span class="xen">Journal</span><span class="xit">Diario</span></a>
+    <a href="about.html" class="on">About</a>
+    <button id="langbtn" class="langbtn" type="button">IT</button>
+  </nav>
+</header>
+<main id="main" class="pad colophon">
+  <h2 class="hero-title" style="font-size:26px">About</h2>
+
+
+  <h3><span class="xen">What this is</span><span class="xit">Che cos'&egrave;</span></h3>
+  <p><span class="xen">The research website and dataset prototype of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>. It records the <i>Risposte</i> of the Cinque Savi alla Mercanzia (ASVe, reg. 142, 1607-1610) as documentary units described in structured form: a stable data model, populated from Isabella Cecchini's diplomatic transcription and tested against an automated text recognition workflow.</span><span class="xit">Il sito di ricerca e il prototipo di dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>. Registra le <i>Risposte</i> dei Cinque Savi alla Mercanzia (ASVe, reg. 142, 1607-1610) come unit&agrave; documentarie descritte in forma strutturata: un modello dati stabile, popolato dalla trascrizione diplomatica di Isabella Cecchini e messo alla prova con un flusso di riconoscimento automatico del testo.</span></p>
+
+  <h3><span class="xen">What we model</span><span class="xit">Che cosa modelliamo</span></h3>
+  <p><span class="xen">The single signed <i>Risposta</i> is the primary decision unit. A minimal documentary layer captures source-near features; an analytical layer adds controlled vocabularies, whose values are hypotheses proposed by the analyst, recorded with an explicit uncertainty state and subject to expert validation. Recurring institutional situations (dissent, continuations) are encoded as explicit relations.</span><span class="xit">La singola <i>Risposta</i> firmata &egrave; l'unit&agrave; primaria di decisione. Un livello documentario minimo registra i tratti aderenti alla fonte; un livello analitico aggiunge vocabolari controllati, i cui valori sono ipotesi proposte dall'analista, registrate con uno stato d'incertezza esplicito e soggette a validazione esperta. Le diverse situazioni istituzionali (dissensi, continuazioni) sono codificate come relazioni esplicite.</span></p>
+
+  <h3><span class="xen">Documentary layers and review status</span><span class="xit">Livelli della documentazione e stato di revisione</span></h3>
+  <p><span class="xen">01&nbsp;Source: images are not published for now; each record carries the archival reference as its identifier. 02&nbsp;The manual transcription (I.&nbsp;Cecchini) is ground truth and is never overwritten by model output. 03&nbsp;Documentary fields are source-near and carry their own uncertainty states. 04&nbsp;The HTR output is shown uncollated, with measured or estimated error. 05&nbsp;Analytical values are rule-extracted hypotheses, with rule id and cited evidence; dashed marks indicate hypotheses. Reading reliability: A&nbsp;expert transcription &middot; B&nbsp;partial expert &middot; C&nbsp;regest&nbsp;+&nbsp;HTR &middot; D&nbsp;regest only &middot; E&nbsp;HTR only &middot; F&nbsp;none.</span><span class="xit">01&nbsp;Fonte: le immagini per il momento non sono pubblicate; ogni record ha come identificatore il riferimento archivistico. 02&nbsp;La trascrizione manuale (I.&nbsp;Cecchini) &egrave; ground truth e non &egrave; mai sovrascritta dall'output dei modelli. 03&nbsp;I campi documentari sono aderenti alla fonte e portano i propri stati d'incertezza. 04&nbsp;L'output HTR &egrave; mostrato non collazionato, con errore misurato o stimato. 05&nbsp;I valori analitici sono ipotesi estratte con regole, con id di regola ed evidenza citata; i tratteggi indicano ipotesi. Affidabilit&agrave; di lettura: A&nbsp;trascrizione esperta &middot; B&nbsp;esperta parziale &middot; C&nbsp;regesto&nbsp;+&nbsp;HTR &middot; D&nbsp;solo regesto &middot; E&nbsp;solo HTR &middot; F&nbsp;nessuna.</span></p>
+
+  <h3><span class="xen">Metrics</span><span class="xit">Metriche</span></h3>
+  <p><span class="xen">Pipeline segmentation error <b>3%</b> and pipeline text-recognition CER <b>&asymp;15%</b> are line-level figures reported for the Kraken/eScriptorium workflow (F.&nbsp;Boschetti). Our unit-level evaluation against ground truth gives CER <b>9.8%</b> / WER <b>28.3%</b> (27 units, normalised for u/v, i/j and punctuation, after the documented correction pass). The figures are compatible, not competing: they differ by measurement level and normalisation, and a diplomatic ground truth is an upper bound for agreement. Method and per-unit table: <a href="data/htr_evaluation_report.md">HTR evaluation report</a>.</span><span class="xit">L&rsquo;errore di segmentazione di pipeline <b>3%</b> e il CER di riconoscimento <b>&asymp;15%</b> sono cifre a livello di riga riportate per il flusso Kraken/eScriptorium (F.&nbsp;Boschetti). La nostra valutazione a livello di unit&agrave; contro la ground truth d&agrave; CER <b>9,8%</b> / WER <b>28,3%</b> (27 unit&agrave;, normalizzazione u/v, i/j e punteggiatura, dopo il passaggio di correzione documentato). Le cifre sono compatibili, non concorrenti: differiscono per livello di misura e normalizzazione, e una ground truth diplomatica &egrave; un tetto per l&rsquo;accordo. Metodo e tabella per unit&agrave;: <a href="data/htr_evaluation_report.md">HTR evaluation report</a>.</span></p>
+
+
+  <h3><span class="xen">Credits (<a href="https://credit.niso.org/">CRediT contributor roles</a>)</span><span class="xit">Crediti (<a href="https://credit.niso.org/">CRediT contributor roles</a>)</span></h3>
+  <p><span class="xen"><b>Emmanuela Carb&eacute;</b> - conceptualization; methodology; data curation; software (this platform); writing - original draft, review &amp; editing. <b>Isabella Cecchini</b> - investigation; resources (diplomatic transcription; photographic digitisation); validation; writing - original draft. <b>Federico Boschetti</b> - methodology (ATR workflow); software; writing - original draft. Partner institutions: Universit&agrave; Ca&rsquo;&nbsp;Foscari Venezia&nbsp;/&nbsp;VeDPH; CNR-ILC (CLARIN Knowledge Centre, Venezia); CNR-ISEM, Venezia.</span><span class="xit"><b>Emmanuela Carb&eacute;</b> - conceptualization; methodology; data curation; software (questa piattaforma); writing - original draft, review &amp; editing. <b>Isabella Cecchini</b> - investigation; resources (trascrizione diplomatica; digitalizzazione fotografica); validation; writing - original draft. <b>Federico Boschetti</b> - methodology (flusso ATR); software; writing - original draft. Istituzioni partner: Universit&agrave; Ca&rsquo;&nbsp;Foscari Venezia&nbsp;/&nbsp;VeDPH; CNR-ILC (CLARIN Knowledge Centre, Venezia); CNR-ISEM, Venezia.</span></p>
+
+  <h3><span class="xen">Institutional note</span><span class="xit">Nota istituzionale</span></h3>
+  <p><img src="assets/logos/ca-foscari-humanities.png" alt="Universit&agrave; Ca' Foscari Venezia - Dipartimento di Studi Umanistici" style="max-width:280px;height:auto;display:block;margin:4px 0 12px"></p>
+  <p><span class="xen">This is not an institutional website of Ca' Foscari University of Venice. It was designed and developed as part of a research project of the Venice Centre for Digital and Public Humanities (VeDPH), Department of Humanities, outside the web services of the University. Responsibility for its content lies with the Centre and with the curators of the project.</span><span class="xit">Questo non &egrave; un sito istituzionale dell'Universit&agrave; Ca' Foscari Venezia. &Egrave; stato progettato e realizzato nell'ambito di un progetto di ricerca del Venice Centre for Digital and Public Humanities (VeDPH), Dipartimento di Studi Umanistici, al di fuori dei servizi web di Ateneo. La responsabilit&agrave; dei contenuti &egrave; del Centro e dei curatori del progetto.</span></p>
+
+  <h3><span class="xen">Rights</span><span class="xit">Diritti</span></h3>
+  <p><span class="xen">Mixed rights, stated per object rather than flattened into one licence: code MIT; dataset and generated pages CC&nbsp;BY&nbsp;4.0; full manuscript reproductions not published; small word-level clippings of the manuscript hand (register 142) reproduced by permission of the Archivio di Stato di Venezia, asserting no reading; institutional logos remain the property of their owners. Details: <a href="RIGHTS.md">RIGHTS.md</a>.</span><span class="xit">Diritti misti, dichiarati per oggetto anzich&eacute; appiattiti in un&rsquo;unica licenza: codice MIT; dataset e pagine generate CC&nbsp;BY&nbsp;4.0; riproduzioni integrali del manoscritto non pubblicate; piccoli ritagli a livello di parola della mano del registro 142 riprodotti su autorizzazione dell&rsquo;Archivio di Stato di Venezia, senza asserire alcuna lettura; i loghi istituzionali restano propriet&agrave; dei rispettivi titolari. Dettagli: <a href="RIGHTS.md">RIGHTS.md</a>.</span></p>
+
+  <h3><span class="xen">Privacy</span><span class="xit">Privacy</span></h3>
+  <p><span class="xen">This site does not use cookies and has no analytics or tracking. The browser stores one technical value in localStorage (<code>r142-lang</code>, the interface language) and, through a service worker, a local cache of the pages for offline consultation; both can be cleared from the browser at any time. Fonts and libraries are self-hosted. The only third-party request is made by the map on the Names &amp; places page, which loads its base tiles from CARTO; the rest of the site makes no external calls. The site collects no personal data.</span><span class="xit">Il sito non utilizza cookie e non ha sistemi di analytics o di tracciamento. Il browser conserva un solo valore tecnico in localStorage (<code>r142-lang</code>, la lingua dell'interfaccia) e, tramite un service worker, una copia locale delle pagine per la consultazione offline; entrambi si possono cancellare dal browser in qualsiasi momento. Caratteri e librerie sono ospitati localmente. L'unica richiesta a terzi &egrave; quella della mappa nella pagina Nomi e luoghi, che carica i tasselli di base da CARTO; il resto del sito non effettua chiamate esterne. Il sito non raccoglie dati personali.</span></p>
+
+  <h3><span class="xen">Accessibility</span><span class="xit">Accessibilit&agrave;</span></h3>
+  <p><span class="xen">The site is built to meet WCAG 2.1 AA: text colour contrast above the 4.5:1 threshold, alternative text on all images, declared and switchable document language, skip link, visible focus, reduced-motion support, labelled controls and native expandable panels. A full manual audit (screen reader; complete keyboard pass on all interactive components) has not yet been carried out; its results will be published on this page.</span><span class="xit">Il sito &egrave; costruito secondo WCAG 2.1 AA: contrasto del testo sopra la soglia 4,5:1, testo alternativo su tutte le immagini, lingua del documento dichiarata e commutabile, skip link, focus visibile, rispetto della preferenza di movimento ridotto, controlli etichettati e pannelli espandibili nativi. Una verifica manuale completa (screen reader; navigazione da tastiera su tutti i componenti interattivi) non &egrave; ancora stata svolta; gli esiti saranno pubblicati in questa pagina.</span></p>
+
+  <h3><span class="xen">AI note</span><span class="xit">Nota sull'AI</span></h3>
+  <p><span class="xen">AI tools were used as part of the drafting, prototyping and documentation workflow for the website. They are not treated as sources for transcriptions, metadata or analytical values; the published data derive from the project dataset, manual transcription work, rule-based extraction procedures and scholarly review. Note: <a href="METHOD-AI.md">METHOD-AI.md</a>.</span><span class="xit">Strumenti di AI sono stati usati nel lavoro di redazione, prototipazione e documentazione del sito. Non sono trattati come fonti per trascrizioni, metadati o valori analitici; i dati pubblicati derivano dal dataset di progetto, dal lavoro di trascrizione manuale, da procedure di estrazione basate su regole e dalla revisione scientifica. Nota: <a href="METHOD-AI.md">METHOD-AI.md</a>.</span></p>
+
+
+  <h3><span class="xen">Data &amp; downloads</span><span class="xit">Dati e download</span></h3>
+  <p><span class="xen">Datasets, snapshots and technical documentation are published on the <a href="data.html">Data &amp; downloads</a> page. For release history, dataset snapshots and data changes, see the <a href="dataset-journal.html">Dataset journal</a>.</span><span class="xit">Dataset, istantanee e documentazione tecnica sono pubblicati nella pagina <a href="data.html">Dati e download</a>. Per la storia delle release, le istantanee e le modifiche ai dati si veda il <a href="dataset-journal.html">Diario del dataset</a>.</span></p>
+
+  <p class="mut" style="font-size:14px"><span class="xen">This website adapts the static-site model previously developed for the VeDPH Venice Summer School repository (<a href="https://github.com/vedph/vessdph2026">vessdph2026</a>), reworking it for an archival-historical research dataset.</span><span class="xit">Il sito adatta il modello di sito statico sviluppato per il repository della VeDPH Venice Summer School (<a href="https://github.com/vedph/vessdph2026">vessdph2026</a>), rielaborandolo per un dataset di ricerca archivistico-storica.</span></p>
+<h3><span class="xen">Cite</span><span class="xit">Citazione</span></h3>
+  <p>Carb&eacute;, Emmanuela, Federico Boschetti, and Isabella Cecchini. <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>. Research website and dataset prototype. First public prototype, 2026. https://vedph.github.io/risposte-savi/ &middot; https://github.com/vedph/risposte-savi (see <code>CITATION.cff</code>).</p>
+
+</main>
+<footer class="site-foot">
+  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
+  <nav class="flinks" aria-label="Footer">
+    <a href="about.html">About</a>
+    <a href="dataset-journal.html"><span class="xen">Dataset journal</span><span class="xit">Diario del dataset</span></a>
+    <a href="data.html"><span class="xen">Data &amp; downloads</span><span class="xit">Dati e download</span></a>
+    <a href="https://github.com/vedph/risposte-savi">GitHub</a>
+  </nav>
+  <p class="aff">Emmanuela Carb&eacute; &mdash; Universit&agrave; Ca&rsquo; Foscari Venezia / VeDPH<br>Federico Boschetti &mdash; CNR-ILC / VeDPH / CLARIN Knowledge Centre, Venezia<br>Isabella Cecchini &mdash; CNR-ISEM, Venezia</p>
+  <div class="flogos">
+    <img src="assets/logos/vedph.png" alt="Venice Centre for Digital and Public Humanities (VeDPH)">
+    <img src="assets/logos/ilc-cnr.png" alt="CNR - Istituto di Linguistica Computazionale &laquo;A. Zampolli&raquo; (ILC)">
+    <span class="txtmark">ISEM &middot; CNR<br>Istituto di Storia dell'Europa Mediterranea, sede di Venezia</span>
+  </div>
+</footer>
+</body>
+</html>
