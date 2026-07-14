@@ -2,7 +2,7 @@
    EB Garamond (serif reading text), IBM Plex Mono (structural labels),
    clean near-white ground, Venetian red accent (#b01e28). */
 :root{
-  --ground:#FFFFFF; --paper:#FFFFFF; --ink:#1B1B1B; --soft:#6A6A66; --grey:#9B9B97;
+  --ground:#FFFFFF; --paper:#FFFFFF; --ink:#1B1B1B; --soft:#6A6A66; --grey:#767672;
   --hair:#E5E2D9; --faint:#CFCCC2; --accent:#B01E28; --accent-soft:#9a5a52;
   --serif:"EB Garamond",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -358,7 +358,7 @@ tr.cx-g td{color:var(--grey);font-style:italic}
 .ghost{display:inline-block;border:1px dashed var(--accent-soft);color:var(--accent-soft);border-radius:2px;padding:0 7px;font-family:var(--mono);font-size:11.5px;margin:2px 6px 2px 0;white-space:nowrap}
 .cx-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:18px 0}
 .cx-card{border:1px solid var(--hair);padding:14px 16px;background:#fff}
-.cx-card h4{margin:0 0 4px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.cx-card h3,.cx-card h4{margin:0 0 4px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .cx-card p{margin:0;font-size:14.5px;color:var(--soft)}
 .cx-ev{color:var(--grey);font-size:12.5px;font-family:var(--mono)}
 @media(max-width:640px){.figures{gap:8px 18px;padding:14px 20px}.cx-wrap{padding:8px 20px 24px}table.cx td,table.cx th{padding:6px 8px}}

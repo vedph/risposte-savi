@@ -299,7 +299,7 @@
       return '<div class="toolbar"><div class="modes">' +
         '<button data-mode="reading" class="' + (state.mode === "reading" ? "active" : "") + '">' + t("reading") + "</button>" +
         '<button data-mode="evidence" class="' + (state.mode === "evidence" ? "active" : "") + '">' + t("evidence") + "</button></div>" +
-        '<input class="search" type="search" placeholder="' + esc(t("search")) + '" value="' + esc(state.q) + '">' +
+        '<input class="search" type="search" aria-label="' + esc(t("search")) + '" placeholder="' + esc(t("search")) + '" value="' + esc(state.q) + '">' +
         '<div class="filters">' +
         '<select data-filter="domain">' + opts(t("domain"), domains, f.domain, domWord) + "</select>" +
         '<select data-filter="decision">' + opts(t("decision"), decisions, f.decision) + "</select>" +

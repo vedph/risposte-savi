@@ -25,7 +25,7 @@
     register: { en: "Register", it: "Registro" },
     names: { en: "Names & places", it: "Nomi e luoghi" },
     model: { en: "Model", it: "Modello" },
-    colophon: { en: "Colophon", it: "Colophon" },
+    colophon: { en: "About", it: "About" },
     reading: { en: "Reading", it: "Lettura" },
     evidence: { en: "Evidence", it: "Evidenza" },
     search: { en: "Search title, text, signatories…", it: "Cerca titolo, testo, firmatari…" },
