@@ -118,7 +118,7 @@ var h='',nMan=0,nReg=0;for(var f=1;f<=192;f++){var e=byf[f];
 if(e){if(e.c==='cov')nMan++;else nReg++;}
 h+='<i class="'+(e?e.c:'')+'" title="c. '+f+(e?' \u00b7 '+e.u:'')+'"'+(e?' data-u="'+e.u+'"':'')+'></i>';}
 S.innerHTML=h;S.addEventListener('click',function(ev){var u=ev.target&&ev.target.getAttribute('data-u');if(u)location.hash=u;});
-var tot=nMan+nReg,pct=Math.round(tot/192*100),nG=(window.GAPS||[]).length,
+var tot=nMan+nReg,gc=(window.GAPS||[]).reduce(function(a,g){return a+(g.carte||0)},0),pct=Math.round(100*(192-gc)/192),nG=(window.GAPS||[]).length,
 uMan=RISPOSTE.units.filter(function(u){return (u.transcription_status||'').indexOf('manual')===0;}).length,
 uReg=RISPOSTE.units.length-uMan,
 sum=document.getElementById('cxsum');
