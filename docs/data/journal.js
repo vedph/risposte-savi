@@ -1,6 +1,7 @@
 /* Dataset journal - one entry per public release or substantive dataset change.
    Newest first. d = date (ISO), s = snapshot id, t = short title, en/it = entry text. */
 window.JOURNAL = [
+{"date": "2026-07-15", "version": "dataset-2026-07-15", "note": "Revision R142_0001-0062: 61 units (R142_0054 split from 0042; R142_0056-0062 from contiguous folios 29v-39v transcribed for the ATR pipeline, 18 June 2026). Signatures separated from text_diplomatic; working notes moved to editorial_notes; statuses reclassified (44 manual_full, 8 manual_partial, 9 regest); bilingual regesti added (regest_source: source/proposed, pending validation I. Cecchini); two emendations proposed and logged (R142_0058, R142_0062); rule extractions regenerated with evidence. Coverage: 97/192 carte. Nothing merged silently; review_flags mark every point awaiting expert validation."},
   {
     d: "2026-07-02",
     s: "dataset-2026-07-02",
