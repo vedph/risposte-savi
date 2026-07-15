@@ -153,8 +153,9 @@
      fell on a word boundary). Display recomposes the continuum without altering
      the data; the field boundary itself is restored in Isabella's offline
      transcription review (see EDITORIAL_INTERFACE_PLAN.md). */
-  var CARRY = { R142_0001: " ", R142_0004: " ", R142_0007: "", R142_0011: " ",
-    R142_0015: "", R142_0020: "", R142_0033: "", R142_0037: " ", R142_0042: " ", R142_0045: "" };
+  /* CARRY retired 2026-07-15: the column-slip repairs are now fixed at source
+     (revision R142_0001-0062); kept as an empty map so the code path stays inert. */
+  var CARRY = {};
   var FW = { di:1, del:1, della:1, dello:1, dei:1, degli:1, delle:1, per:1, a:1, al:1,
     alla:1, ai:1, agli:1, alle:1, e:1, et:1, che:1, in:1, con:1, su:1, da:1, dal:1,
     dalla:1, il:1, la:1, lo:1, le:1, un:1, una:1, sopra:1, circa:1, o:1, li:1, de:1 };
@@ -177,6 +178,38 @@
     return { title: title, joined: mn + sep, cont: cont };
   }
   function mnParts(u) { var c = carry(u); return { title: c.title }; }
+  /* ---------- expanded ("sciolta") rendering: expansions resolved, never silently.
+     Supplied letters keep a visible status (italic); folio changes become pills;
+     uncertainty marks stay first-class. Emendations are applied only here, tagged,
+     with the source reading in the tooltip - the diplomatic view keeps the source. */
+  function expandTxt(s, u) {
+    var x = esc(s);
+    x = x.replace(/\*\*(?:\u2026|\.\.\.)\*\*/g, '<span class="lac" title="' + t("illegible") + '">···</span>');
+    x = x.replace(/\[a lato:([^\]]*)\]/g, '<span class="alato">a lato:$1</span>');
+    x = x.replace(/\[(?:c\.\s*)?(\d{1,3}(?:[rv]|t°?)?)(?:\s*scritto)?\]/g, '<span class="fpill">$1</span>');
+    x = x.replace(/\[sic\]/g, '<span class="sicm">[sic]</span>');
+    x = x.replace(/\[([^\[\]]{1,26})\]/g, '<span class="suppl">$1</span>');
+    x = x.replace(/\(\?\)/g, '<span class="uncm" title="' + t("unc_reading") + '">(?)</span>');
+    (u.emendations || []).forEach(function (e) {
+      var from = esc(e.source), to = esc(e.emended);
+      x = x.split(from).join('<span class="emend" title="' + t("emend_note") + ' \u00ab' + from + '\u00bb">' + to + '</span>');
+    });
+    return x;
+  }
+  function regestBlock(u) {
+    var L = (window.I18N && I18N.lang) ? I18N.lang() : "en";
+    var rg = (L === "it" ? u.regest_it : u.regest_en) || u.regest_en || u.regest_it || "";
+    if (!rg) return "";
+    var tag = (u.regest_source === "proposed") ? ' <span class="hyptag">' + t("regest_prop") + "</span>" : "";
+    return '<div class="regestbox"><h4 class="sp">' + t("regest") + tag + '</h4><p class="rg">' + esc(rg) + "</p></div>";
+  }
+  window.__vt = function (btn) {
+    var sec = btn.closest(".unit-text"); if (!sec) return;
+    var v = btn.getAttribute("data-v");
+    sec.querySelectorAll(".vt").forEach(function (b) { b.classList.toggle("on", b === btn); });
+    sec.querySelector(".bq-d").style.display = v === "d" ? "" : "none";
+    sec.querySelector(".bq-e").style.display = v === "e" ? "" : "none";
+  };
   function recordHTML(u, opt) {
     opt = opt || {};
     var rel = u.reliability, relc = RELC[rel];
@@ -194,15 +227,24 @@
     var roster = u.signatories_raw ? edMark(u.signatories_raw) : '<span class="mut">' + t("signatories_nt") + "</span>";
     /* primary documentary text: the manual diplomatic transcription (or the regest) */
     var cy = carry(u), txt = "";
+    var prline = "";
+    if (u.transcription_practice === "strict") prline = t("practice_strict");
+    else if (u.transcription_practice === "loose") prline = t("practice_loose");
+    var srcl = (u.text_source === "carte_contigue" ? t("src_contig") : t("src_wd")) +
+      (u.double_attestation ? " · " + t("dbl_att") : "");
     if (u.text_diplomatic) {
-      var body = (cy.joined && cy.cont === "text") ? cy.joined + u.text_diplomatic : u.text_diplomatic;
-      txt = '<section class="unit-text"><h3 class="sp wm">' + t("gt") + "</h3><blockquote class=\"diplo-main\">" + edMark(body) + "</blockquote>" +
-        (cy.joined && cy.cont === "text" ? '<p class="mut sm">' + t("carry_note") + "</p>" : "") + "</section>";
+      var body = u.text_diplomatic;
+      txt = '<section class="unit-text">' + regestBlock(u) +
+        '<h3 class="sp wm">' + t("gt") + (u.validation_status === 'pending_expert' ? ' <span class="valbadge">' + t('pending_val') + '</span>' : '') +
+        ' <span class="vtog"><button class="vt on" data-v="d" onclick="__vt(this)">' + t("view_diplo") +
+        '</button><button class="vt" data-v="e" onclick="__vt(this)">' + t("view_expanded") + "</button></span></h3>" +
+        '<p class="mut sm mono">' + esc(prline) + " · " + srcl + "</p>" +
+        '<blockquote class="diplo-main bq-d">' + edMark(body) + "</blockquote>" +
+        '<blockquote class="diplo-main bq-e" style="display:none">' + expandTxt(body, u) + "</blockquote>" +
+        (u.text_annex ? '<details class="annexbox"><summary>' + t("annex") + "</summary><blockquote class=\"diplo-main\">" + edMark(u.text_annex) + "</blockquote></details>" : "") +
+        "</section>";
     } else if (u.transcription_status === "regest") {
-      var rg = u.regest_note || "";
-      if (cy.joined && cy.cont === "regest" && rg) rg = cy.joined + rg;  /* phrase split across the two fields */
-      txt = '<section class="unit-text"><h3 class="sp">' + t("regest") + "</h3>" +
-        ((rg && rg.length > 15 && rg.indexOf("[vedi") !== 0) ? "<blockquote class=\"diplo-main\">" + edMark(rg) + "</blockquote>" : "") +
+      txt = '<section class="unit-text">' + regestBlock(u) +
         '<p class="mut sm">' + t("regest_pending") + "</p></section>";
     }
     /* HTR output: secondary technical layer, collapsed by default */

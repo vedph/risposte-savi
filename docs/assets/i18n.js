@@ -143,3 +143,24 @@
     }
   });
 })();
+
+/* ---- revision 2026-07-15: expanded view, bilingual regesti, provenance ---- */
+(function () {
+  if (!window.I18N_DICT) return;
+  var add = {
+    view_diplo:  { en: "Diplomatic", it: "Diplomatica" },
+    view_expanded: { en: "Expanded", it: "Sciolta" },
+    regest_prop: { en: "proposed - pending validation", it: "proposto - in attesa di validazione" },
+    practice_strict: { en: "strict practice: expansions in square brackets, u/v as written", it: "prassi stretta: scioglimenti in quadre, u/v come nel registro" },
+    practice_loose:  { en: "working practice: expansions resolved silently", it: "prassi di lavoro: scioglimenti silenti" },
+    src_contig: { en: "source: contiguous folios 29v-39v (18 June 2026)", it: "fonte: carte contigue 29v-39v (18 giugno 2026)" },
+    src_wd:     { en: "source: working document", it: "fonte: documento di lavoro" },
+    dbl_att:    { en: "double attestation (texts coincide)", it: "doppia attestazione (testi coincidenti)" },
+    emend_note: { en: "proposed emendation - pending validation; source reading:", it: "emendamento proposto - da validare; lezione della fonte:" },
+    unc_reading:{ en: "uncertain reading", it: "lettura incerta" },
+    illegible:  { en: "illegible portion", it: "porzione illeggibile" },
+    annex:      { en: "Annexed block (proposed related unit)", it: "Blocco annesso (proposta di unita collegata)" },
+    pending_val:{ en: "pending expert validation - readings by I. Cecchini", it: "in validazione (letture di I. Cecchini)" }
+  };
+  for (var k in add) window.I18N_DICT[k] = add[k];
+})();
