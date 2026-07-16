@@ -1,62 +1,54 @@
-unit_id,policy_domain,policy_domain_status,decision_orientation,decision_orientation_status,document_trigger,document_trigger_status,deontic_formulas,fiscal_terms,institutional_terms,monetary_expressions,geography
-R142_0001,institutional_procedure,uncertain,prohibit,uncertain,supplica,uncertain,non possino,,,,
-R142_0002,taxation_customs,uncertain,,not_checked,supplica,uncertain,,datij|gravezze|decima|tansa|ducati,avogaria|proveditori,"ducati tre,",
-R142_0003,shipping_navigation,uncertain,confirm,uncertain,commission,uncertain,debba|non possa|sotto pena|stimiamo,datij|datio|ducati,senato|proveditori|rason vecchie,ducati dieci|un ottavo per cento,Venezia|Lisbona
-R142_0004,shipping_navigation,uncertain,recommend,uncertain,,not_checked,stimiamo,,,,Candia
-R142_0005,citizenship_privilege,uncertain,grant,uncertain,supplica,uncertain,debba,gravezze|tansa|ducati,senato,"ducati quattro,",Bergamo
-R142_0006,minorities_governance,uncertain,inform,uncertain,supplica,uncertain,debba,datij|tansa|tanse,senato,,
-R142_0007,taxation_customs,uncertain,recommend,uncertain,supplica,uncertain,stimiamo,datij|datio,senato,,Bergamo|Verona|Padoa
-R142_0008,,not_checked,,not_checked,,not_checked,,,,,Alessandria
-R142_0056,shipping_navigation,uncertain,inform,uncertain,supplica,uncertain,,,,,Spalato|Narenta|Ragusi
-R142_0009,taxation_customs,uncertain,recommend,uncertain,commission,uncertain,stimiamo,datio,,,
-R142_0057,minorities_governance,uncertain,prohibit,uncertain,supplica,uncertain,non possino,,cattaveri,,
-R142_0010,shipping_navigation,uncertain,grant,uncertain,supplica,uncertain,stimiamo|non resti,datij|datio|tansa|ducati|6 per c,zecca,"ducati 40,|20 per cento",Alessandria|Costantinopoli|Cipro
-R142_0058,taxation_customs,uncertain,,not_checked,report,uncertain,,datij|datio,senato,20 per cento,Ragusi
-R142_0059,institutional_procedure,uncertain,grant,uncertain,letters,uncertain,,,scansadori,,
-R142_0060,institutional_procedure,uncertain,grant,uncertain,letters,uncertain,non possa,,scansadori,l[ire] 116,Vdine
-R142_0011,currency_monetary,uncertain,,not_checked,commission,uncertain,stimiamo,,senato|proveditori|zecca,,
-R142_0012,currency_monetary,uncertain,regulate,uncertain,,not_checked,debba|debbano|non possino|stimiamo,datij|ducati,senato|collegio|proveditori|zecca,ducati tresento.|lire 12|7 per cento,
-R142_0061,institutional_procedure,uncertain,grant,uncertain,letters,uncertain,,,senato,L[ire] 10,Padoa
-R142_0062,institutional_procedure,uncertain,prohibit,uncertain,letters,uncertain,non possa,,scansadori,L[ire] 15,Padoa|Malcesene
-R142_0013,citizenship_privilege,uncertain,,not_checked,supplica,uncertain,,datij|datio|gravezze|tansa|ducati|6 per c,senato,ducati dieci|6 per cento,Levante|Ponente
-R142_0014,,not_checked,,not_checked,,not_checked,,,,,Rodi
-R142_0015,institutional_procedure,uncertain,confirm,uncertain,,not_checked,,,,,Padova
-R142_0016,citizenship_privilege,uncertain,recommend,uncertain,commission,uncertain,stimiamo,,,,
-R142_0017,trade_regulation,uncertain,,not_checked,commission,uncertain,debba|debbano|non possino|sia prohibito,,senato,,Costantinopoli
-R142_0018,shipping_navigation,uncertain,,not_checked,commission,uncertain,debba|debbano|non possino,datij,,,Candia|Levante|Zante
-R142_0019,taxation_customs,uncertain,inform,uncertain,supplica,uncertain,,datio,,,
-R142_0020,trade_regulation,uncertain,,not_checked,report,uncertain,debba,,senato|collegio,,Ponente|Zante|Ferrara
-R142_0021,consular_affairs,uncertain,,not_checked,supplica,uncertain,,datio,,,Verona|Rovigo
-R142_0022,taxation_customs,uncertain,regulate,uncertain,supplica,uncertain,debba,datij|datio|ducati,,ducati 400,
-R142_0023,citizenship_privilege,uncertain,,not_checked,,not_checked,,,,,
-R142_0024,consular_affairs,uncertain,recommend,uncertain,supplica,uncertain,debba|stimiamo,,senato,,Levante
-R142_0025,taxation_customs,uncertain,inform,uncertain,,not_checked,stimiamo,datij|datio|gravezze|sei per cento|6 per c,,6 per cento,Levante
-R142_0026,,not_checked,,not_checked,,not_checked,,,,,
-R142_0027,institutional_procedure,uncertain,grant,uncertain,supplica,uncertain,debba|debbano,,x officij,,
-R142_0028,citizenship_privilege,uncertain,,not_checked,,not_checked,,datij,,,
-R142_0029,manufactures,uncertain,grant,uncertain,supplica,uncertain,,datij,proveditori,,Bergamo
-R142_0030,currency_monetary,uncertain,,not_checked,,not_checked,debba|debbano,ducati,senato,ducati statuita|lire 10,
-R142_0031,currency_monetary,uncertain,prohibit,uncertain,,not_checked,raccordar,datij,senato,,
-R142_0032,currency_monetary,uncertain,recommend,uncertain,commission,uncertain,debba|stimiamo|raccordar,datij,senato,,Roma
-R142_0033,manufactures,uncertain,regulate,uncertain,,not_checked,,,provveditori,,Spalato
-R142_0034,taxation_customs,uncertain,,not_checked,supplica,uncertain,,datio|ducati|sei per cento,senato|governatori delle intrade,ducati 19.m,Alessandria|Corfù|Ragusi
-R142_0035,currency_monetary,uncertain,regulate,uncertain,supplica,uncertain,stimiamo,datij,,,Cipro|Levante
-R142_0036,manufactures,uncertain,,not_checked,supplica,uncertain,,,senato,,
-R142_0037,manufactures,uncertain,,not_checked,report,uncertain,debba|stimiamo,datij|datio|gravezze|ducati,senato,ducati 2,Verona|Levante
-R142_0038,taxation_customs,uncertain,recommend,uncertain,supplica,uncertain,non possino|stimiamo,datij|datio|sei per cento,senato|proveditori|provveditori,ducato et|14 per c°,Verona|Levante|Napoli
-R142_0039,currency_monetary,uncertain,,not_checked,commission,uncertain,stimiamo|sia tenuto,,senato|zecca,20 per cento,Ponente
-R142_0040,shipping_navigation,uncertain,prohibit,uncertain,commission,uncertain,non possino|giudichiamo,datij|datio|ducati|cottimo,senato,ducati di,Candia|Alessandria|Cipro|Levante|Napoli
-R142_0041,institutional_procedure,uncertain,grant,uncertain,supplica,uncertain,stimiamo,,senato|x officij,,Cipro
-R142_0042,trade_regulation,uncertain,,not_checked,,not_checked,,,senato|collegio,,Spalato
-R142_0054,minorities_governance,uncertain,,not_checked,commission,uncertain,stimiamo|raccordar,datij|datio|sei per cento,senato|collegio|cattaveri,,Spalato
-R142_0043,taxation_customs,uncertain,,not_checked,,not_checked,,datij|gravezze|decima|ducati,,ducati pagati,Venezia
-R142_0044,minorities_governance,uncertain,,not_checked,supplica,uncertain,,datij,senato|cattaveri,,
-R142_0045,trade_regulation,uncertain,recommend,uncertain,,not_checked,raccordar,,,,
-R142_0046,trade_regulation,uncertain,prohibit,uncertain,,not_checked,non possa|consigliamo|raccordar,,,,
-R142_0047,taxation_customs,uncertain,,not_checked,,not_checked,,gravezze|tansa,,,Venezia
-R142_0048,shipping_navigation,uncertain,,not_checked,supplica,uncertain,,datio,senato,,Ponente
-R142_0049,taxation_customs,uncertain,recommend,uncertain,supplica,uncertain,stimiamo,cottimo,proveditori,,Alessandria
-R142_0050,credit_bankruptcy,uncertain,,not_checked,,not_checked,,ducati,,ducati [è,Levante|Ponente
-R142_0051,taxation_customs,uncertain,regulate,uncertain,commission,uncertain,debba,datij|datio|sei per cento,collegio,10 per cento,
-R142_0052,citizenship_privilege,uncertain,,not_checked,report,uncertain,stimiamo,datij|gravezze|cottimo,,,Levante|Ponente|Spalato
-R142_0053,credit_bankruptcy,uncertain,regulate,uncertain,,not_checked,debba|debbano|non possa|stimiamo,ducati,avogaria,ducati mille,
+unit_id,policy_domain,decision_orientation,document_trigger,actors,geography,risk_terms,fiscal_terms,institutional_terms,monetary_expressions,deontic_formulas,policy_domain_status,decision_orientation_status,document_trigger_status
+R142_0001,,,supplica,,,,,,,,not_checked,not_checked,pending_hypothesis
+R142_0002,currency_monetary,inform,supplica,Piero|Zuanne,,,datij|gravezze|tansa|Decima,savij|Proveditori|Conseglio di Dieci|Savij,1566 ducati|ducati,,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0003,trade_regulation,recommend,commission,Zuanne,Venezia|Lisbona,,datij,Proveditori|Rason vecchie|Senato,ducati|ducati 10|ducati 5,stimiamo|debba|non possa|possa|sotto pena,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0004,shipping_navigation,recommend,,,Venezia|Candia,,avezza n,,,imiamo m,pending_hypothesis,pending_hypothesis,not_checked
+R142_0005,citizenship_privilege,inform,supplica,,Bergamo|Segna,,gravezze,Senato,ducati,debba,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0006,minorities_governance,deny,supplica,Daniel Rodriga|Iosua Ferro,Roma,,tansa|datij|tanse|gravezza,Senato,,possano|debba|obligati,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0007,trade_regulation,grant,letters,,Padova|Bergamo|Verona,,datij|datio,Senato,,stimiamo,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0008,consular_affairs,,,,Alessandria,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0009,taxation_customs,inform,commission,,Firenze,,datio,,,stimiamo|non possi,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0010,currency_monetary,recommend,supplica,,Venezia|Costantinopoli|Alessandria|Cipro|Aleppo (Soria)|Levante,,"datij|tansa|gravezza|tio, |tij e|tij, ",Zecca|cca a,20 per cento|6 per cento|ducati|ducati 40|45 per cento|per cento d,obligato|ligati a|imiamo i,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0011,currency_monetary,prohibit,,,,,,zecca|Zecca|Proveditori,,stimiamo|possa|non possi,pending_hypothesis,pending_hypothesis,not_checked
+R142_0012,currency_monetary,regulate,,,Venezia,,datij,"Proveditori|Senato|cca, |oveditori s|oveditori a|oveditori i|oveditori e|nato, |llegio a|nato a",lire 12|7 per cento|cati t,possa|non possino|possino|debba|stimiamo|n possino p|ssino p|ssino c|bbano e|ssino e|bbano a,pending_hypothesis,pending_hypothesis,not_checked
+R142_0013,citizenship_privilege,grant,report,Pietro|Guglielmo,Venezia|Padova|Levante|Ponente,,datij|gravezze|doana|datio|j com|j et ,Senato|to sot,"6 per cento|ducati| 3 ¼|r cento de | ducati 15,|ti 15,|ti 15, et|ti 15, li",,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0014,consular_affairs,,,,Rodi,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0015,institutional_procedure,,,,Padova,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0016,citizenship_privilege,regulate,letters,,Saragozza,,,,,stimiamo,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0017,trade_regulation,inform,commission,,Costantinopoli,,,Senato,,debbano|non possino|possino,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0018,shipping_navigation,inform,,,Venezia|Zante|Candia|Levante,,datij,,,non possino|possino|debbano,pending_hypothesis,pending_hypothesis,not_checked
+R142_0019,trade_regulation,regulate,report,Nicolò Zucato,,,datio,,,,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0020,trade_regulation,recommend,report,,Venezia|Zante|Ferrara|Ponente,,,savij|collegio|Senato|to del,,bba e|ssino a,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0021,trade_regulation,confirm,,,Venezia|Rovigo|Verona,,datio,,,,pending_hypothesis,pending_hypothesis,not_checked
+R142_0022,trade_regulation,inform,supplica,Zuanne|Insida Roco,,,datio|datij,,ducati|ducati 400|ducati 300|d. 500,siamo di parere|di parere|possa|debba,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0023,citizenship_privilege,,,,,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0024,currency_monetary,inform,,Lucillo Fossato,Venezia|Costantinopoli|Segna|Levante,,,Senato,,debba|stimiamo|possa,pending_hypothesis,pending_hypothesis,not_checked
+R142_0025,trade_regulation,grant,,Piero|Zuanne,Levante,,"avezze… |j, et|ezze sud|j del|delle| sico|ze, et n|ze per g|l’ann",alla ,cento a X p|cento non v,"iamo, ch|a con",pending_hypothesis,pending_hypothesis,not_checked
+R142_0026,,,,,,,,,,,not_checked,not_checked,not_checked
+R142_0027,trade_regulation,inform,,Mercanti Alemani,,,,,,debbano,pending_hypothesis,pending_hypothesis,not_checked
+R142_0028,,,,Battista Nanti,,,,,,,not_checked,not_checked,not_checked
+R142_0029,manufactures,inform,supplica,,Venezia|Bergamo|Firenze,,datij,Proveditori,,non possi,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0030,currency_monetary,recommend,,,Venezia|Milano|Firenze,,,Savij|senato|Senato|j dom,ducati|d. 143|re 10 c|re 11 s|cato v|cato c|cati e|cati 1|cati 134 ¾,ino ess|ano int|ano red|ano per|ano que,pending_hypothesis,pending_hypothesis,not_checked
+R142_0031,trade_regulation,,,,Cipro,,datij,Senato,,non possi|possa,pending_hypothesis,not_checked,not_checked
+R142_0032,trade_regulation,inform,,,Firenze|Roma,,datij,Senato,,possino|debba|possano|stimiamo,pending_hypothesis,pending_hypothesis,not_checked
+R142_0033,manufactures,,,,,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0034,taxation_customs,grant,supplica,,Venezia|Alessandria|Corfù|Aleppo (Soria),,datio,Governatori delle Intrade|Senato|senato,ducati|ducati 19|ducati 19.,,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0035,currency_monetary,grant,supplica,,Venezia|Cipro|Aleppo (Soria)|Levante,,datij,,,possino|stimiamo,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0036,manufactures,deny,,,Venezia|Firenze,,,Senato,,possa,pending_hypothesis,pending_hypothesis,not_checked
+R142_0037,taxation_customs,recommend,report,,Venezia|Firenze|Verona|Levante,,"dazio|tij d|tio i|tio, |avezza d|tio d|avezza f|avezze a|tij, |avezze, |avezza p|tio n|tio p|tio u|avezze s",Senato,"ducati|ducati 2|cato u|cato, |cato p",debba|ssino r| potria f|imiamo d|versi c| potria l,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0038,trade_regulation,recommend,,,Venezia|Padova|Verona|Napoli|Roma|Levante,,"avezza, |tij d|tio d|tij c|tio a|tio: |avezza d",oveditori a|nato i,"ldi 3 p|cato e| per cento s| 500, ",ssano l|imiamo p|n possino s|ssino s|imiamo c|ssa a|ssano a|ssa d,pending_hypothesis,pending_hypothesis,not_checked
+R142_0039,currency_monetary,deny,commission,,Venezia|Dalmazia|Levante|Ponente,,,Zecca|Senato,20 per cento,sia tenuto|stimiamo,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0040,trade_regulation,recommend,commission,,Venezia|Costantinopoli|Alessandria|Cipro|Candia|Napoli|Aleppo (Soria)|Levante,,cottimo|datij,Savij|Senato,ducati,possa|possino|si potria|Giudichiamo|non possino,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0041,trade_regulation,inform,,,Venezia|Cipro|Aleppo (Soria),,,,,stimiamo|possino,pending_hypothesis,pending_hypothesis,not_checked
+R142_0042,minorities_governance,,,Daniel Rodriga,Venezia|Costantinopoli|Spalato|Roma,,"gravezza|tij, |tij c|tio, ","Savi|Collegio|Senato|llegio c|nato p|nato d|nato i|nato l|llegio, |llegio p|vi d|nato c|llegio f|nato. |nato h|nato s|nato, |llegio. |nato n|nato a|vij, |vij. ",,imiamo c|ssa p|ssa h|ssino c,pending_hypothesis,not_checked,not_checked
+R142_0043,taxation_customs,,,,Venezia,,"gravezze|decima|j di |a da |j, et",,ti pag,,pending_hypothesis,not_checked,not_checked
+R142_0044,trade_regulation,inform,supplica,,,,datij,Senato,,,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0045,trade_regulation,,,,,,,,,possino,pending_hypothesis,not_checked,not_checked
+R142_0046,trade_regulation,,,,Venezia|Firenze,,,,,non possano|possano,pending_hypothesis,not_checked,not_checked
+R142_0047,citizenship_privilege,,,,Venezia,,,,,,pending_hypothesis,not_checked,not_checked
+R142_0048,shipping_navigation,grant,supplica,Prospero Colombo,Venezia|Ponente,,datio,Senato,,,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0049,trade_regulation,inform,supplica,,Costantinopoli|Alessandria,,cottimo|Cottimo,Proveditori,,stimiamo,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0050,trade_regulation,regulate,,,Levante|Ponente,,,,ducati|ducati 2007376|2007376 ducati|ducati 150,,pending_hypothesis,pending_hypothesis,not_checked
+R142_0051,taxation_customs,inform,commission,,,,Datio|datio|datij|doana,Collegio,10 per cento,debba,pending_hypothesis,pending_hypothesis,pending_hypothesis
+R142_0052,trade_regulation,recommend,,,Venezia|Spalato|Levante|Ponente,,gravezze|datij|cottimo,,,si potria|laudiamo|Stimiamo|possino|obligati|possa,pending_hypothesis,pending_hypothesis,not_checked
+R142_0053,credit_bankruptcy,inform,,,,,,,ducati,possa|stimiamo|non possa|Stimiamo|debbano|possino,pending_hypothesis,pending_hypothesis,not_checked
