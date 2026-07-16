@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dataset journal &middot; Risposte reg. 142</title>
+<meta name="description" content="Release history and dataset snapshots of the Risposte reg. 142 research dataset. First public prototype." />
+<meta name="theme-color" content="#b01e28" />
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/i18n.js"></script>
+</head>
+<body>
+<a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
+<header class="site">
+  <h1><a href="index.html">RISPOSTE</a></h1>
+  <p class="sub"><span class="xen">an experiment on the registers of the Cinque Savi alla Mercanzia</span><span class="xit">un esperimento sui registri dei Cinque Savi alla Mercanzia</span></p>
+  <nav class="nav">
+    <a href="index.html"><span class="xen">Home</span><span class="xit">Home</span></a>
+    <a href="register.html"><span class="xen">Register</span><span class="xit">Registro</span></a>
+    <a href="corpus.html"><span class="xen">Corpus</span><span class="xit">Corpus</span></a>
+    <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
+    <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
+    <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
+    <a href="dataset-journal.html" class="on"><span class="xen">Journal</span><span class="xit">Diario</span></a>
+    <a href="about.html">About</a>
+    <button id="langbtn" class="langbtn" type="button">IT</button>
+  </nav>
+</header>
+
+<main id="main" class="journal-page">
+  <h2><span class="xen">Dataset journal</span><span class="xit">Diario del dataset</span></h2>
+  <p style="max-width:78ch"><span class="xen">Release history of the published dataset: one entry for each public release or substantive change, with its date and snapshot identifier. The current snapshot is available on the <a href="data.html">Data &amp; downloads</a> page.</span><span class="xit">Storia delle release del dataset pubblicato: una voce per ogni pubblicazione o modifica sostanziale, con data e identificativo dell'istantanea. L'istantanea corrente &egrave; disponibile nella pagina <a href="data.html">Dati e download</a>.</span></p>
+  <div class="journal"><ol id="journal-list"></ol>
+  <noscript><p><span class="xen">2026-07-02 &middot; dataset-2026-07-02 &middot; First public prototype.</span><span class="xit">2026-07-02 &middot; dataset-2026-07-02 &middot; Primo prototipo pubblico.</span></p></noscript>
+  </div>
+</main>
+<footer class="site-foot">
+  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
+  <nav class="flinks" aria-label="Footer">
+    <a href="about.html">About</a>
+    <a href="dataset-journal.html"><span class="xen">Dataset journal</span><span class="xit">Diario del dataset</span></a>
+    <a href="data.html"><span class="xen">Data &amp; downloads</span><span class="xit">Dati e download</span></a>
+    <a href="https://github.com/vedph/risposte-savi">GitHub</a>
+  </nav>
+  <p class="aff">Emmanuela Carb&eacute; &mdash; Universit&agrave; Ca&rsquo; Foscari Venezia / VeDPH<br>Federico Boschetti &mdash; CNR-ILC / VeDPH / CLARIN Knowledge Centre, Venezia<br>Isabella Cecchini &mdash; CNR-ISEM, Venezia</p>
+  <div class="flogos">
+    <img src="assets/logos/vedph.png" alt="Venice Centre for Digital and Public Humanities (VeDPH)">
+    <img src="assets/logos/ilc-cnr.png" alt="CNR - Istituto di Linguistica Computazionale &laquo;A. Zampolli&raquo; (ILC)">
+    <span class="txtmark">ISEM &middot; CNR<br>Istituto di Storia dell'Europa Mediterranea, sede di Venezia</span>
+  </div>
+</footer>
+<script src="data/journal.js"></script>
+<script>(function(){var L=document.getElementById('journal-list');if(!L||!window.JOURNAL)return;
+L.innerHTML=JOURNAL.map(function(e){return '<li><span class="jd">'+e.d+'</span><span class="js">'+e.s+'</span>'+
+'<p><b><span class="xen">'+e.t.en+'</span><span class="xit">'+e.t.it+'</span></b> &mdash; <span class="xen">'+e.en+'</span><span class="xit">'+e.it+'</span></p></li>';}).join('');})();</script>
+</body>
+</html>

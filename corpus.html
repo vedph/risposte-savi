@@ -1,0 +1,127 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corpus &middot; Risposte reg. 142</title>
+<link rel="stylesheet" href="assets/style.css"></head><body>
+<a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
+<header class="site">
+  <h1><a href="index.html">RISPOSTE</a></h1>
+  <p class="sub"><span class="xen">an experiment on the registers of the Cinque Savi alla Mercanzia</span><span class="xit">un esperimento sui registri dei Cinque Savi alla Mercanzia</span></p>
+  <nav class="nav">
+    <a href="index.html"><span class="xen">Home</span><span class="xit">Home</span></a>
+    <a href="register.html"><span class="xen">Register</span><span class="xit">Registro</span></a>
+    <a href="corpus.html" class="on"><span class="xen">Corpus</span><span class="xit">Corpus</span></a>
+    <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
+    <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
+    <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
+    <a href="dataset-journal.html"><span class="xen">Journal</span><span class="xit">Diario</span></a>
+    <a href="about.html">About</a>
+    <button id="langbtn" class="langbtn" type="button">IT</button>
+  </nav>
+</header>
+<main id="main">
+<div class="cx-wrap">
+<h2><span class="xen">The corpus</span><span class="xit">Il corpus</span></h2>
+<h3 style="margin:6px 0 4px"><span class="xen">Register 142 - work status</span><span class="xit">Stato lavoro registro 142</span></h3>
+<div class="cxstrip-wrap">
+<div id="cxstrip" class="cxstrip" role="img" aria-label="Register 142 work status, folio by folio"></div>
+<div class="cxticks" aria-hidden="true"><span>c. 1</span><span>c. 48</span><span>c. 96</span><span>c. 144</span><span>c. 192</span></div>
+</div>
+<ul class="cxlegend" style="list-style:none;padding:0">
+<li class="l-man"><i></i><span class="xen">manual transcription</span><span class="xit">trascrizione manuale</span></li>
+<li class="l-reg"><i></i><span class="xen">regest only</span><span class="xit">solo regesto</span></li>
+<li class="l-gap"><i></i><span class="xen">not yet in the dataset</span><span class="xit">non ancora nel dataset</span></li>
+</ul>
+<p id="cxsum" class="mut" style="font-size:14px;max-width:78ch;margin:8px 0 0"></p>
+<div class="cx-tools">
+<input class="cx-filter" id="cxq" type="search" placeholder="Filter: id, date, note…" aria-label="Filter units">
+<label class="mono" style="font-size:12px"><input type="checkbox" id="cxg" checked> <span class="xen">show gap rows</span><span class="xit">mostra lacune</span></label>
+</div>
+<div class="cx-scroll"><table class="cx" aria-label="Units of register 142"><thead><tr>
+<th scope="col"><span class="xen">unit</span><span class="xit">unit&agrave;</span></th><th scope="col"><span class="xen">folios</span><span class="xit">carte</span></th>
+<th scope="col"><span class="xen">date</span><span class="xit">data</span></th>
+<th scope="col"><span class="xen">marginal note</span><span class="xit">nota marginale</span></th>
+<th scope="col"><span class="xen">status</span><span class="xit">stato</span></th></tr></thead><tbody id="cxbody"></tbody></table></div>
+</div></main>
+<footer class="site-foot">
+  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
+  <nav class="flinks" aria-label="Footer">
+    <a href="about.html">About</a>
+    <a href="dataset-journal.html"><span class="xen">Dataset journal</span><span class="xit">Diario del dataset</span></a>
+    <a href="data.html"><span class="xen">Data &amp; downloads</span><span class="xit">Dati e download</span></a>
+    <a href="https://github.com/vedph/risposte-savi">GitHub</a>
+  </nav>
+  <p class="aff">Emmanuela Carb&eacute; &mdash; Universit&agrave; Ca&rsquo; Foscari Venezia / VeDPH<br>Federico Boschetti &mdash; CNR-ILC / VeDPH / CLARIN Knowledge Centre, Venezia<br>Isabella Cecchini &mdash; CNR-ISEM, Venezia</p>
+  <div class="flogos">
+    <img src="assets/logos/vedph.png" alt="Venice Centre for Digital and Public Humanities (VeDPH)">
+    <img src="assets/logos/ilc-cnr.png" alt="CNR - Istituto di Linguistica Computazionale &laquo;A. Zampolli&raquo; (ILC)">
+    <span class="txtmark">ISEM &middot; CNR<br>Istituto di Storia dell'Europa Mediterranea, sede di Venezia</span>
+  </div>
+</footer>
+<script src="assets/i18n.js"></script>
+<script src="data/units.js"></script>
+<script src="data/gaps.js"></script>
+<script>(function(){
+var B=document.getElementById('cxbody'),Q=document.getElementById('cxq'),G=document.getElementById('cxg');
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function fmt(s){return esc(s)
+ .replace(/\[([^\]]{2,400})\]/g,'<span class="ednote">[$1]</span>')
+ .replace(/\(([^()]{16,400})\)/g,'<span class="ednote">($1)</span>');}
+function riga(u,g){var tr=document.createElement('tr');tr.className=g?'cx-g':'cx-u';
+if(!g)tr.setAttribute('data-uid',u.unit_id);
+tr.innerHTML='<td class="mono">'+esc(u.unit_id)+'</td><td>'+esc(u.folio_start)+(u.folio_end&&u.folio_end!==u.folio_start?'-'+esc(u.folio_end):'')+'</td><td>'+esc(g?'-':(u.date_iso||u.date_original||'-'))+'</td><td>'+(g?'<span class="xen">not yet in the dataset</span><span class="xit">non ancora nel dataset</span>':esc(mnp(u).t))+'</td><td>'+(g?'&mdash;':stlab(u.transcription_status))+'</td>';
+if(!g)tr.addEventListener('click',function(){var open=document.querySelector('tr.cx-detail');
+if(open&&open.previousSibling===tr){open.remove();if(location.hash)history.replaceState(null,'',location.pathname+location.search);return;}
+location.hash=u.unit_id;});
+return tr;}
+function render(){var q=(Q.value||'').toLowerCase();B.innerHTML='';
+RISPOSTE.units.forEach(function(u){var hay=(u.unit_id+' '+u.marginal_note_raw+' '+(u.date_original||'')+' '+(u.date_iso||'')).toLowerCase();
+if(!q||hay.indexOf(q)!==-1)B.appendChild(riga(u,false));});
+if(G.checked&&!q&&window.GAPS)GAPS.forEach(function(g){B.appendChild(riga(g,true));});}
+/* source-export truncation: long marginal notes overflowed into the next field.
+   Audited per unit; sep "" = cut inside a word, " " = cut on a word boundary. */
+var CARRY={R142_0001:' ',R142_0004:' ',R142_0007:'',R142_0011:' ',R142_0015:'',R142_0020:'',R142_0033:'',R142_0037:' ',R142_0042:' ',R142_0045:''};
+var FW={di:1,del:1,della:1,dello:1,dei:1,degli:1,delle:1,per:1,a:1,al:1,alla:1,ai:1,agli:1,alle:1,e:1,et:1,che:1,in:1,con:1,su:1,da:1,dal:1,dalla:1,il:1,la:1,lo:1,le:1,un:1,una:1,sopra:1,circa:1,o:1,li:1,de:1};
+function mnp(u){var mn=(u.marginal_note_raw||'').replace(/\s+/g,' ').trim();
+if(!(u.unit_id in CARRY))return{t:mn,sep:null};
+var sep=CARRY[u.unit_id],t=mn,m=mn.match(/^(.*[.\u201d])\s+(\S+(?:\s+\S+){0,3})$/);
+if(m)t=m[1];else{var k=mn.split(' ');if(sep==='')k.pop();
+while(k.length>3&&FW[k[k.length-1].toLowerCase()])k.pop();t=k.join(' ');}
+return{t:t.replace(/[\s,.:;\u201c]+$/,'')+'\u2026',sep:sep,mn:mn};}
+function stlab(s){return s==='manual'?'<span class="xen">manual transcription</span><span class="xit">trascrizione manuale</span>':s==='manual_partial'?'<span class="xen">partial manual transcription</span><span class="xit">trascrizione manuale parziale</span>':s==='regest'?'<span class="xen">regest</span><span class="xit">regesto</span>':esc(s);}
+function card(u){var mp=mnp(u),txt=u.text_diplomatic||'',reg=u.regest_note||'';
+if(mp.sep!=null){if(reg)reg=mp.mn+mp.sep+reg;else if(txt)txt=mp.mn+mp.sep+txt;}
+return '<div class="cx-reader" style="margin:0">'+
+'<p class="eyebrow mono" style="margin:0 0 4px">'+esc(u.unit_id)+'</p>'+
+'<h3 style="margin:.1em 0 .3em">'+esc(mp.t||'(no marginal note)')+'</h3>'+
+'<div class="meta"><span>cc. '+esc(u.folio_start)+(u.folio_end&&u.folio_end!==u.folio_start?'-'+esc(u.folio_end):'')+'</span><span>'+esc(u.date_original||'')+(u.date_iso?' &middot; '+esc(u.date_iso):'')+'</span><span>'+stlab(u.transcription_status)+'</span>'+(function(){var n=txt?txt.split('(?)').length-1:0;return n?'<span><span class="xen">uncertain readings: '+n+'</span><span class="xit">letture incerte: '+n+'</span></span>':'';})()+'</div>'+
+(txt?'<div class="cx-diplo">'+fmt(txt)+'</div>':(reg?'<p class="muted"><span class="xen">Regest:</span><span class="xit">Regesto:</span></p><div class="cx-diplo">'+fmt(reg)+'</div>':'<p class="muted">(text pending)</p>'))+
+'<a class="openunit" href="unit.html?u='+encodeURIComponent(u.unit_id)+'"><span class="xen">View unit record</span><span class="xit">Apri la scheda dell\u2019unit\u00e0</span></a></div>';}
+function show(id,scroll){var u=RISPOSTE.units.find(function(x){return x.unit_id===id;});if(!u)return;
+var old=document.querySelector('tr.cx-detail');if(old)old.remove();
+var row=B.querySelector('tr[data-uid="'+id+'"]');
+if(!row){Q.value='';render();row=B.querySelector('tr[data-uid="'+id+'"]');}
+if(!row)return;
+var tr=document.createElement('tr');tr.className='cx-detail';
+tr.innerHTML='<td colspan="5" style="padding:0">'+card(u)+'</td>';
+row.parentNode.insertBefore(tr,row.nextSibling);
+if(scroll)row.scrollIntoView({behavior:'smooth',block:'center'});}
+Q.addEventListener('input',render);G.addEventListener('change',render);
+window.addEventListener('hashchange',function(){show(location.hash.slice(1),false);});
+render();
+if(location.hash)show(location.hash.slice(1),true);
+var S=document.getElementById('cxstrip');if(S){var byf={};
+RISPOSTE.units.forEach(function(u){var st=(u.transcription_status||'').indexOf('manual')===0?'cov':'covr';
+(u.folio_sides||[]).forEach(function(s){var n=parseInt(s,10);if(n)byf[n]={u:u.unit_id,c:st};});});
+var h='',nMan=0,nReg=0;for(var f=1;f<=192;f++){var e=byf[f];
+if(e){if(e.c==='cov')nMan++;else nReg++;}
+h+='<i class="'+(e?e.c:'')+'" title="c. '+f+(e?' \u00b7 '+e.u:'')+'"'+(e?' data-u="'+e.u+'"':'')+'></i>';}
+S.innerHTML=h;S.addEventListener('click',function(ev){var u=ev.target&&ev.target.getAttribute('data-u');if(u)location.hash=u;});
+var tot=nMan+nReg,gc=(window.GAPS||[]).reduce(function(a,g){return a+(g.carte||0)},0),pct=Math.round(100*(192-gc)/192),nG=(window.GAPS||[]).length,
+uMan=RISPOSTE.units.filter(function(u){return (u.transcription_status||'').indexOf('manual')===0;}).length,
+uReg=RISPOSTE.units.length-uMan,
+sum=document.getElementById('cxsum');
+if(sum)sum.innerHTML='<span class="xen">'+tot+' of 192 folio sides are currently in the dataset (&asymp;'+pct+'%): '+nMan+' covered by units with a manual diplomatic transcription ('+uMan+' units) and '+nReg+' by units recorded through a regest ('+uReg+' units). '+nG+' gap ranges remain to be integrated. Each mark is one folio side; click a mark to open the corresponding unit.</span><span class="xit">'+tot+' carte su 192 sono attualmente nel dataset (&asymp;'+pct+'%): '+nMan+' coperte da unit&agrave; con trascrizione diplomatica manuale ('+uMan+' unit&agrave;) e '+nReg+' da unit&agrave; registrate tramite regesto ('+uReg+' unit&agrave;). Restano '+nG+' intervalli lacunosi da integrare. Ogni segno corrisponde a una carta; un clic sul segno apre la relativa unit&agrave;.</span>';}
+})();</script>
+</body></html>

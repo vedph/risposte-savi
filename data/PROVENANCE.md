@@ -20,3 +20,7 @@ the worklist headers has been superseded by this canonical source.
 The internal working versions preceding this release are technical lineage of the
 source data and build. The public release corresponding to this state is:
 **First public prototype — 2026-07-02** (dataset snapshot `dataset-2026-07-02`).
+
+
+## dataset-2026-07-15
+Sources: (1) working document (I. Cecchini, DOCX); (2) contiguous folios 29v-39v transcribed for the ATR pipeline (I. Cecchini to F. Boschetti, 18 June 2026; strict practice: bracketed expansions, u/v preserved). Units R142_0009-0012 attested in both (texts coincide, similarity >= 0.99); the working document remains the primary text, the double attestation is recorded. All emendations and proposed regesti are flagged, never merged silently.
