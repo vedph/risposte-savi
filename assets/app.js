@@ -184,6 +184,10 @@
      with the source reading in the tooltip - the diplomatic view keeps the source. */
   function expandTxt(s, u) {
     var x = esc(s);
+    (window.ABBREV || []).forEach(function (r) {
+      var re = new RegExp("(?<![\\w.])" + r.s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?![\\w])", "g");
+      x = x.replace(re, '<span class="suppl" title="' + r.s + '">' + r.e + "</span>");
+    });
     x = x.replace(/\*\*(?:\u2026|\.\.\.)\*\*/g, '<span class="lac" title="' + t("illegible") + '">···</span>');
     x = x.replace(/\[a lato:([^\]]*)\]/g, '<span class="alato">a lato:$1</span>');
     x = x.replace(/\[(?:c\.\s*)?(\d{1,3}(?:[rv]|t°?)?)(?:\s*scritto)?\]/g, '<span class="fpill">$1</span>');
@@ -207,8 +211,9 @@
     var sec = btn.closest(".unit-text"); if (!sec) return;
     var v = btn.getAttribute("data-v");
     sec.querySelectorAll(".vt").forEach(function (b) { b.classList.toggle("on", b === btn); });
-    sec.querySelector(".bq-d").style.display = v === "d" ? "" : "none";
-    sec.querySelector(".bq-e").style.display = v === "e" ? "" : "none";
+    sec.classList.toggle("side", v === "s");
+    sec.querySelector(".bq-d").style.display = (v === "d" || v === "s") ? "" : "none";
+    sec.querySelector(".bq-e").style.display = (v === "e" || v === "s") ? "" : "none";
   };
   function recordHTML(u, opt) {
     opt = opt || {};
@@ -237,10 +242,11 @@
       txt = '<section class="unit-text">' + regestBlock(u) +
         '<h3 class="sp wm">' + t("gt") + (u.validation_status === 'pending_expert' ? ' <span class="valbadge">' + t('pending_val') + '</span>' : '') +
         ' <span class="vtog"><button class="vt on" data-v="d" onclick="__vt(this)">' + t("view_diplo") +
-        '</button><button class="vt" data-v="e" onclick="__vt(this)">' + t("view_expanded") + "</button></span></h3>" +
+        '</button><button class="vt" data-v="e" onclick="__vt(this)">' + t("view_expanded") + '</button><button class="vt" data-v="s" onclick="__vt(this)">' + t("view_side") + "</button></span></h3>" +
         '<p class="mut sm mono">' + esc(prline) + " · " + srcl + "</p>" +
         '<blockquote class="diplo-main bq-d">' + edMark(body) + "</blockquote>" +
         '<blockquote class="diplo-main bq-e" style="display:none">' + expandTxt(body, u) + "</blockquote>" +
+        (u.editorial_notes && u.editorial_notes.length ? '<aside class="ednotes"><h4>' + t("ednotes_lab") + "</h4>" + u.editorial_notes.map(function(n){return '<p class="edn">' + esc(n) + "</p>";}).join("") + "</aside>" : "") +
         (u.text_annex ? '<details class="annexbox"><summary>' + t("annex") + "</summary><blockquote class=\"diplo-main\">" + edMark(u.text_annex) + "</blockquote></details>" : "") +
         "</section>";
     } else if (u.transcription_status === "regest") {
