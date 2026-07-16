@@ -543,3 +543,14 @@ main.pad{padding:16px 32px 44px}
 .annexbox{margin-top:10px}.annexbox summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:#3d5a66}
 
 .valbadge{font-family:var(--mono);font-size:10px;border:1.2px dashed #8a5a00;color:#8a5a00;border-radius:2px;padding:1px 6px;vertical-align:middle}
+
+/* note di lavoro: voce editoriale, mai confondibile col registro */
+.ednotes{margin:10px 0;padding:8px 12px;background:#f7f4ec;border-left:3px solid #8a5a00}
+.ednotes h4{margin:0 0 4px;font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#8a5a00}
+.ednotes .edn{margin:3px 0;font-size:.92em;font-style:italic;color:#4a4234}
+.ednotes .edn::before{content:"\2733\00a0";font-style:normal;color:#8a5a00}
+/* vista affiancata */
+.unit-text.side{display:block}
+.unit-text.side .bq-d,.unit-text.side .bq-e{display:inline-block;vertical-align:top;width:48.5%;box-sizing:border-box}
+.unit-text.side .bq-e{margin-left:2%}
+@media(max-width:720px){.unit-text.side .bq-d,.unit-text.side .bq-e{display:block;width:100%;margin-left:0}}

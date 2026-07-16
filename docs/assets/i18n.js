@@ -149,7 +149,8 @@
   if (!window.I18N_DICT) return;
   var add = {
     view_diplo:  { en: "Diplomatic", it: "Diplomatica" },
-    view_expanded: { en: "Expanded", it: "Sciolta" },
+    view_expanded: { en: "Interpretative", it: "Interpretativa" },
+    view_side:  { en: "Side by side", it: "Affiancate" },
     regest_prop: { en: "proposed - pending validation", it: "proposto - in attesa di validazione" },
     practice_strict: { en: "strict practice: expansions in square brackets, u/v as written", it: "prassi stretta: scioglimenti in quadre, u/v come nel registro" },
     practice_loose:  { en: "working practice: expansions resolved silently", it: "prassi di lavoro: scioglimenti silenti" },
@@ -159,6 +160,7 @@
     emend_note: { en: "proposed emendation - pending validation; source reading:", it: "emendamento proposto - da validare; lezione della fonte:" },
     unc_reading:{ en: "uncertain reading", it: "lettura incerta" },
     illegible:  { en: "illegible portion", it: "porzione illeggibile" },
+    ednotes_lab:{ en: "Working notes (I. Cecchini)", it: "Note di lavoro (I. Cecchini)" },
     annex:      { en: "Annexed block (proposed related unit)", it: "Blocco annesso (proposta di unita collegata)" },
     pending_val:{ en: "pending expert validation - readings by I. Cecchini", it: "in validazione (letture di I. Cecchini)" }
   };
