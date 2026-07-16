@@ -185,8 +185,8 @@
   function expandTxt(s, u) {
     var x = esc(s);
     (window.ABBREV || []).forEach(function (r) {
-      var re = new RegExp("(?<![\\w.])" + r.s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?![\\w])", "g");
-      x = x.replace(re, '<span class="suppl" title="' + r.s + '">' + r.e + "</span>");
+      var re = new RegExp("(^|[^\\w.])" + r.s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?![\\w])", "g");
+      x = x.replace(re, '$1<span class="suppl" title="' + r.s + '">' + r.e + "</span>");
     });
     x = x.replace(/\*\*(?:\u2026|\.\.\.)\*\*/g, '<span class="lac" title="' + t("illegible") + '">···</span>');
     x = x.replace(/\[a lato:([^\]]*)\]/g, '<span class="alato">a lato:$1</span>');
