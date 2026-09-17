@@ -6,8 +6,9 @@
      #names       -> persons & places index (+ optional map)     names.html
      #model       -> Model Lab                                   model.html
      #home-keys   -> home (wordfield, stats, animated anatomy)   index.html
-   Evidence discipline: validated fields are never restyled as hypotheses and
-   vice versa; dashed marks always mean "hypothesis, pending expert validation". */
+   Evidence discipline: documentary fields and rule-extracted fields are never restyled as one another;
+   dashed marks always mean "rule-extracted, not reviewed". */
+
 (function () {
   "use strict";
   var DATA = window.RISPOSTE || {}, UNITS = DATA.units || [], META = DATA.meta || {};
@@ -39,16 +40,18 @@
     return s;
   }
 
-  /* ---------- glyph v2: reliability badge · extent line · HTR underline · decision · year ---------- */
+  /* ---------- documentary glyph · proposed nucleus count · year ---------- */
   function glyphSVG(u, mode, scale) {
     scale = scale || 1.25;
     var Ln = extLen(u) * scale, x0 = 46, yb = 20, termX = x0 + Ln, w = x0 + Ln + 86;
+    var qualified = window.OpinionGlyphs && OpinionGlyphs.get(u.unit_id), dateX = termX + (qualified ? 64 : 26);
+    if (qualified) w += 38;
     var rel = u.reliability || "F", relc = RELC[rel] || "var(--grey)";
     var manual = u.transcription_status.indexOf("manual") === 0;
     var hyp = u.hyp && u.hyp.decision_orientation;
     var dec = hyp ? hyp.value : null;
     var yr = u.date_iso ? u.date_iso.slice(2, 4) : null;
-    var s = '<svg class="glyph" viewBox="0 0 ' + w + ' 42" width="' + w + '" height="42" role="img" aria-label="' + esc(u.unit_id) + " reliability " + rel + (dec ? " decision hypothesis " + dec : "") + '">';
+    var s = '<svg class="glyph" viewBox="0 0 ' + w + ' 42" width="' + w + '" height="42" role="img" aria-label="' + esc(u.unit_id) + " reliability " + rel + (qualified ? ' · ' + qualified.nuclei.length + (qualified.nuclei.length === 1 ? ' nucleus' : ' nuclei') : dec ? " decision orientation (extracted) " + dec : "") + '">';
     s += '<rect x="8" y="' + (yb - 11) + '" width="24" height="22" rx="2" fill="none" stroke="' + relc + '" stroke-width="1.6"' + (rel === "F" ? ' stroke-dasharray="3 3"' : "") + "/>";
     s += '<text x="20" y="' + (yb + 5) + '" class="mono mg" text-anchor="middle" fill="' + relc + '">' + rel + "</text>";
     if (mode === "evidence") s += line(x0, yb, termX, yb, relc, 2.4, manual ? "" : "5 4");
@@ -56,13 +59,13 @@
     if (u.transcription_status === "manual_partial") s += line(x0, yb, x0 + Ln * 0.45, yb, "var(--ink)", 2.4, "");
     if (u.htr_coverage === "full") s += line(x0, yb + 8, termX, yb + 8, "#3d5a66", 1.6, "");
     else if (u.htr_coverage === "partial") s += line(x0, yb + 8, x0 + Ln * 0.55, yb + 8, "#3d5a66", 1.6, "1 4");
-    s += termMark(termX, yb, dec, !!hyp, 1);
-    s += '<text x="' + (termX + 26) + '" y="' + (yb + 5) + '" class="mono yr" fill="' + (yr ? "var(--soft)" : "var(--grey)") + '">' + (yr || "n.d.") + "</text>";
-    if (u.more_veneto) s += '<text x="' + (termX + 46) + '" y="' + yb + '" class="mv">mv</text>';
+    s += qualified ? OpinionGlyphs.terminal(qualified, termX, yb) : termMark(termX, yb, dec, !!hyp && hyp.status !== "validated", 1);
+    s += '<text x="' + dateX + '" y="' + (yb + 5) + '" class="mono yr" fill="' + (yr ? "var(--soft)" : "var(--grey)") + '">' + (yr || "n.d.") + "</text>";
+    if (u.more_veneto) s += '<text x="' + (dateX + 20) + '" y="' + yb + '" class="mv">mv</text>';
     if (mode === "evidence") {
-      if (u.cer != null) s += '<text x="' + (termX + 26) + '" y="' + (yb + 17) + '" class="mono" font-size="8.5" fill="#3d5a66">CER ' + pct(u.cer, 1) + "</text>";
+      if (u.cer != null) s += '<text x="' + dateX + '" y="' + (yb + 17) + '" class="mono" font-size="8.5" fill="#3d5a66">CER ' + pct(u.cer, 1) + "</text>";
       var nf = (u.field_flags || []).length + (u.date_check ? 1 : 0);
-      if (nf) s += '<text x="' + (termX + 48) + '" y="' + (yb - 6) + '" class="flagn" fill="var(--accent)">' + nf + "</text>";
+      if (nf) s += '<text x="' + (dateX + 22) + '" y="' + (yb - 6) + '" class="flagn" fill="var(--accent)">' + nf + "</text>";
       if (u.signatory_status === "blank_signature_space" || u.signatory_status === "not_transcribed") s += '<text x="' + (x0 + 8) + '" y="' + (yb + 17) + '" class="mono ghost" fill="var(--accent)">⌐⌐</text>';
     }
     return s + "</svg>";
@@ -108,13 +111,13 @@
       "relation: " + q(u.relation_type + (u.related_unit_id ? " -> " + u.related_unit_id : "")),
       "hyp_policy_domain: " + q(u.hyp.policy_domain ? u.hyp.policy_domain.value : ""),
       "hyp_decision_orientation: " + q(u.hyp.decision_orientation ? u.hyp.decision_orientation.value : ""),
-      "hyp_status: pending_expert_validation", "data_version: " + q(META.version)].join("\n");
+      "hyp_status: " + q(Object.values(u.hyp).every(function(h){return h.status === "validated";}) && Object.keys(u.hyp).length ? "validated" : "rule_extracted"), "data_version: " + q(META.version)].join("\n");
     var body = "# " + u.unit_id + " - " + (u.title_short || "") +
       "\n\n## Marginal note / regest\n\n" + (u.marginal_note_raw || "[not captured]") +
-      "\n\n## Diplomatic transcription (ground truth)\n\n" + (u.text_diplomatic || "[not transcribed]") +
+      "\n\n## Diplomatic transcription\n\n" + (u.text_diplomatic || "[not transcribed]") +
       (u.regest_note ? "\n\n## Regest note\n\n" + u.regest_note : "") +
       "\n\n## HTR output (uncollated)\n\n" + (u.htr_text ? u.htr_text.slice(0, 4000) : "[none]") +
-      "\n\n> Hypotheses are rule-extracted with cited evidence and pending expert validation; they never replace validated fields.\n";
+      "\n\n> Analytical fields are rule-extracted with cited evidence; they are derived data, distinct from the documentary record.\n";
     return "---\n" + fm + "\n---\n\n" + body;
   }
   function download(name, text, mime) { var b = new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }); var url = URL.createObjectURL(b); var a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
@@ -135,8 +138,8 @@
   function hypRow(label, h, extra) {
     if (!h) return field(label, '<span class="mut">' + t("none_rec") + "</span>");
     var ev = h.formula ? h.formula.ev : (h.ev || (h.cue ? t("cue") + ": " + h.cue : ""));
-    return field(label, '<span class="hypv" title="' + esc((h.rule || "") + " - " + (ev || "")) + '">' + esc(h.value) +
-      ' <span class="hyptag">' + t("hyp") + "</span></span>" +
+    return field(label, '<span class="' + (h.status === 'validated' ? 'validated-value' : 'hypv') + '" title="' + esc((h.rule || "") + " - " + (ev || "")) + '">' + esc(h.value) +
+      ' <span class="hyptag">' + (h.status === 'validated' ? (I18N.lang() === 'it' ? 'validato' : 'validated') : t("hyp")) + "</span></span>" +
       (ev ? '<span class="prov">' + esc(ev) + "</span>" : "") + (extra || ""));
   }
   function chips(label, arr) {
@@ -177,7 +180,7 @@
     title = title.replace(/[\s,.:;\u201c]+$/, "") + "\u2026";
     return { title: title, joined: mn + sep, cont: cont };
   }
-  function mnParts(u) { var c = carry(u); return { title: c.title }; }
+  function mnParts(u) { var c = carry(u); return { title: SiteLocale.title(u, c.title) }; }
   /* ---------- expanded ("sciolta") rendering: expansions resolved, never silently.
      Supplied letters keep a visible status (italic); folio changes become pills;
      uncertainty marks stay first-class. Emendations are applied only here, tagged,
@@ -204,14 +207,56 @@
     var L = (window.I18N && I18N.lang) ? I18N.lang() : "en";
     var rg = (L === "it" ? u.regest_it : u.regest_en) || u.regest_en || u.regest_it || "";
     if (!rg) return "";
-    var tag = (u.regest_source === "proposed") ? ' <span class="hyptag">' + t("regest_prop") + "</span>" : "";
+    var tag = ' <a class="mut sm" href="method.html#editorial">' + (L === 'it' ? 'Criteri editoriali' : 'Editorial method') + '</a>';
     return '<div class="regestbox"><h4 class="sp">' + t("regest") + tag + '</h4><p class="rg">' + esc(rg) + "</p></div>";
+  }
+  /* Curated cross-references are displayed with the text.  The source data
+     keeps a single documentary relation for compatibility; this view also
+     adds reciprocal links and explicit R142_NNNN references found in editorial
+     notes, without treating analytical graph edges as documentary facts. */
+  function relatedOpinions(u, opt) {
+    var by = {}, links = {}, self = u.unit_id;
+    UNITS.forEach(function (x) { by[x.unit_id] = x; });
+    function label(kind) {
+      var map = {
+        has_copy: ["copy in", "copia in"], has_continuation: ["continued in", "prosegue in"], has_response: ["response in", "risposta in"], has_dissent: ["dissent in", "dissenso in"], copy_of: ["copy of", "copia di"], dissent_to: ["dissenting response to", "parere dissenziente rispetto a"],
+        continuation_of: ["continuation of", "continuazione di"], continuation: ["continuation", "continuazione"],
+        repeated_supplication: ["repeated supplication", "supplica ripetuta"], same_dossier_as: ["same dossier", "stesso fascicolo"],
+        response_to: ["response to", "risposta a"], correction_of: ["corrects", "corregge"], corrected_by: ["corrected by", "corretto da"]
+      };
+      var p = map[kind] || [kind || "linked opinion", kind || "parere collegato"];
+      return p[I18N.lang() === "it" ? 1 : 0];
+    }
+    function add(id, kind, source, explicitLabel) {
+      if (!id || id === self || !by[id]) return;
+      var key = id;
+      if (!links[key]) links[key] = { id: id, kind: kind || "note", source: source || "", label: explicitLabel || "" };
+    }
+    (u.editorial_links || []).forEach(function (r) { add(r.unit_id, "editorial", "notes", I18N.lang() === "it" ? r.label_it : r.label_en); });
+    if (u.relation_type && u.relation_type !== "none" && u.related_unit_id) add(u.related_unit_id, u.relation_type, "metadata");
+    UNITS.forEach(function (x) {
+      if (x.related_unit_id === self && x.relation_type && x.relation_type !== "none") add(x.unit_id, ({copy_of:"has_copy",continuation_of:"has_continuation",continuation:"continuation_of",correction_of:"corrected_by",corrected_by:"correction_of",response_to:"has_response",dissent_to:"has_dissent"})[x.relation_type] || x.relation_type, "metadata");
+    });
+    var noteText = (u.editorial_notes || []).join(" ") + " " + (u.regest_note || "") + " " + (u.regest_it || "") + " " + (u.regest_en || "");
+    var m, re = /R142[_\\]?([0-9]{4})/g;
+    while ((m = re.exec(noteText))) add("R142_" + m[1], "note", "notes");
+    var rows = Object.keys(links).map(function (k) { return links[k]; }).sort(function (a, b) { return a.id.localeCompare(b.id); });
+    if (!rows.length) return "";
+    var items = rows.map(function (r) {
+      var target = by[r.id], title = SiteLocale.title(target) || target.title_short || r.id;
+      var href = opt && opt.noLinks ? "#" : "unit.html?u=" + encodeURIComponent(r.id);
+      var text = r.label || (r.kind === "note" ? t("linked_from_note") : label(r.kind));
+      return '<li><a href="' + href + '"' + (opt && opt.noLinks ? ' aria-disabled="true"' : '') + '><b class="mono">' + esc(r.id) + '</b> <span>' + esc(title) + '</span></a><small>' + esc(text) + '</small></li>';
+    }).join("");
+    return '<aside class="related-opinions" aria-labelledby="connected-opinions-title"><h4 id="connected-opinions-title">' + t("connected_opinions") + '</h4><p class="mut sm">' + t("connected_opinions_note") + '</p><ul>' + items + '</ul></aside>';
   }
   window.__vt = function (btn) {
     var sec = btn.closest(".unit-text"); if (!sec) return;
     var v = btn.getAttribute("data-v");
-    sec.querySelectorAll(".vt").forEach(function (b) { b.classList.toggle("on", b === btn); });
+    sec.querySelectorAll(".vt").forEach(function (b) { b.classList.toggle("on", b === btn); b.setAttribute("aria-pressed", String(b === btn)); });
     sec.classList.toggle("side", v === "s");
+    var article = sec.closest('.reader-record');
+    if (article) article.classList.toggle('reading-comparison', v === 's');
     sec.querySelector(".bq-d").style.display = (v === "d" || v === "s") ? "" : "none";
     sec.querySelector(".bq-e").style.display = (v === "e" || v === "s") ? "" : "none";
   };
@@ -220,10 +265,11 @@
     var rel = u.reliability, relc = RELC[rel];
     var perma = opt.permalink ? '<a class="permalink" href="unit.html?u=' + encodeURIComponent(u.unit_id) + '">' + t("permalink") + " ↗</a>" : "";
     var dateline = esc(u.date_original || "") + " → " + esc(u.date_iso || "n.d.") + (u.more_veneto ? " (more veneto)" : "");
-    if (u.date_check) dateline += ' <span class="flags" title="recorded, never silently corrected">⚑ ' + esc(u.date_check) + "</span>";
+    if (u.date_check) dateline += ' <span class="flags" title="date anomaly recorded in the source">⚑ ' + esc(u.date_check) + "</span>";
+    var workingReferences = (window.RISPOSTE.meta || {}).coverage_status === 'unreconciled_foliation';
     var doc = field(t("archref"), esc(u.source_reference)) + field(t("date"), dateline) +
-      field(t("folio"), esc(u.folio_raw)) +
-      field(t("marginal"), u.marginal_note_raw ? edMark(u.marginal_note_raw) : '<span class="mut">' + t("not_captured") + "</span>");
+      field(t("folio"), esc(u.folio_raw) + (u.foliation_status === "uncertain" ? ' <span class="hyptag">' + (I18N.lang() === "it" ? "riferimento da verificare" : "reference to review") + "</span>" : "")) +
+      field(t("marginal"), u.marginal_note_raw ? '<span translate="no" lang="it">' + edMark(u.marginal_note_raw) + '</span>' : '<span class="mut">' + t("not_captured") + "</span>");
     var ana = hypRow(t("trigger"), u.hyp.document_trigger) +
       hypRow(t("orientation"), u.hyp.decision_orientation) +
       hypRow(t("domain"), u.hyp.policy_domain) +
@@ -235,23 +281,25 @@
     var prline = "";
     if (u.transcription_practice === "strict") prline = t("practice_strict");
     else if (u.transcription_practice === "loose") prline = t("practice_loose");
-    var srcl = (u.text_source === "carte_contigue" ? t("src_contig") : t("src_wd")) +
+    var srcl = (u.text_source === "facsimile_2026" ? t("src_fac") : u.text_source === "carte_contigue" ? t("src_contig") : t("src_wd")) +
       (u.double_attestation ? " · " + t("dbl_att") : "");
     if (u.text_diplomatic) {
       var body = u.text_diplomatic;
-      txt = '<section class="unit-text">' + regestBlock(u) +
-        '<h3 class="sp wm">' + t("gt") + (u.validation_status === 'pending_expert' ? ' <span class="valbadge">' + t('pending_val') + '</span>' : '') +
-        ' <span class="vtog"><button class="vt on" data-v="d" onclick="__vt(this)">' + t("view_diplo") +
-        '</button><button class="vt" data-v="e" onclick="__vt(this)">' + t("view_expanded") + '</button><button class="vt" data-v="s" onclick="__vt(this)">' + t("view_side") + "</button></span></h3>" +
+      txt = '<section id="document-text" class="unit-text">' + regestBlock(u) +
+        '<h3 class="sp wm">' + (u.text_source === "facsimile_2026" ? t("gt_fac") : t("gt")) +
+        ' <span class="vtog" role="group" aria-label="' + esc(t("text_view")) + '"><button type="button" class="vt on" aria-pressed="true" data-v="d" onclick="__vt(this)">' + t("view_diplo") +
+        '</button><button type="button" class="vt" aria-pressed="false" data-v="e" onclick="__vt(this)">' + t("view_expanded") + '</button><button type="button" class="vt" aria-pressed="false" data-v="s" onclick="__vt(this)">' + t("view_side") + "</button></span></h3>" +
         '<p class="mut sm mono">' + esc(prline) + " · " + srcl + "</p>" +
-        '<blockquote class="diplo-main bq-d">' + edMark(body) + "</blockquote>" +
-        '<blockquote class="diplo-main bq-e" style="display:none">' + expandTxt(body, u) + "</blockquote>" +
-        (u.editorial_notes && u.editorial_notes.length ? '<aside class="ednotes"><h4>' + t("ednotes_lab") + "</h4>" + u.editorial_notes.map(function(n){return '<p class="edn">' + esc(n) + "</p>";}).join("") + "</aside>" : "") +
-        (u.text_annex ? '<details class="annexbox"><summary>' + t("annex") + "</summary><blockquote class=\"diplo-main\">" + edMark(u.text_annex) + "</blockquote></details>" : "") +
+        '<blockquote class="diplo-main bq-d" lang="it" data-reading-source="text_diplomatic">' + edMark(body) + "</blockquote>" +
+        '<blockquote lang="it" class="diplo-main bq-e" style="display:none">' + expandTxt(body, u) + "</blockquote>" +
+        (u.editorial_notes && u.editorial_notes.length ? '<aside class="ednotes"><h4>' + t("ednotes_lab") + "</h4>" + u.editorial_notes.map(function(n){return '<p class="edn">' + esc(SiteLocale.text(n)) + "</p>";}).join("") + "</aside>" : "") +
+        (u.text_annex ? '<details class="annexbox"><summary>' + t("annex") + '</summary><blockquote class="diplo-main" lang="it" data-reading-source="text_annex">' + edMark(u.text_annex) + "</blockquote></details>" : "") +
+        relatedOpinions(u, opt) +
         "</section>";
     } else if (u.transcription_status === "regest") {
-      txt = '<section class="unit-text">' + regestBlock(u) +
-        '<p class="mut sm">' + t("regest_pending") + "</p></section>";
+      txt = '<section id="document-text" class="unit-text">' + regestBlock(u) +
+        '<p class="mut sm">' + t("regest_pending") + '</p>' +
+        (u.regest_note ? '<h3>' + t("regest_source") + '</h3><blockquote class="diplo-main" lang="it" data-reading-source="regest_note">' + edMark(u.regest_note) + '</blockquote>' : '') + relatedOpinions(u, opt) + '</section>';
     }
     /* HTR output: secondary technical layer, collapsed by default */
     var htr = "";
@@ -265,20 +313,23 @@
     } else {
       htr = '<p class="mut sm">' + t("no_htr") + "</p>";
     }
-    var flags = (u.field_flags || []);
-    var val = flags.length ? '<p class="flags">' + esc(flags.join(", ").replace(/_/g, " ")) + "</p>" : '<p class="mut sm">' + t("no_flags") + "</p>";
     var relrow = (u.relation_type && u.relation_type !== "none")
-      ? field(t("relation"), '<code>' + esc(u.relation_type) + "</code> → " + (opt.noLinks ? "<b class=\"mono\">" + esc(u.related_unit_id) + "</b>" : '<a href="unit.html?u=' + esc(u.related_unit_id) + '">' + esc(u.related_unit_id) + "</a>") + ' <span class="mut sm">(' + esc(u.relation_source) + ")</span>") : "";
-    return '<article class="record"><header><h2 class="h2"><span class="id">' + u.unit_id + '</span> <span class="title">' + esc(mnParts(u).title || u.title_short) + "</span>" + perma + "</h2>" +
+      ? field(t("relation"), '<code>' + esc(u.relation_type) + "</code> → " + (opt.noLinks ? "<b class=\"mono\">" + esc(u.related_unit_id) + "</b>" : '<a href="unit.html?u=' + esc(u.related_unit_id) + '">' + esc(u.related_unit_id) + "</a>")) : "";
+    var opinions = window.OpinionGlyphs ? OpinionGlyphs.render(OpinionGlyphs.get(u.unit_id)) : '';
+    var toc = !opt.noHtr ? '<nav class="reader-toc" aria-label="' + esc(t("record_sections")) + '">' +
+      (txt ? '<a href="#document-text">' + (u.text_diplomatic ? t("text_primary") : t("regest")) + '</a>' : '') +
+      (opinions ? '<a href="#opinion-nuclei">' + t("opinion_nuclei") + '</a>' : '') +
+      '<a href="#documentary-details">' + t("record_details") + '</a><a href="#linguistic-analysis">' + t("analytical") + '</a></nav>' : '';
+    return '<article class="record' + (opt.noHtr ? '' : ' reader-record') + '" data-reading-unit="' + esc(u.unit_id) + '"><header><h2 class="h2"><span class="id">' + u.unit_id + '</span> <span class="title">' + esc(mnParts(u).title || u.title_short) + "</span>" + perma + "</h2>" +
       '<p class="spine">' + esc(u.date_iso || "n.d.") + " · " + esc(u.folio_raw) + ' · <span class="relbadge" style="color:' + relc + ';border-color:' + relc + '">' + rel + "</span> " +
       (u.cer != null ? '<span class="mono sm" style="color:#3d5a66">CER ' + pct(u.cer) + "</span>" : "") + "</p></header>" +
       '<div class="echo">' + glyphSVG(u, "evidence", 1.6) + "</div>" +
-      '<div class="cols"><div class="col"><h3>' + t("documentary") + "</h3>" + doc + relrow + "</div>" +
+      toc + (I18N.lang() === 'en' ? '<p class="mut sm translation-note">Titles and interpretations are in English. Transcriptions and quoted evidence retain the original language.</p>' : '') + '<p class="reader-status" role="status" aria-live="polite"></p>' +
+      (opt.noHtr ? opinions : '<div class="reading-columns">' + txt + opinions + '</div>') +
+      '<div id="documentary-details" class="cols"><div class="col"><h3>' + t("documentary") + "</h3>" + doc + relrow + "</div>" +
       '<div class="col"><h3>' + t("college") + '</h3><div class="college">' + collegeSVG(u) + '<p class="roster">' + roster +
-      (u.signatory_status ? ' · <code>' + esc(u.signatory_status) + "</code>" : "") + "</p></div>" +
-      '<h3 class="sp">' + t("validation") + ' <small>' + esc(u.signatory_source || "") + "</small></h3>" + val + "</div></div>" +
-      (opt.noHtr ? "" : txt) +
-      '<section class="unit-ana"><h3 class="sp">' + t("analytical") + '</h3><p class="mut sm hypnote">' + t("hyp_note") + "</p>" +
+      '</p></div></div></div>' +
+      '<section id="linguistic-analysis" class="unit-ana"><h3 class="sp">' + t("analytical") + '</h3><p class="mut sm hypnote">' + t("hyp_note") + ' <a href="method.html">' + (I18N.lang() === "it" ? "Metodo" : "Method") + "</a></p>" +
       '<div class="cols"><div class="col">' + ana + '</div><div class="col">' +
       chips(t("deontic"), u.terms.deontic) + chips(t("fiscal"), u.terms.fiscal) + chips(t("monetary"), u.terms.monetary) + "</div></div></section>" +
       (opt.noHtr ? "" : htr) +
@@ -293,11 +344,11 @@
     else if (kind === "dash") s = line(4, yb, 30, yb, "var(--ink)", 2.2, "5 4");
     else if (kind === "teal") s = line(4, yb, 30, yb, "var(--ink)", 2.2, "") + line(4, yb + 6, 30, yb + 6, "#3d5a66", 1.6, "");
     else if (kind === "badge") s = '<rect x="6" y="2" width="20" height="19" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.5"/><text x="16" y="16" class="mono" font-size="11" font-weight="600" text-anchor="middle" fill="var(--accent)">A</text>';
-    else if (kind === "term") s = line(4, yb, 22, yb, "var(--ink)", 2.2, "") + termMark(22, yb, "grant", true, 0.9);
+    else if (kind === "term") s = window.OpinionGlyphs ? OpinionGlyphs.terminal({nuclei:[1,2,3]}, 4, yb) : line(4, yb, 22, yb, "var(--ink)", 2.2, "") + termMark(22, yb, "grant", true, 0.9);
     return '<svg viewBox="0 0 40 26" width="40" height="26">' + s + "</svg>";
   }
   function keyStrip() {
-    var K = [["extent", "key_extent"], ["solid", "key_solidline"], ["dash", "key_dashline"], ["teal", "key_teal"], ["badge", "key_badge"], ["term", "key_term"]];
+    var K = [["extent", "key_extent"], ["solid", "key_solidline"], ["dash", "key_dashline"], ["teal", "key_teal"], ["badge", "key_badge"], ["term", window.OpinionGlyphs ? "key_nuclei" : "key_term"]];
     return '<div class="keystrip">' + K.map(function (p) { return '<span class="kk">' + miniGlyph(p[0]) + "<span>" + t(p[1]) + "</span></span>"; }).join("") +
       '<a class="howread" href="model.html#lettura">' + t("how_read") + "</a></div>" +
       '<details class="reglegend"><summary>' + t("leg_title") + "</summary><dl>" +
@@ -318,8 +369,9 @@
   function initRegister() {
     var host = document.getElementById("register"), rec = document.getElementById("reg-record");
     var state = { mode: "reading", selectedId: (new URLSearchParams(location.search).get("u")) || (UNITS[0] && UNITS[0].unit_id), q: "", filters: { domain: "", decision: "", reliability: "", transcription: "", place: "" } };
-    var domains = {}, decisions = {}, placesAll = {};
+    var domains = {}, decisions = {}, placesAll = {}, statuses = {}, reliabilities = {};
     UNITS.forEach(function (u) {
+      statuses[u.transcription_status] = 1; reliabilities[u.reliability || "F"] = 1;
       if (u.hyp.policy_domain) domains[u.hyp.policy_domain.value] = 1;
       if (u.hyp.decision_orientation) decisions[u.hyp.decision_orientation.value] = 1;
       u.places.forEach(function (p) { placesAll[p.name] = (placesAll[p.name] || 0) + 1; });
@@ -331,7 +383,7 @@
       if (f.transcription && u.transcription_status !== f.transcription) return false;
       if (f.place && !u.places.some(function (p) { return p.name === f.place; })) return false;
       if (q) {
-        var hay = (u.title_short + " " + u.marginal_note_raw + " " + u.signatories_raw + " " + (u.text_diplomatic || "").slice(0, 5000)).toLowerCase();
+        var hay = (SiteLocale.title(u) + " " + (u.regest_en || "") + " " + u.unit_id + " " + u.title_short + " " + u.marginal_note_raw + " " + u.signatories_raw + " " + (u.text_diplomatic || "") + " " + (u.regest_note || "")).toLowerCase();
         if (hay.indexOf(q.toLowerCase()) < 0) return false;
       }
       return true;
@@ -349,12 +401,12 @@
         '<button data-mode="evidence" class="' + (state.mode === "evidence" ? "active" : "") + '">' + t("evidence") + "</button></div>" +
         '<input class="search" type="search" aria-label="' + esc(t("search")) + '" placeholder="' + esc(t("search")) + '" value="' + esc(state.q) + '">' +
         '<div class="filters">' +
-        '<select data-filter="domain">' + opts(t("domain"), domains, f.domain, domWord) + "</select>" +
-        '<select data-filter="decision">' + opts(t("decision"), decisions, f.decision) + "</select>" +
-        '<select data-filter="reliability">' + opts(t("reliability"), { A: 1, B: 1, C: 1, D: 1 }, f.reliability) + "</select>" +
-        '<select data-filter="transcription">' + opts(t("transcription"), { manual: 1, manual_partial: 1, regest: 1 }, f.transcription) + "</select>" +
-        '<select data-filter="place">' + opts(t("place"), placesAll, f.place) + "</select>" +
-        (anyF() ? '<button class="clear" data-action="clear">' + t("clear") + ' ×</button><span class="count">' + mc + "/" + UNITS.length + "</span>" : "") +
+        '<select aria-label="' + esc(t("domain")) + '" data-filter="domain">' + opts(t("domain"), domains, f.domain, domWord) + "</select>" +
+        '<select aria-label="' + esc(t("decision")) + '" data-filter="decision">' + opts(t("decision"), decisions, f.decision) + "</select>" +
+        '<select aria-label="' + esc(t("reliability")) + '" data-filter="reliability">' + opts(t("reliability"), reliabilities, f.reliability) + "</select>" +
+        '<select aria-label="' + esc(t("transcription")) + '" data-filter="transcription">' + opts(t("transcription"), statuses, f.transcription, function(v){var labels={manual_full:["full manual transcription","trascrizione manuale integrale"],manual_partial:["partial manual transcription","trascrizione manuale parziale"],regest:["regest","regesto"],not_transcribed:["not transcribed","non trascritto"]};return labels[v]?labels[v][I18N.lang()==="it"?1:0]:v;}) + "</select>" +
+        '<select aria-label="' + esc(t("place")) + '" data-filter="place">' + opts(t("place"), placesAll, f.place) + "</select>" +
+        '<button class="clear" data-action="clear"' + (anyF() ? '' : ' hidden') + '>' + t("clear") + ' ×</button><span class="count" aria-live="polite">' + mc + "/" + UNITS.length + "</span>" +
         "</div></div>";
     }
     function rows() {
@@ -364,15 +416,17 @@
         var dim = anyF() && !matches(u, state.filters, state.q), sel = u.unit_id === state.selectedId;
         var meta = [];
         if (u.hyp.policy_domain) meta.push(domWord(u.hyp.policy_domain.value));
-        if (u.hyp.decision_orientation) meta.push(u.hyp.decision_orientation.value + "?");
+        var qdoc = window.OpinionGlyphs && OpinionGlyphs.get(u.unit_id);
+        if (qdoc) meta.push(qdoc.nuclei.length + (qdoc.nuclei.length === 1 ? (I18N.lang() === 'it' ? ' nucleo' : ' nucleus') : ' nuclei'));
+        else if (u.hyp.decision_orientation) meta.push(u.hyp.decision_orientation.value + (u.hyp.decision_orientation.status === "validated" ? "" : "?"));
         if (u.cer != null) meta.push("CER " + pct(u.cer, 0));
-        out += '<li class="rowwrap"><span class="gutter">' + (sy ? yr : "") + '</span><button class="row' + (dim ? " dim" : "") + (sel ? " sel" : "") + '" data-uid="' + u.unit_id + '"><span class="g">' + glyphSVG(u, state.mode === "evidence" ? "evidence" : "default") + '</span><span class="rl"><span class="rt">' + esc(u.title_short) + '</span><span class="rm">' + esc(meta.join(" · ") || " - ") + "</span></span></button></li>";
+        out += '<li class="rowwrap"><span class="gutter">' + (sy ? yr : "") + '</span><button class="row' + (dim ? " dim" : "") + (sel ? " sel" : "") + '" data-uid="' + u.unit_id + '"><span class="g">' + glyphSVG(u, state.mode === "evidence" ? "evidence" : "default") + '</span><span class="rl"><span class="rt">' + esc(SiteLocale.title(u)) + '</span><span class="rm">' + esc(meta.join(" · ") || " - ") + "</span></span></button></li>";
       });
       return out;
     }
     function render() {
       host.innerHTML = toolbar() + keyStrip() +
-        '<p class="reg-head"><b>REGISTER</b> <span class="n">' + UNITS.length + " " + t("units") + " · " + t("register_order") + "</span></p><ol class=\"rows\">" + rows() + "</ol>";
+        '<p class="reg-head"><b>' + t("register").toUpperCase() + '</b> <span class="n">' + UNITS.length + " " + t("units") + " · " + t("register_order") + "</span></p><ol class=\"rows\">" + rows() + "</ol>";
       var u = byId(state.selectedId);
       rec.innerHTML = u ? recordHTML(u, { permalink: true, noHtr: true, compactHTR: true }) : '<p class="muted">' + t("select_unit") + "</p>";
       var inp = host.querySelector(".search");
@@ -383,6 +437,7 @@
       var c = host.querySelector(".count"), f = state.filters;
       var mc = UNITS.filter(function (u) { return matches(u, f, state.q); }).length;
       if (c) c.textContent = mc + "/" + UNITS.length;
+      host.querySelector(".clear").hidden = !anyF();
     }
     host.addEventListener("click", function (e) {
       var el = e.target.closest("[data-mode],[data-action],.row"); if (!el) return;
@@ -403,14 +458,20 @@
       var i = id ? idxOf(id) : 0;
       if (id && i < 0) { host.innerHTML = '<p class="muted">' + esc(id) + " - " + t("unit_notfound") + ' <a href="register.html">' + t("register") + "</a>.</p>"; return; }
       if (i < 0) i = 0; var u = UNITS[i];
-      if (!u) { host.innerHTML = "<p class=\"muted\">No unit found.</p>"; return; }
-      document.title = u.unit_id + " · " + (u.title_short || "") + " · Risposte reg. 142";
+      if (!u) { host.innerHTML = "<p class=\"muted\">" + (I18N.lang() === "it" ? "Nessuna unit\u00e0 trovata." : "No unit found.") + "</p>"; return; }
+      document.title = u.unit_id + " · " + SiteLocale.title(u) + " · Risposte reg. 142";
       var nav = document.getElementById("unit-nav");
-      if (nav) {
-        var prev = UNITS[(i - 1 + UNITS.length) % UNITS.length], next = UNITS[(i + 1) % UNITS.length];
-        nav.innerHTML = '<a href="register.html?u=' + encodeURIComponent(u.unit_id) + '">' + t("back_reg") + '</a><span class="pos">' + (i + 1) + " / " + UNITS.length + '</span><span class="np"><a href="unit.html?u=' + encodeURIComponent(prev.unit_id) + '">' + t("prev") + '</a> <a href="unit.html?u=' + encodeURIComponent(next.unit_id) + '">' + t("next") + "</a></span>";
+      function adjacent(item, direction) {
+        return item ? '<a rel="' + direction + '" href="unit.html?u=' + encodeURIComponent(item.unit_id) + '"><span>' + t(direction) + ' · ' + esc(item.folio_raw || item.unit_id) + '</span><b>' + esc(SiteLocale.title(item)) + '</b></a>' :
+          '<span class="reader-boundary">' + t(direction === 'prev' ? 'register_start' : 'register_end') + '</span>';
       }
-      host.innerHTML = recordHTML(u, { permalink: false });
+      var sequence = '<div class="reader-sequence">' + adjacent(UNITS[i - 1], 'prev') + adjacent(UNITS[i + 1], 'next') + '</div>';
+      if (nav) {
+        nav.setAttribute('aria-label', t('register_order'));
+        nav.innerHTML = '<div class="reader-position"><a href="register.html?u=' + encodeURIComponent(u.unit_id) + '">' + t("back_reg") + '</a><span class="pos">' + (i + 1) + ' / ' + UNITS.length + ' · ' + t('register_order') + '</span></div>' + sequence;
+      }
+      host.innerHTML = recordHTML(u, { permalink: false }) + '<nav class="reader-bottom" aria-label="' + esc(t('continue_reading')) + '"><p>' + t('continue_reading') + '</p>' + sequence + '</nav>';
+      document.dispatchEvent(new CustomEvent('reader:render'));
     }
     document.addEventListener("langchange", render);
     render();
@@ -426,18 +487,21 @@
        (an uncertain expansion is never presented as a normalised name); exclude -> dropped. */
     function addPerson(raw, uid, validated){
       var k = raw.replace(/\s+/g, " ").trim(); if(!k) return;
+      // These are subscription notes, not personal names; raw records retain them.
+      if (/^vacantibus\s+aliis$/i.test(k) || /^a lato:\s*Tutti\./i.test(k)) return;
       var q = auth(k), norm = null, prop = null;
       if(q){ if(q.s === "exclude") return;
         if(q.s === "uncertain"){ norm = "uncertain"; prop = q.n; }
         else { k = q.n || k; norm = q.s; } }
-      var p = (persons[k] = persons[k] || { name: k, validated: false, norm: norm, prop: prop, units: [] });
+      var p = (persons[k] = persons[k] || { name: k, validated: false, norm: norm, prop: prop, units: [], variants: [] });
       if (validated) p.validated = true;
       if (norm && !p.norm) { p.norm = norm; p.prop = prop; }
+      if (raw.trim() !== k && p.variants.indexOf(raw.trim()) < 0) p.variants.push(raw.trim());
       p.units.push(uid);
     }
     UNITS.forEach(function (u) {
       (u.signatories || []).forEach(function (n) { addPerson(n, u.unit_id, true); });
-      (u.persons_hyp || []).forEach(function (p) { addPerson(p.name, u.unit_id, false); });
+      (u.persons_hyp || []).forEach(function (p) { addPerson(p.name, u.unit_id, p.status === "validated"); });
       (u.places || []).forEach(function (p) {
         (places[p.name] = places[p.name] || { name: p.name, lat: p.lat, lon: p.lon, approx: p.approx, tgn: p.tgn || null, units: [] }).units.push(u.unit_id);
       });
@@ -447,17 +511,18 @@
       ids.forEach(function (id) { if (!seen[id]) { seen[id] = 1; out.push('<a href="unit.html?u=' + id + '">' + id.replace("R142_0", "") + "</a>"); } });
       return out.join(" ");
     }
-    var mapDone = false;
+    var namesMap = null;
     function render() {
+      if (namesMap) { namesMap.remove(); namesMap = null; }
       var P = Object.values(persons).sort(function (a, b) { return b.units.length - a.units.length || a.name.localeCompare(b.name); });
       var L2 = Object.values(places).sort(function (a, b) { return b.units.length - a.units.length; });
       function bdg(s) { return '<span class="bdg">' + s + "</span>"; }
       var ph = P.map(function (p) {
-        var tags = p.validated ? [bdg(t("b_verified")), bdg(t("b_subscription"))] : [bdg(t("b_automatic")), bdg(t("b_toreview"))];
+        var tags = p.validated ? [bdg(t("b_subscription"))] : [bdg(t("b_automatic"))];
         if (p.norm === "confirmed") tags.push(bdg(t("b_normconf")));
         else if (p.norm === "proposed") tags.push(bdg(t("b_normprop")));
         else if (p.norm === "uncertain") tags.push(bdg(t("p_uncertain") + (p.prop ? " (" + esc(p.prop) + "?)" : "")));
-        return '<li class="nrow' + (p.validated ? " val" : "") + '"><span class="nname">' + esc(p.name) + "</span>" +
+        return '<li class="nrow' + (p.validated ? " val" : "") + '"><span class="nname">' + esc(p.name) + (p.variants && p.variants.length ? ' <span class="mono sm mut">[' + p.variants.map(esc).join("; ") + ']</span>' : "") + "</span>" +
           '<span class="ntags">' + tags.join("") + "</span>" +
           '<span class="nunits">' + ulinks(p.units) + "</span></li>";
       }).join("");
@@ -465,30 +530,19 @@
         var tags = [];
         tags.push('<span class="bdg">' + p.units.length + " " + t("occurrences") + "</span>");
         if (p.approx) tags.push('<span class="bdg">' + t("b_approx") + "</span>");
-        tags.push(p.tgn
-          ? '<span class="bdg"><a href="https://vocab.getty.edu/page/tgn/' + esc(p.tgn) + '">TGN ' + esc(p.tgn) + "</a></span>"
-          : '<span class="bdg">' + t("tgn_pending") + "</span>");
+
         return '<li class="nrow" id="pl-' + esc(p.name) + '"><span class="nname">' + esc(p.name) + "</span>" +
           '<span class="ntags">' + tags.join("") + "</span>" +
           '<span class="nunits">' + ulinks(p.units) + "</span></li>";
       }).join("");
-      host.innerHTML = '<div class="names-grid">' +
+      host.innerHTML = '<section class="atlas"><div class="atlas-toolbar"></div><div id="map" class="mapbox"></div><div class="atlas-legend"></div></section><div class="names-grid">' +
         '<section><h3 class="colh">' + t("persons") + ' <small>' + P.length + '</small></h3><ul class="nlist">' + ph + "</ul></section>" +
         '<section><h3 class="colh">' + t("places") + ' <small>' + L2.length + '</small></h3>' +
-        '<div id="map" class="mapbox" aria-label="map of cited places"></div><p class="mut sm">' + t("map_note") + '</p><ul class="nlist">' + lh + "</ul></section></div>";
-      if (window.L) {
-        try {
-          var map = L.map("map", { scrollWheelZoom: false }).setView([42.6, 14.5], 5);
-          L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-            { attribution: "&copy; OpenStreetMap contributors &copy; CARTO", maxZoom: 12 }).addTo(map);
-          Object.values(places).forEach(function (p) {
-            if (p.lat == null) return;
-            var m = L.circleMarker([p.lat, p.lon], { radius: 4 + Math.min(6, p.units.length), color: "#b01e28", weight: p.approx ? 1 : 2, dashArray: p.approx ? "3 3" : null, fillColor: "#b01e28", fillOpacity: 0.18 }).addTo(map);
-            m.bindPopup("<b>" + esc(p.name) + "</b>" + (p.approx ? " (approx.)" : "") + "<br>" + ulinks(p.units));
-          });
-          mapDone = true;
-        } catch (e) { var mb0 = document.getElementById("map"); if (mb0) mb0.className = "mapbox off"; }
-      } else { var mb = document.getElementById("map"); if (mb) mb.className = "mapbox off"; }
+        '<p class="mut sm">' + t("map_note") + '</p><ul class="nlist">' + lh + "</ul></section></div>";
+      if (window.RisposteMap) {
+        try { namesMap = RisposteMap.create('map', Object.values(places), {lang: I18N.lang(), links: ulinks}); }
+        catch (e) { host.querySelector('.atlas').hidden = true; }
+      } else { host.querySelector('.atlas').hidden = true; }
     }
     document.addEventListener("langchange", render);
     render();
@@ -509,21 +563,21 @@
   function initModel() {
     var host = document.getElementById("model");
     function render() {
-      var u = byId("R142_0006") || UNITS[0];
+      var u = byId("R142_0007") || UNITS[0];
       var it = I18N.lang() === "it";
       host.innerHTML = '<div class="lab"><p class="labintro">' +
-        (it ? "Struttura dell'unit\u00e0 documentaria: trascrizione, metadati, campi analitici e stato di revisione." :
-          "Structure of a documentary unit: transcription, metadata, analytical fields and review status.") + "</p>" +
-        stageBlock("01", it ? "Fonte" : "Source", it ? "Le immagini non sono pubblicate; il record punta alla fonte tramite riferimento archivistico." : "Images are not published; the record points to the source by archival reference.", '<p class="ex mono">' + esc(u.source_reference) + "</p>") +
-        stageBlock("02", it ? "Marcatori documentari" : "Documentary markers", it ? "Data (m.v. solo dove marcato), nota marginale, sottoscrizione, estensione in carte; le anomalie vanno in date_check, mai corrette d'ufficio." : "Date (m.v. only where marked), marginal note, subscription, folio extent; anomalies go to date_check, never silently corrected.", '<p class="ex"><b>' + t("date") + "</b> " + esc(u.date_original || " - ") + " &nbsp; <b>" + t("folio") + "</b> " + esc(u.folio_raw) + " &nbsp; <b>" + t("college") + "</b> " + esc(u.signatories_raw || " - ") + "</p>") +
-        stageBlock("03", it ? "Unità di decisione" : "Decision unit", it ? "Ogni Risposta è un glifo sopra due layer; i segni tratteggiati sono ipotesi." : "Each Risposta is one glyph over two layers; dashed marks are hypotheses.", '<div class="ex">' + glyphSVG(u, "evidence", 1.6) + '</div><div class="keyrow" style="margin-top:10px">' + decisionKeyHTML() + "</div>") +
-        stageBlock("04", it ? "Ipotesi estratte con regole" : "Rule-extracted hypotheses", it ? "Distribuzioni correnti delle ipotesi:" : "Current hypothesis distributions:",
-          '<div class="vrow"><div><h4>policy domain (hyp.)</h4>' + bars(countBy(function (x) { return x.hyp.policy_domain && x.hyp.policy_domain.value; })) + "</div>" +
-          '<div><h4>decision orientation (hyp.)</h4>' + bars(countBy(function (x) { return x.hyp.decision_orientation && x.hyp.decision_orientation.value; })) + "</div></div>") +
-        stageBlock("05", it ? "Stato di lavoro" : "Work status", it ? "Che cosa è validato e che cosa resta ipotesi (v. Colophon):" : "What is validated and what remains a hypothesis (see Colophon):",
+        (it ? "Struttura di una scheda: fonte, dati documentari, testo, nuclei del parere, campi analitici." :
+          "Structure of a record: source, documentary data, text, nuclei of the opinion, analytical fields.") + "</p>" +
+        stageBlock("01", it ? "Fonte" : "Source", it ? "Segnatura archivistica della fonte. Le immagini non sono pubblicate." : "Archival reference of the source. Images are not published.", '<p class="ex mono">' + esc(u.source_reference) + "</p>") +
+        stageBlock("02", it ? "Dati documentari" : "Documentary data", it ? "Data, nota marginale, sottoscrizioni, carte." : "Date, marginal note, signatures, folios.", '<p class="ex"><b>' + t("date") + "</b> " + esc(u.date_original || " - ") + " &nbsp; <b>" + t("folio") + "</b> " + esc(u.folio_raw) + " &nbsp; <b>" + t("college") + "</b> " + esc(u.signatories_raw || " - ") + "</p>") +
+        stageBlock("03", it ? "Documento e nuclei" : "Document and nuclei", it ? "Il glifo riassume i dati documentari; il terminale ramificato indica il numero dei nuclei del parere. Nella scheda ogni nucleo ha un segno proprio." : "The glyph summarises the documentary data; its branched terminal gives the number of nuclei of the opinion. In the record each nucleus has its own sign.", '<div class="ex">' + glyphSVG(u, "evidence", 1.6) + '</div><div class="keyrow" style="margin-top:10px">' + t('key_nuclei') + "</div>") +
+        stageBlock("04", it ? "Campi estratti con regole" : "Rule-extracted fields", it ? "Distribuzione dei valori:" : "Distribution of values:",
+          '<div class="vrow"><div><h4>' + (it ? "dominio di intervento" : "policy domain") + '</h4>' + bars(countBy(function (x) { return x.hyp.policy_domain && x.hyp.policy_domain.value; })) + "</div>" +
+          '<div><h4>' + (it ? "orientamento della decisione" : "decision orientation") + '</h4>' + bars(countBy(function (x) { return x.hyp.decision_orientation && x.hyp.decision_orientation.value; })) + "</div></div>") +
+        stageBlock("05", it ? "Testi disponibili" : "Available texts", it ? "Affidabilit\u00e0 di lettura e stato di trascrizione:" : "Reading reliability and transcription status:",
           '<div class="vrow"><div><h4>' + t("reliability") + " A-F</h4>" + bars(countBy(function (x) { return x.reliability; })) + "</div>" +
           '<div><h4>' + t("transcription") + "</h4>" + bars(countBy(function (x) { return x.transcription_status; })) + "</div></div>" +
-          '<p class="ex mono sm">segmentation err 3% (pipeline) · CER ≈15% (pipeline, line-level) · CER 9.8% / WER 28.3% (unit-level vs GT, normalised, 27 units)</p>') +
+          '<p class="ex mono sm">' + (it ? "CER circa 15% (prova di venti pagine) · CER 9,8% / WER 28,2% (27 unità, rispetto alla trascrizione manuale)" : "CER about 15% (twenty-page experiment) · CER 9.8% / WER 28.2% (27 units, against the manual transcription)") + '</p>') +
         "</div>";
     }
     document.addEventListener("langchange", render);
@@ -627,15 +681,15 @@
     s += '<g class="aa-sig">'; for (var j = 0; j < 4; j++) s += line(x0 + 10 + j * 12, yb - 14, x0 + 16 + j * 12, yb - 22, "var(--ink)", 2, "");
     s += lab(x0 + 34, yb - 32, "aa3") + "</g>";
     s += '<g class="aa-badge"><rect x="' + (x0 - 44) + '" y="' + (yb - 13) + '" width="26" height="26" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.8"/><text x="' + (x0 - 31) + '" y="' + (yb + 6) + '" class="mono" font-size="14" font-weight="600" text-anchor="middle" fill="var(--accent)">A</text>' + lab(x0 - 31, yb + 34, "aa4") + "</g>";
-    s += '<g class="aa-term">' + termMark(termX, yb, "grant", true, 1.3) + '<text x="' + (termX + 34) + '" y="' + (yb + 5) + '" class="mono yr" fill="var(--soft)">07</text>' + lab(termX + 8, yb - 26, "aa5") + "</g>";
+    s += '<g class="aa-term">' + (window.OpinionGlyphs ? OpinionGlyphs.terminal({nuclei:[1,2,3]}, termX, yb) : termMark(termX, yb, "grant", true, 1.3)) + '<text x="' + (termX + 60) + '" y="' + (yb + 5) + '" class="mono yr" fill="var(--soft)">07</text>' + lab(termX + 8, yb - 26, "aa5") + "</g>";
     return s + "</svg>";
   }
   var AA = {
     aa1: { en: "the five Savi convene and deliberate - one absence is recorded, not smoothed away", it: "i cinque Savi si riuniscono e deliberano - un'assenza è registrata, non levigata" },
     aa2: { en: "the opinion is entered in the register: line length = folio extent", it: "il parere è messo a registro: lunghezza = estensione in carte" },
     aa3: { en: "four subscribe", it: "quattro sottoscrivono" },
-    aa4: { en: "the expert's transcription sets the reliability class", it: "la trascrizione esperta fissa la classe di affidabilità" },
-    aa5: { en: "the decision mark is dashed: a hypothesis until validated", it: "il segno della decisione è tratteggiato: ipotesi finché non validata" }
+    aa4: { en: "the manual transcription sets the reliability class", it: "la trascrizione manuale fissa la classe di affidabilità" },
+    aa5: { en: "the branched terminal counts nuclei; each has its own interpretation", it: "il terminale ramificato conta i nuclei; ciascuno ha la propria interpretazione" }
   };
   function initAnatomy(root) {
     function paint() { var els = root.querySelectorAll(".aa"); for (var i = 0; i < els.length; i++) { var k = els[i].getAttribute("data-k"); els[i].textContent = (AA[k] || {})[I18N.lang()] || ""; } }

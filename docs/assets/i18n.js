@@ -4,7 +4,12 @@
   "use strict";
   var LS = "r142-lang";
   function detect() {
-    try { var v = localStorage.getItem(LS); if (v) return v; } catch (e) {}
+    var requested = new URLSearchParams(window.location.search).get('lang');
+    if (requested === 'en' || requested === 'it') {
+      try { localStorage.setItem(LS, requested); } catch (e) {}
+      return requested;
+    }
+    try { var v = localStorage.getItem(LS); if (v === 'en' || v === 'it') return v; } catch (e) {}
    return "en";
   }
   var LANG = detect();
@@ -13,9 +18,15 @@
   window.I18N = {
     lang: function () { return LANG; },
     set: function (v) {
+      if (v !== 'en' && v !== 'it') return;
       LANG = v; document.documentElement.setAttribute("data-lang", v);
       document.documentElement.lang = v;
       try { localStorage.setItem(LS, v); } catch (e) {}
+      var url = new URL(window.location.href);
+      if (url.searchParams.has('lang')) {
+        url.searchParams.set('lang', v);
+        try { window.history.replaceState(null, '', url.href); } catch (e) {}
+      }
       document.dispatchEvent(new CustomEvent("langchange"));
     },
     t: function (k) { var e = DICT[k]; return e ? (e[LANG] || e.en) : k; }
@@ -29,8 +40,8 @@
     reading: { en: "Reading", it: "Lettura" },
     evidence: { en: "Evidence", it: "Evidenza" },
     search: { en: "Search title, text, signatories…", it: "Cerca titolo, testo, firmatari…" },
-    domain: { en: "domain (hyp.)", it: "dominio (ipotesi)" },
-    decision: { en: "decision (hyp.)", it: "decisione (ipotesi)" },
+    domain: { en: "domain (extracted)", it: "dominio (estratto)" },
+    decision: { en: "decision (extracted)", it: "decisione (estratta)" },
     reliability: { en: "reliability", it: "affidabilità" },
     transcription: { en: "transcription", it: "trascrizione" },
     place: { en: "place", it: "luogo" },
@@ -41,31 +52,31 @@
     unit_notfound: { en: "No unit with this identifier. Back to the", it: "Nessuna unità con questo identificativo. Torna al" },
     permalink: { en: "permalink", it: "permalink" },
     documentary: { en: "Documentary", it: "Documentario" },
-    analytical: { en: "Analytical - hypotheses", it: "Analitico - ipotesi" },
+    analytical: { en: "Analytical fields", it: "Campi analitici" },
     college: { en: "College", it: "Collegio" },
     witnesses: { en: "Texts", it: "Testi" },
     text_primary: { en: "Diplomatic transcription", it: "Trascrizione diplomatica" },
     htr_panel: { en: "HTR output (automated text recognition - technical layer)", it: "Output HTR (riconoscimento automatico del testo - livello tecnico)" },
     htr_open: { en: "Show the HTR output", it: "Mostra l'output HTR" },
-    gt: { en: "Diplomatic transcription - I. Cecchini (ground truth)", it: "Trascrizione diplomatica - I. Cecchini (ground truth)" },
+    gt: { en: "Diplomatic transcription · Isabella Cecchini", it: "Trascrizione diplomatica · Isabella Cecchini" },
     htr: { en: "HTR output - Kraken/eScriptorium (uncollated)", it: "Output HTR - Kraken/eScriptorium (non collazionato)" },
     regest: { en: "Regest", it: "Regesto" },
     regest_pending: { en: "Diplomatic transcription not yet available; the marginal note identifies the matter.", it: "Trascrizione diplomatica non ancora disponibile; la nota marginale identifica la materia." },
-    no_htr: { en: "No HTR output for this unit: outside the current recognition batch.", it: "Nessun output HTR per questa unit\u00e0: fuori dal lotto di riconoscimento corrente." },
-    htr_measured: { en: "measured on this unit vs ground truth:", it: "misurato su questa unità vs ground truth:" },
-    htr_estimate: { en: "uncollated output of automated recognition; expected error = corpus estimate (CER 9.8% normalised). Not established text.", it: "output non collazionato del riconoscimento automatico; errore atteso = stima di corpus (CER 9,8% normalizzato). Non \u00e8 testo stabilito." },
-    ed_note: { en: "editorial note - I. Cecchini", it: "nota editoriale - I. Cecchini" },
+    no_htr: { en: "No HTR output for this unit.", it: "Nessun output HTR per questa unit\u00e0." },
+    htr_measured: { en: "comparison with the manual transcription:", it: "confronto con la trascrizione manuale:" },
+    htr_estimate: { en: "Automatically recognized text. No error measurement is available for this unit.", it: "Testo riconosciuto automaticamente. Per questa unità non è disponibile una misura dell’errore." },
+    ed_note: { en: "editorial integration or note", it: "integrazione o nota editoriale" },
     archref: { en: "archival reference", it: "riferimento archivistico" },
     date: { en: "date", it: "data" },
     folio: { en: "folio", it: "carte" },
     marginal: { en: "marginal note", it: "nota marginale" },
-    not_captured: { en: "not yet captured", it: "non ancora rilevata" },
+    not_captured: { en: "not recorded", it: "non registrata" },
     trigger: { en: "document trigger", it: "innesco documentario" },
     orientation: { en: "decision orientation", it: "orientamento della decisione" },
     geography: { en: "places (gazetteer)", it: "luoghi (gazetteer)" },
     actors: { en: "persons (extracted)", it: "persone (estratte)" },
     none_rec: { en: " -  none recorded", it: " -  non registrato" },
-    hyp_note: { en: "Values proposed by rule-based extraction, each with rule id and the supporting passage; subject to expert review. Dashed marks = hypothesis.", it: "Valori proposti da estrazione a regole, ciascuno con id di regola e passo di riferimento; soggetti a revisione esperta. Segni tratteggiati = ipotesi." },
+    hyp_note: { en: "Rule-based extraction with supporting passages and rule identifiers. Provenance and limits: Method.", it: "Estrazione a regole con passi di riferimento e identificativi di regola. Provenienza e limiti: pagina Metodo." },
     formula: { en: "performative formula", it: "formula performativa" },
     cue: { en: "cue", it: "spia" },
     terms: { en: "Extracted markers", it: "Marcatori estratti" },
@@ -83,10 +94,21 @@
     prev: { en: "‹ prev", it: "‹ prec" },
     next: { en: "next ›", it: "succ ›" },
     back_reg: { en: "‹ register", it: "‹ registro" },
+    record_sections: { en: "In this record", it: "In questa scheda" },
+    record_details: { en: "Document details", it: "Scheda documentaria" },
+    opinion_nuclei: { en: "Opinion nuclei", it: "Nuclei del parere" },
+    text_view: { en: "Text view", it: "Vista del testo" },
+    regest_source: { en: "Reference text · editorial regest", it: "Testo di riferimento · regesto editoriale" },
+    connected_opinions: { en: "Connected opinions", it: "Pareri connessi" },
+    connected_opinions_note: { en: "Cross-references recorded in the unit metadata or in explicit editorial notes.", it: "Rinvii registrati nei metadati dell'unità o nelle note editoriali esplicite." },
+    linked_from_note: { en: "mentioned in editorial notes", it: "menzionato nelle note editoriali" },
+    register_start: { en: "Beginning of the available records", it: "Inizio delle schede disponibili" },
+    register_end: { en: "End of the available records", it: "Fine delle schede disponibili" },
+    continue_reading: { en: "Continue in register order", it: "Prosegui in ordine di registro" },
     persons: { en: "Persons", it: "Persone" },
     places: { en: "Places", it: "Luoghi" },
     p_validated: { en: "verified (subscription block)", it: "verificato (blocco di sottoscrizione)" },
-    p_hyp: { en: "automatic identification, to review", it: "identificazione automatica, da rivedere" },
+    p_hyp: { en: "automatic identification (rule-based)", it: "identificazione automatica (a regole)" },
     p_norm_conf: { en: "normalised (confirmed)", it: "normalizzato (confermato)" },
     p_norm_prop: { en: "normalised (proposed)", it: "normalizzazione proposta" },
     p_uncertain: { en: "abbreviated diplomatic form; expansion to be verified", it: "forma diplomatica abbreviata; scioglimento da verificare" },
@@ -96,32 +118,32 @@
     b_automatic: { en: "automatic identification", it: "identificazione automatica" },
     b_toreview: { en: "to review", it: "da rivedere" },
     b_normconf: { en: "normalisation confirmed", it: "normalizzazione confermata" },
-    b_normprop: { en: "normalization proposed", it: "normalizzazione proposta" },
+    b_normprop: { en: "normalisation proposed", it: "normalizzazione proposta" },
     b_approx: { en: "approximate localisation", it: "localizzazione approssimata" },
     carry_note: { en: "In the current data export the marginal note and the text are continuous; the field boundary will be restored at revision.", it: "Nell'esportazione corrente dei dati la nota marginale e il testo sono continui; il confine di campo sar\u00e0 ripristinato in revisione." },
-    tgn_pending: { en: "TGN: not aligned", it: "TGN: non allineato" },
     leg_title: { en: "Legend: statuses and labels", it: "Legenda: stati ed etichette" },
     leg_rel_t: { en: "Reading reliability (A\u2013F)", it: "Affidabilit\u00e0 di lettura (A\u2013F)" },
     leg_rel_d: { en: "Assigned per unit by the research team from the text layers available for that unit: A manual transcription \u00b7 B partial manual transcription \u00b7 C regest + HTR output \u00b7 D regest only \u00b7 E HTR output only \u00b7 F none. It concerns the text basis of the record, not the analytical fields.", it: "Assegnata per unit\u00e0 dal gruppo di ricerca in base ai livelli testuali disponibili per quella unit\u00e0: A trascrizione manuale \u00b7 B trascrizione manuale parziale \u00b7 C regesto + output HTR \u00b7 D solo regesto \u00b7 E solo output HTR \u00b7 F nessuno. Riguarda la base testuale della scheda, non i campi analitici." },
     leg_status_t: { en: "Transcription status", it: "Stato di trascrizione" },
-    leg_status_d: { en: "manual = full diplomatic transcription by I. Cecchini \u00b7 manual_partial = partial manual transcription \u00b7 regest = summary only, not a transcription.", it: "manual = trascrizione diplomatica integrale di I. Cecchini \u00b7 manual_partial = trascrizione manuale parziale \u00b7 regest = solo regesto, non una trascrizione." },
+    leg_status_d: { en: "manual_full = full manual transcription \u00b7 manual_partial = partial manual transcription \u00b7 regest = summary only, not a transcription.", it: "manual_full = trascrizione manuale integrale \u00b7 manual_partial = trascrizione manuale parziale \u00b7 regest = solo regesto, non una trascrizione." },
     leg_cer_t: { en: "CER / WER", it: "CER / WER" },
-    leg_cer_d: { en: "Character / word error rate of the HTR output, computed automatically against the manual transcription where both exist; where no manual transcription exists the error is estimated from the corpus figures.", it: "Tasso d'errore per carattere / parola dell'output HTR, calcolato automaticamente rispetto alla trascrizione manuale dove entrambe esistono; dove la trascrizione manuale manca, l'errore \u00e8 stimato dalle cifre di corpus." },
+    leg_cer_d: { en: "Character / word error rate of the HTR output, computed automatically against the manual transcription where both exist; otherwise no measure is given.", it: "Tasso d\u0027errore per carattere / parola dell\u0027output HTR, calcolato automaticamente rispetto alla trascrizione manuale dove entrambe esistono; altrimenti non \u00e8 data alcuna misura." },
     leg_hyp_t: { en: "Dashed marks / \u201c?\u201d", it: "Segni tratteggiati / \u201c?\u201d" },
-    leg_hyp_d: { en: "Analytical values (domain, decision orientation, actors) are rule-extracted hypotheses with cited evidence, subject to expert review; they are never presented as established facts. Full method: see the Model page and the colophon.", it: "I valori analitici (dominio, orientamento della decisione, attori) sono ipotesi estratte con regole, con evidenza citata, soggette a revisione esperta; non sono mai presentati come fatti accertati. Metodo completo: pagina Modello e colophon." },
-    map_note: { en: "Places attested in the register are recorded in a controlled project list that preserves the attested form, the normalized form and, where available, the Getty TGN identifier. Coordinates are associated with normalized forms; uncertain cases and places not yet aligned with TGN are explicitly marked (\u2248 = approximate localisation, dashed on the map).", it: "I luoghi attestati nel registro sono registrati in una lista controllata di progetto, che conserva la forma attestata, la forma normalizzata e, quando disponibile, l'identificativo Getty TGN. Le coordinate sono associate alle forme normalizzate; i casi incerti o non ancora allineati al TGN sono indicati esplicitamente (\u2248 = localizzazione approssimata, tratteggiata sulla mappa)." },
+    leg_hyp_d: { en: "Analytical values (domain, decision orientation, actors) are extracted from the text by rules, each with its rule and supporting passage; they are derived data, kept apart from the documentary record. Dashed marks and \u201c?\u201d identify them. Method: see the Model and Method pages.", it: "I valori analitici (dominio, orientamento della decisione, attori) sono estratti dal testo con regole, ciascuno con la regola e il passo di riferimento; sono dati derivati, tenuti distinti dal record documentario. Il tratteggio e \u201c?\u201d li identificano. Metodo: pagine Modello e Metodo." },
+    map_note: { en: "Places attested in the register are recorded in a controlled project list that preserves the attested form and the normalised form. Coordinates are associated with normalised forms; uncertain cases are marked (\u2248 = approximate localisation, dashed on the map).", it: "I luoghi attestati nel registro sono registrati in una lista controllata di progetto, che conserva la forma attestata e la forma normalizzata. Le coordinate sono associate alle forme normalizzate; i casi incerti sono indicati (\u2248 = localizzazione approssimata, tratteggiata sulla mappa)." },
     occurrences: { en: "occurrences", it: "occorrenze" },
     in_units: { en: "in", it: "in" },
     year: { en: "year", it: "anno" },
-    hyp: { en: "hypothesis", it: "ipotesi" },
+    hyp: { en: "extracted", it: "estratto" },
     validated: { en: "validated", it: "validato" },
     how_read: { en: "How to read a unit →", it: "Come si legge un'unità →" },
     key_extent: { en: "line length = folio extent", it: "lunghezza = estensione in carte" },
-    key_solidline: { en: "solid line = expert transcription", it: "linea piena = trascrizione esperta" },
+    key_solidline: { en: "solid line = manual transcription", it: "linea piena = trascrizione manuale" },
     key_dashline: { en: "dashed line = regest only", it: "linea tratteggiata = solo regesto" },
     key_teal: { en: "blue-grey underline = HTR output coverage", it: "sottolineatura grigio-blu = copertura dell'output HTR" },
     key_badge: { en: "A-F = reading reliability", it: "A-F = affidabilità della lettura" },
-    key_term: { en: "end mark = decision (dashed = hypothesis)", it: "segno finale = decisione (tratteggiato = ipotesi)" },
+    key_term: { en: "end mark = decision (dashed = rule-extracted)", it: "segno finale = decisione (tratteggiato = estratto con regole)" },
+    key_nuclei: { en: "branched end + number = nuclei of the opinion; open the record", it: "terminale ramificato + numero = nuclei del parere; apri la scheda" },
     grant: { en: "grant", it: "concede" },
     deny: { en: "deny / prohibit", it: "nega / vieta" },
     regulate: { en: "regulate", it: "regola" },
@@ -132,7 +154,7 @@
     stats_units: { en: "decision units", it: "unità di decisione" },
     stats_gt: { en: "manual diplomatic transcriptions", it: "trascrizioni diplomatiche manuali" },
     stats_htr: { en: "digitised pages with HTR output", it: "pagine digitalizzate con output HTR" },
-    stats_cer: { en: "CER vs ground truth (normalised)", it: "CER vs ground truth (normalizzato)" }
+    stats_cer: { en: "CER against the manual transcription", it: "CER rispetto alla trascrizione manuale" }
   };
   document.addEventListener("DOMContentLoaded", function () {
     var b = document.getElementById("langbtn");
@@ -151,18 +173,20 @@
     view_diplo:  { en: "Diplomatic", it: "Diplomatica" },
     view_expanded: { en: "Interpretative", it: "Interpretativa" },
     view_side:  { en: "Side by side", it: "Affiancate" },
-    regest_prop: { en: "proposed - pending validation", it: "proposto - in attesa di validazione" },
-    practice_strict: { en: "strict practice: expansions in square brackets, u/v as written", it: "prassi stretta: scioglimenti in quadre, u/v come nel registro" },
-    practice_loose:  { en: "working practice: expansions resolved silently", it: "prassi di lavoro: scioglimenti silenti" },
-    src_contig: { en: "source: contiguous folios 29v-39v (18 June 2026)", it: "fonte: carte contigue 29v-39v (18 giugno 2026)" },
-    src_wd:     { en: "source: working document", it: "fonte: documento di lavoro" },
+    regest_prop: { en: "editorial summary", it: "sintesi editoriale" },
+    practice_strict: { en: "Abbreviations expanded in square brackets; u/v spellings retained.", it: "Scioglimenti delle abbreviazioni tra parentesi quadre; grafie u/v conservate." },
+    practice_loose:  { en: "In this transcription, expansions are not systematically marked.", it: "In questa trascrizione gli scioglimenti non sono segnalati sistematicamente." },
+    src_contig: { en: "source: manual transcription, folios 29v-39v", it: "fonte: trascrizione manuale, carte 29v-39v" },
+    src_wd:     { en: "source: manual transcription", it: "fonte: trascrizione manuale" },
+    src_fac:    { en: "source: read from the digitisations (2026)", it: "fonte: lettura dalle digitalizzazioni (2026)" },
+    gt_fac:     { en: "Diplomatic transcription · from the digitisations (2026)", it: "Trascrizione diplomatica · dalle digitalizzazioni (2026)" },
+    legacy_id:  { en: "identifier in the July 2026 releases", it: "identificativo nelle release di luglio 2026" },
     dbl_att:    { en: "double attestation (texts coincide)", it: "doppia attestazione (testi coincidenti)" },
-    emend_note: { en: "proposed emendation - pending validation; source reading:", it: "emendamento proposto - da validare; lezione della fonte:" },
+    emend_note: { en: "Proposed emendation; transcription reading:", it: "Emendamento proposto; lezione della trascrizione:" },
     unc_reading:{ en: "uncertain reading", it: "lettura incerta" },
     illegible:  { en: "illegible portion", it: "porzione illeggibile" },
-    ednotes_lab:{ en: "Working notes (I. Cecchini)", it: "Note di lavoro (I. Cecchini)" },
-    annex:      { en: "Annexed block (proposed related unit)", it: "Blocco annesso (proposta di unita collegata)" },
-    pending_val:{ en: "pending expert validation - readings by I. Cecchini", it: "in validazione (letture di I. Cecchini)" }
+    ednotes_lab:{ en: "Editorial notes", it: "Note editoriali" },
+    annex:      { en: "Annexed text", it: "Testo allegato" }
   };
   for (var k in add) window.I18N_DICT[k] = add[k];
 })();
