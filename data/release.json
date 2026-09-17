@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "source_version": "working-2026-09-16T12:50:12+00:00",
+  "documentary_units": 64,
+  "gap_rows": 24,
+  "covered_folios": null,
+  "total_folios": null,
+  "coverage_status": "unreconciled_foliation",
+  "reference_coverage": {
+    "reference_system": "legacy_working_references",
+    "covered_numbers": 93,
+    "extent": 192,
+    "ratio": "93/192",
+    "percent": 48.44
+  },
+  "hypothesis_rows": 433,
+  "active_hypotheses": 414,
+  "editorial_issues": [
+    {
+      "id": "foliation-concordance",
+      "status": "unreconciled",
+      "detail": "Early digitisation labels differ from manuscript foliation. Inspection of the digitisations received on 2026-09-15 identifies two captures of opening 17v–18r with different filenames, the second matching the observed manuscript foliation. This does not establish a continuous concordance for the entire register. The complete inventory of responses and physical folio total are not established. Existing working references are preserved without an automatic offset."
+    },
+    {
+      "id": "R142_0036-relation",
+      "status": "needs_expert_review",
+      "detail": "The dissent refers to the response of 29 May 1608 on Folo's memorandum (fols 73v-75r), read on the digitisation but not yet edited as a unit; no target unit id is assigned until that response is transcribed."
+    },
+    {
+      "id": "R142_0040-foliation",
+      "status": "needs_expert_review",
+      "detail": "R142_0040: unresolved source foliation cc. 86v-89r [ma 88r]. Excluded from computed coverage until expert reconciliation; no folios inferred."
+    },
+    {
+      "id": "R142_0041-foliation",
+      "status": "needs_expert_review",
+      "detail": "R142_0041: unresolved source foliation cc. 89v[88r]-90v[89v]. Excluded from computed coverage until expert reconciliation; no folios inferred."
+    },
+    {
+      "id": "R142_0042-foliation",
+      "status": "needs_expert_review",
+      "detail": "R142_0042: unresolved source foliation cc. 92r[91r]-94v[93v]. Excluded from computed coverage until expert reconciliation; no folios inferred."
+    },
+    {
+      "id": "R142_0049-foliation",
+      "status": "needs_expert_review",
+      "detail": "R142_0049: unresolved source foliation cc. 140v-. Excluded from computed coverage until expert reconciliation; no folios inferred."
+    }
+  ],
+  "transcription_quality": {
+    "total_units": 64,
+    "status_counts": {
+      "manual_full": 49,
+      "manual_partial": 7,
+      "regest": 8
+    },
+    "manual_units": 56,
+    "regest_units": 8,
+    "evaluated_units": 27,
+    "flagged_units": 41,
+    "high_priority_units": 9,
+    "flag_counts": {
+      "high_cer": 3,
+      "high_wer": 6,
+      "partial_transcription": 7,
+      "regest_only": 8,
+      "repeated_whitespace": 16,
+      "unbalanced_brackets": 1,
+      "uncertain_reading": 31
+    },
+    "mean_cer": 0.1091,
+    "mean_wer": 0.3092,
+    "max_cer": 0.1974,
+    "max_wer": 0.4486
+  },
+  "ner_candidates": {
+    "candidates": 610,
+    "units_with_candidates": 56,
+    "by_label": {
+      "LOC": 253,
+      "ORG": 138,
+      "PER": 219
+    },
+    "by_source_field": {
+      "marginal_note_raw": 39,
+      "signatories_raw": 144,
+      "text_diplomatic": 427
+    }
+  },
+  "ner_extractor": "rules-ner-1",
+  "ner_authority_sha256": "aab4bde042c44e48e5dd7eaaf862d97e6b82c4fbcf48b269781a4312bdbcda6c",
+  "entity_context": {
+    "mentions": 610,
+    "with_external_proposals": 20
+  },
+  "reasoning": {
+    "candidates": 366,
+    "processed_units": 56,
+    "units_with_candidates": 51,
+    "by_kind": {
+      "condition": 11,
+      "information_limit": 6,
+      "opinion": 103,
+      "precedent": 88,
+      "reason": 115,
+      "request": 43
+    }
+  },
+  "reasoning_extractor": "discourse-rules-1",
+  "reasoning_rules_sha256": "8d605408f5a8a139a4e7192dd4787e81f26692fb61ab101932507df751eead61",
+  "opinion_frames": {
+    "source_texts": 57,
+    "frames": 147,
+    "conditions": 94,
+    "linked_conditions": 1,
+    "by_kind": {
+      "opinion": 109,
+      "prediction": 3,
+      "preference": 4,
+      "request": 25,
+      "withheld_judgement": 6
+    }
+  },
+  "opinion_frames_extractor": "opinion-frames-1",
+  "opinion_frames_rules_sha256": "1395a1c9c9624d931c1415a79c7f8aae6a6d8400a15e88a9e1970c77664d3e1f",
+  "qualified_opinions": {
+    "documents": 64,
+    "nuclei": 238,
+    "transcription_documents": 56,
+    "regest_documents": 8,
+    "current_documents": 64,
+    "stale_documents": 0
+  },
+  "qualified_opinions_sha256": "8e4d2dcf82028e002dffdfda4266c8a89f0c3462d30454859b342a0979803cb9",
+  "entity_research_sha256": "b533b26460fe0ecb2172095404674d2c433de37366c864633bfa55694c6da0f9",
+  "source_sha256": {
+    "units": "96ae8fc69bfc0a050584c1261d98954064615a9563982c525d393d237487bb9c",
+    "hypotheses": "b694eeb74d8d6364cab474299e2b1d59be3e482ae11c176298e93ddb5faa19c3"
+  }
+}
