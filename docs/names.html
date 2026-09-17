@@ -6,9 +6,10 @@
 <title>Names &amp; places &middot; Risposte reg. 142</title>
 <meta name="theme-color" content="#b01e28" />
 <link rel="stylesheet" href="assets/leaflet/leaflet.css" />
-<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="assets/style.css?v=20260916-mobile" />
+<link rel="stylesheet" href="assets/places-map.css?v=20260916-atlas" />
 <link rel="manifest" href="manifest.webmanifest" />
-<script src="assets/i18n.js"></script>
+<script src="assets/english.js?v=20260916-editorial1"></script><script src="assets/site-locale.js?v=20260916-release3"></script><script src="assets/i18n.js?v=20260916-release3c"></script>
 </head>
 <body>
 <a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
@@ -22,6 +23,7 @@
     <a href="names.html" class="on"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
     <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
     <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="method.html"><span class="xen">Method</span><span class="xit">Metodo</span></a>
     <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
     <a href="dataset-journal.html"><span class="xen">Journal</span><span class="xit">Diario</span></a>
     <a href="about.html">About</a>
@@ -30,11 +32,11 @@
 </header>
 <main id="main" class="pad">
   <h2 class="hero-title" style="font-size:26px"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></h2>
-  <p class="hero-lead" style="font-size:16px"><span class="xen">An index of the persons and places recorded in the units. Signatories are <b>verified</b> against the subscription blocks of each Risposta; the other names are identified automatically by rule-based procedures and remain <b>preliminary annotations subject to review</b>, each with its context one click away. Normalised forms are marked by their review status; uncertain expansions are never presented as normalised names. Click a unit number to open the Risposta.</span><span class="xit">Un indice delle persone e dei luoghi registrati nelle unit&agrave;. I firmatari sono <b>verificati</b> sui blocchi di sottoscrizione di ciascuna Risposta; gli altri nomi sono identificati automaticamente con procedure basate su regole e restano <b>annotazioni preliminari soggette a revisione</b>, ciascuna con il proprio contesto a un clic. Le forme normalizzate riportano lo stato di revisione; le espansioni incerte non sono mai presentate come nomi normalizzati. Un clic sul numero di unit&agrave; apre la Risposta.</span></p>
+  <p class="hero-lead" style="font-size:16px"><span class="xen">An index of the persons and places recorded in the units. Signatories are recorded from the subscription blocks of each Risposta; this does not by itself verify a historical identity. The other names are identified automatically by rule-based procedures, each with its context one click away. Normalised forms are marked by their review status; uncertain expansions are never presented as normalised names. Click a unit number to open the Risposta.</span><span class="xit">Un indice delle persone e dei luoghi registrati nelle unit&agrave;. I firmatari provengono dai blocchi di sottoscrizione di ciascuna Risposta; questo non certifica da solo una identità storica. Gli altri nomi sono identificati automaticamente con procedure basate su regole, ciascuno con il proprio contesto a un clic. Le forme normalizzate riportano lo stato di revisione; le espansioni incerte non sono mai presentate come nomi normalizzati. Un clic sul numero di unit&agrave; apre la Risposta.</span></p>
   <div id="names"></div>
 </main>
 <footer class="site-foot">
-  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p class="proto"><span class="xen">Third release Third release &mdash; 2026-09-16mdash; 16 September 2026</span><span class="xit">Terza release &mdash; 16 settembre 2026</span></p>
   <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
   <nav class="flinks" aria-label="Footer">
     <a href="about.html">About</a>
@@ -50,8 +52,13 @@
   </div>
 </footer>
 <script src="assets/leaflet/leaflet.js"></script>
+<script src="assets/maps/mediterranean.js?v=20260916-atlas"></script>
+<script src="assets/places-map.js?v=20260916-release3d"></script>
 <script src="data/units.js"></script>
 <script src="data/names_authority.js"></script>
-<script src="assets/app.js"></script>
+<script src="data/qualified_opinions.js"></script>
+<script src="assets/opinion-graph.js?v=20260916-release3"></script>
+<script src="assets/opinion-glyphs.js?v=20260916-release3"></script>
+<script src="assets/app.js?v=20260916-release3c"></script>
 </body>
 </html>

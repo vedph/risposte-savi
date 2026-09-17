@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Model &middot; Risposte reg. 142</title>
 <meta name="theme-color" content="#b01e28" />
-<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="assets/style.css?v=20260916-mobile" />
 <link rel="manifest" href="manifest.webmanifest" />
-<script src="assets/i18n.js"></script>
+<script src="assets/english.js?v=20260916-editorial1"></script><script src="assets/site-locale.js?v=20260916-release3"></script><script src="assets/i18n.js?v=20260916-release3c"></script>
 </head>
 <body>
 <a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
@@ -21,6 +21,7 @@
     <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
     <a href="model.html" class="on"><span class="xen">Model</span><span class="xit">Modello</span></a>
     <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="method.html"><span class="xen">Method</span><span class="xit">Metodo</span></a>
     <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
     <a href="dataset-journal.html"><span class="xen">Journal</span><span class="xit">Diario</span></a>
     <a href="about.html">About</a>
@@ -35,7 +36,7 @@
     <div class="cx-card"><h3><span class="xen">Documentary layer</span><span class="xit">Livello documentario</span></h3>
     <p><span class="xen">The first level records archival and documentary information: folio, date, marginal note, signatories, regest and available manual diplomatic transcription. HTR output is kept as a separate technical layer.</span><span class="xit">Il primo livello registra informazioni archivistiche e documentarie: carte, data, nota marginale, firmatari, regesto e trascrizione diplomatica manuale dove disponibile. L&rsquo;output HTR &egrave; mantenuto come livello tecnico separato.</span></p></div>
     <div class="cx-card"><h3><span class="xen">Analytical layer</span><span class="xit">Livello analitico</span></h3>
-    <p><span class="xen">The second level records derived analytical fields defined by the research group: intervention domain, decision orientation, deontic markers and fiscal markers. Values are recorded with controlled normalisation and review status.</span><span class="xit">Il secondo livello registra campi analitici derivati e definiti dal gruppo di ricerca: dominio di intervento, orientamento della decisione, marcatori deontici e marcatori fiscali. I valori sono registrati con normalizzazione controllata e stato di revisione.</span></p></div>
+    <p><span class="xen">The second level records derived analytical fields defined by the research group: intervention domain, decision orientation, deontic markers and fiscal markers. Values are recorded with controlled normalisation, the extraction rule and the supporting passage.</span><span class="xit">Il secondo livello registra campi analitici derivati e definiti dal gruppo di ricerca: dominio di intervento, orientamento della decisione, marcatori deontici e marcatori fiscali. I valori sono registrati con normalizzazione controllata, la regola di estrazione e il passo di riferimento.</span></p></div>
   </div>
   </div>
   <div id="model"></div>
@@ -50,27 +51,35 @@
       <dt class="mono" style="font-size:12px"><span class="xen">Marginal note and regest</span><span class="xit">Nota marginale e regesto</span></dt>
       <dd><span class="xen">The marginal note is the subject heading supplied by the register. Where no transcription exists, a regest (an editorial summary, distinct from a transcription) records the matter.</span><span class="xit">La nota marginale &egrave; l'intestazione di materia fornita dal registro. Dove la trascrizione manca, un regesto (sintesi editoriale, distinta dalla trascrizione) registra la materia.</span></dd>
       <dt class="mono" style="font-size:12px"><span class="xen">Diplomatic transcription and transcription status</span><span class="xit">Trascrizione diplomatica e stato di trascrizione</span></dt>
-      <dd><span class="xen">Where available, the manual diplomatic transcription (I. Cecchini) is the primary documentary text. The status distinguishes manual, partial manual, and regest-only units.</span><span class="xit">Dove disponibile, la trascrizione diplomatica manuale (I. Cecchini) &egrave; il testo documentario primario. Lo stato distingue unit&agrave; con trascrizione manuale, manuale parziale, o solo regesto.</span></dd>
+      <dd><span class="xen">Where available, the manual diplomatic transcription is the primary documentary text; its source is stated in the record. The status distinguishes manual, partial manual, and regest-only units.</span><span class="xit">Dove disponibile, la trascrizione diplomatica manuale &egrave; il testo documentario primario; la sua fonte &egrave; indicata nella scheda. Lo stato distingue unit&agrave; con trascrizione manuale, manuale parziale, o solo regesto.</span></dd>
       <dt class="mono" style="font-size:12px"><span class="xen">Reading reliability (A&ndash;F)</span><span class="xit">Affidabilit&agrave; di lettura (A&ndash;F)</span></dt>
       <dd><span class="xen">Assigned by the research team from the text layers available for the unit: A manual transcription &middot; B partial manual &middot; C regest + HTR output &middot; D regest only &middot; E HTR output only &middot; F none. It concerns the text basis of the record, not the analytical fields.</span><span class="xit">Assegnata dal gruppo di ricerca in base ai livelli testuali disponibili per l'unit&agrave;: A trascrizione manuale &middot; B manuale parziale &middot; C regesto + output HTR &middot; D solo regesto &middot; E solo output HTR &middot; F nessuno. Riguarda la base testuale della scheda, non i campi analitici.</span></dd>
       <dt class="mono" style="font-size:12px"><span class="xen">HTR output</span><span class="xit">Output HTR</span></dt>
-      <dd><span class="xen">The automatic text recognition output is a separate technical layer, shown uncollated in a collapsible panel with its measured or estimated error (CER/WER against the manual transcription where both exist). It is never presented as established text.</span><span class="xit">L'output del riconoscimento automatico &egrave; un livello tecnico separato, mostrato non collazionato in un pannello richiudibile con l'errore misurato o stimato (CER/WER rispetto alla trascrizione manuale dove entrambe esistono). Non &egrave; mai presentato come testo stabilito.</span></dd>
-      <dt class="mono" style="font-size:12px"><span class="xen">Analytical fields and revision status</span><span class="xit">Campi analitici e stato di revisione</span></dt>
-      <dd><span class="xen">Domain, decision orientation, trigger, actors, places, and lexical markers are derived data: rule-extracted hypotheses with rule id and cited evidence, subject to expert review. Dashed marks and &ldquo;?&rdquo; always mean hypothesis. Documentary data record what the source supplies; derived data record what the analysis proposes, and the two levels are never merged.</span><span class="xit">Dominio, orientamento della decisione, innesco, attori, luoghi e marcatori lessicali sono dati derivati: ipotesi estratte con regole, con id di regola ed evidenza citata, soggette a revisione esperta. Tratteggi e &ldquo;?&rdquo; indicano sempre un'ipotesi. I dati documentari registrano ci&ograve; che la fonte fornisce; i dati derivati ci&ograve; che l'analisi propone, e i due livelli non sono mai fusi.</span></dd>
+      <dd><span class="xen">The automatic text recognition output is a separate technical layer, shown uncollated in a collapsible panel with its measured error (CER/WER against the manual transcription where both exist). It is never presented as established text.</span><span class="xit">L'output del riconoscimento automatico &egrave; un livello tecnico separato, mostrato non collazionato in un pannello richiudibile con l'errore misurato (CER/WER rispetto alla trascrizione manuale dove entrambe esistono). Non &egrave; mai presentato come testo stabilito.</span></dd>
+      <dt class="mono" style="font-size:12px"><span class="xen">Analytical fields</span><span class="xit">Campi analitici</span></dt>
+      <dd><span class="xen">Domain, decision orientation, trigger, actors, places, and lexical markers are derived data, extracted by rules with rule id and cited evidence. In these fields, &ldquo;?&rdquo; marks a value that has not been reviewed. The nuclei of the qualified model have their own labelled glyphs, described below. Documentary data record what the source supplies; derived data record what the analysis proposes, and the two levels are never merged.</span><span class="xit">Dominio, orientamento della decisione, innesco, attori, luoghi e marcatori lessicali sono dati derivati, estratti con regole, con id di regola ed evidenza citata. In questi campi &ldquo;?&rdquo; indica un valore non ancora riletto. I nuclei del modello qualificato hanno glifi accompagnati da etichette, descritti sotto. I dati documentari registrano ci&ograve; che la fonte fornisce; i dati derivati ci&ograve; che l'analisi propone, e i due livelli non sono mai fusi.</span></dd>
     </dl>
   </section>
 <section class="cx-wrap">
-<h2><span class="xen">The two released datasets</span><span class="xit">I due dataset rilasciati</span></h2>
+<h2><span class="xen">The released datasets</span><span class="xit">I dataset rilasciati</span></h2>
 <div class="cx-grid">
-<div class="cx-layer cx-doc"><span class="cx-tag">documentary · stable, citable</span>
-<p><span class="xen"><code>documentary.csv</code> - 61 units and 26 first-class gap rows: folios, dates, marginal notes, signatories, the diplomatic transcription where available, transcription status, typed relations. Register coverage ≈51% (97/192 carte), computed from the canonical folio references (revision of 15 July 2026).</span><span class="xit"><code>documentary.csv</code> - 61 unità e 26 lacune come dati: carte, date, note marginali, firmatari, la trascrizione diplomatica dove disponibile, stato di trascrizione, relazioni tipizzate. Copertura del registro ≈51% (97/192 carte), calcolata sui riferimenti canonici di carta (revisione del 15 luglio 2026).</span></p></div>
-<div class="cx-layer cx-ana"><span class="cx-tag">analytical · versioned hypotheses</span>
-<p><span class="xen"><code>analytical.csv</code> - joined on <code>unit_id</code>: a pivot of 741 rule-extracted hypotheses (domains, orientations, triggers, actors, places, lexica), every populated field carrying status <code>pending_hypothesis</code>. Hypotheses evolve without altering the record of the source.</span><span class="xit"><code>analytical.csv</code> - unito su <code>unit_id</code>: pivot di 741 ipotesi estratte con regole (domini, orientamenti, trigger, attori, luoghi, lessici), ogni campo popolato con stato <code>pending_hypothesis</code>. Le ipotesi evolvono senza toccare il documento.</span></p></div>
-<p class="muted"><span class="xen">Schema, provenance and a one-command validator ship with the repository (<a href="data/SCHEMA.md">SCHEMA</a> · <a href="data/PROVENANCE.md">PROVENANCE</a>).</span><span class="xit">Schema, provenienza e un validatore a un comando sono nel repository (<a href="data/SCHEMA.md">SCHEMA</a> · <a href="data/PROVENANCE.md">PROVENANCE</a>).</span></p>
+<div class="cx-layer cx-doc"><span class="cx-tag"><span class="xen">documentary · stable, citable</span><span class="xit">documentario · stabile, citabile</span></span>
+<p data-release-summary></p></div>
+<div class="cx-layer cx-ana"><span class="cx-tag"><span class="xen">analytical · versioned derived data</span><span class="xit">analitico · dati derivati versionati</span></span>
+<p><span class="xen"><code>analytical.csv</code> - joined on <code>unit_id</code>: a projection of the active extractions among the <span data-hypothesis-count></span> records of the provenance table. Each field preserves its uncertainty and review status. Derived data evolve without altering the record of the source.</span><span class="xit"><code>analytical.csv</code> - unito su <code>unit_id</code>: proiezione delle estrazioni attive fra i <span data-hypothesis-count></span> record della tabella di provenienza. Ogni campo conserva il proprio stato di incertezza e di revisione. I dati derivati evolvono senza toccare il documento.</span></p></div>
+<p class="muted"><span class="xen">Schema and provenance documentation are in the repository (<a href="data/SCHEMA.md">SCHEMA</a> · <a href="data/PROVENANCE.md">PROVENANCE</a>).</span><span class="xit">Schema e documentazione di provenienza sono nel repository (<a href="data/SCHEMA.md">SCHEMA</a> · <a href="data/PROVENANCE.md">PROVENANCE</a>).</span></p>
+</section>
+<section class="cx-wrap">
+<h2><span class="xen">Simple and qualified opinions</span><span class="xit">Pareri: modello di base e qualificato</span></h2>
+<p><span class="xen">The model describes 238 nuclei across all 64 available records: 56 transcriptions and 8 editorial regests, including a separately preserved annex. Each nucleus has an object, stance and speech act, with optional conditions, reasons, references and links. See <a href="method.html#editorial">Method</a> for the origin of these interpretations and the editorial process. The simple view preserves conditionality and modality.</span><span class="xit">Il modello descrive 238 nuclei nelle 64 schede disponibili: 56 trascrizioni e 8 regesti editoriali, includendo anche un allegato conservato separatamente. Ogni nucleo ha un oggetto, una posizione e una modalità enunciativa, con condizioni, motivazioni, precedenti e collegamenti facoltativi. La pagina <a href="method.html#editorial">Metodo</a> descrive la provenienza delle interpretazioni e il percorso editoriale. La vista di base conserva condizioni e modalità.</span></p>
+<p><span class="xen">Explore each nucleus as an interactive graph: labelled arrows distinguish conditions, reasons and links. Select a node or arrow to read its source evidence; each diagram can be downloaded as SVG.</span><span class="xit">Esplora ciascun nucleo come grafo interattivo: le frecce etichettate distinguono condizioni, motivazioni e collegamenti. Seleziona un nodo o una freccia per leggere le evidenze; ogni diagramma si può scaricare in SVG.</span></p>
+<p><span class="xen">In the register, the branched terminal and number show how many nuclei the opinion has. Public records expand this into one glyph per nucleus: arrowhead = favourable, bar = opposed, both = mixed, circle = neutral, ? = undetermined; a diamond with C indicates conditionality. Speech-act labels distinguish recommendations, requests and predictions. Dashed nucleus marks distinguish interpretative readings from documentary data. Source voices and partial readings remain explicit.</span><span class="xit">Nel registro, il terminale ramificato e il numero indicano quanti nuclei ha il parere. La scheda pubblica mostra un glifo per nucleo: punta = favorevole, barra = contrario, entrambi = misto, cerchio = neutro, ? = non determinato; un rombo con C indica una condizione. L’etichetta distingue raccomandazioni, richieste e previsioni. Il tratteggio distingue la lettura interpretativa dai dati documentari. Voci e letture parziali restano esplicite.</span></p>
+<p><a href="unit.html?u=R142_0011#opinion-nuclei">R142_0011 · <span class="xen">Narenta and Spalato</span><span class="xit">Narenta e Spalato</span></a> · <a href="unit.html?u=R142_0035#opinion-nuclei">R142_0035 · <span class="xen">opinion and annex</span><span class="xit">parere e allegato</span></a> · <a href="unit.html?u=R142_0064#opinion-nuclei">R142_0064 · <span class="xen">seventeen nuclei on bankruptcies</span><span class="xit">diciassette nuclei sui fallimenti</span></a></p>
+<p><a href="data/qualified_opinions.json" download><span class="xen">Download the complete model and evidence</span><span class="xit">Scarica il modello completo e le evidenze</span></a></p>
 </section>
 </main>
 <footer class="site-foot">
-  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p class="proto"><span class="xen">Third release Third release &mdash; 2026-09-16mdash; 16 September 2026</span><span class="xit">Terza release &mdash; 16 settembre 2026</span></p>
   <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
   <nav class="flinks" aria-label="Footer">
     <a href="about.html">About</a>
@@ -86,6 +95,10 @@
   </div>
 </footer>
 <script src="data/units.js"></script>
-<script src="assets/app.js"></script>
+<script src="data/qualified_opinions.js"></script>
+<script src="assets/opinion-graph.js?v=20260916-release3"></script>
+<script src="assets/opinion-glyphs.js?v=20260916-release3"></script>
+<script src="assets/app.js?v=20260916-release3c"></script>
+<script src="assets/release-info.js"></script>
 </body>
 </html>

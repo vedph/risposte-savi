@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this dataset or framework, please cite it as below."
-title: "Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework (research website and dataset prototype)"
+title: "Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework (research website and dataset)"
 type: dataset
 authors:
   - family-names: "Carbé"
@@ -17,8 +17,8 @@ authors:
     orcid: "https://orcid.org/0000-0002-6460-2954"
 repository-code: "https://github.com/vedph/risposte-savi"
 url: "https://vedph.github.io/risposte-savi/"
-version: "Prototype v1"
-date-released: "2026-07-02"
+version: "Release 3 (2026-09-16)"
+date-released: "2026-09-16"
 preferred-citation:
   type: conference-paper
   title: "Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework"

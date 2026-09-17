@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dataset journal &middot; Risposte reg. 142</title>
-<meta name="description" content="Release history and dataset snapshots of the Risposte reg. 142 research dataset. First public prototype." />
+<meta name="description" content="Release history and dataset snapshots of the Risposte reg. 142 research dataset. Release history." />
 <meta name="theme-color" content="#b01e28" />
-<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="assets/style.css?v=20260916-mobile" />
 <link rel="manifest" href="manifest.webmanifest" />
-<script src="assets/i18n.js"></script>
+<script src="assets/english.js?v=20260916-editorial1"></script><script src="assets/site-locale.js?v=20260916-release3"></script><script src="assets/i18n.js?v=20260916-release3c"></script>
 </head>
 <body>
 <a class="skip" href="#main"><span class="xen">Skip to content</span><span class="xit">Vai al contenuto</span></a>
@@ -22,6 +22,7 @@
     <a href="names.html"><span class="xen">Names &amp; places</span><span class="xit">Nomi e luoghi</span></a>
     <a href="model.html"><span class="xen">Model</span><span class="xit">Modello</span></a>
     <a href="decision.html"><span class="xen">Decisions</span><span class="xit">Decisioni</span></a>
+    <a href="method.html"><span class="xen">Method</span><span class="xit">Metodo</span></a>
     <a href="data.html"><span class="xen">Data</span><span class="xit">Dati</span></a>
     <a href="dataset-journal.html" class="on"><span class="xen">Journal</span><span class="xit">Diario</span></a>
     <a href="about.html">About</a>
@@ -31,13 +32,12 @@
 
 <main id="main" class="journal-page">
   <h2><span class="xen">Dataset journal</span><span class="xit">Diario del dataset</span></h2>
-  <p style="max-width:78ch"><span class="xen">Release history of the published dataset: one entry for each public release or substantive change, with its date and snapshot identifier. The current snapshot is available on the <a href="data.html">Data &amp; downloads</a> page.</span><span class="xit">Storia delle release del dataset pubblicato: una voce per ogni pubblicazione o modifica sostanziale, con data e identificativo dell'istantanea. L'istantanea corrente &egrave; disponibile nella pagina <a href="data.html">Dati e download</a>.</span></p>
-  <div class="journal"><ol id="journal-list"></ol>
-  <noscript><p><span class="xen">2026-07-02 &middot; dataset-2026-07-02 &middot; First public prototype.</span><span class="xit">2026-07-02 &middot; dataset-2026-07-02 &middot; Primo prototipo pubblico.</span></p></noscript>
+    <div class="journal"><ol id="journal-list"></ol>
+  <noscript><p><span class="xen">2026-07-02 &middot; dataset-2026-07-02 &middot; Release history.</span><span class="xit">2026-07-02 &middot; dataset-2026-07-02 &middot; Primo prototipo pubblico.</span></p></noscript>
   </div>
 </main>
 <footer class="site-foot">
-  <p class="proto">First public prototype &mdash; 2026-07-02</p>
+  <p class="proto"><span class="xen">Third release Third release &mdash; 2026-09-16mdash; 16 September 2026</span><span class="xit">Terza release &mdash; 16 settembre 2026</span></p>
   <p><span class="xen">Research website and dataset of the EADH 2026 paper <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span><span class="xit">Sito di ricerca e dataset del contributo EADH 2026 <i>Modelling Early Modern Reasoning for the Venetian Risposte: A Scalable Framework</i>.</span></p>
   <nav class="flinks" aria-label="Footer">
     <a href="about.html">About</a>
@@ -54,7 +54,9 @@
 </footer>
 <script src="data/journal.js"></script>
 <script>(function(){var L=document.getElementById('journal-list');if(!L||!window.JOURNAL)return;
-L.innerHTML=JOURNAL.map(function(e){return '<li><span class="jd">'+e.d+'</span><span class="js">'+e.s+'</span>'+
-'<p><b><span class="xen">'+e.t.en+'</span><span class="xit">'+e.t.it+'</span></b> &mdash; <span class="xen">'+e.en+'</span><span class="xit">'+e.it+'</span></p></li>';}).join('');})();</script>
+function esc(value){var el=document.createElement('span');el.textContent=value||'';return el.innerHTML;}
+L.innerHTML=JOURNAL.map(function(e){var title=e.t||{en:e.version,it:e.version};
+return '<li><span class="jd">'+esc(e.d||e.date)+'</span><span class="js">'+esc(e.s||e.version)+'</span>'+
+'<p><b><span class="xen">'+esc(title.en)+'</span><span class="xit">'+esc(title.it)+'</span></b>: <span class="xen">'+esc(e.en||e.note)+'</span><span class="xit">'+esc(e.it||e.note)+'</span></p></li>';}).join('');})();</script>
 </body>
 </html>
