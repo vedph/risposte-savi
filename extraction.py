@@ -4,26 +4,30 @@ Every extracted value carries: rule_id, evidence snippet, character span, status
 Nothing here overwrites validated data; outputs are hypotheses pending expert review.
 Shared by tools/build_units.py.
 """
-import re, unicodedata
+import re
+from functools import lru_cache
+from scripts.text_matching import matching_text
+from scripts.ner import EntityRecognizer
 
 def norm(s):
-    """matching-normalisation: lowercase, strip diacritics, u->v, j->i (17th-c. orthography)."""
-    s = unicodedata.normalize("NFKD", s or "")
-    s = "".join(c for c in s if not unicodedata.combining(c)).lower()
-    return s.replace("u", "v").replace("j", "i")
+    """Matching-only normalisation. Use matching_text() when offsets are needed."""
+    return matching_text(s or "").text
 
 def snippet(text, a, b, pad=34):
     lo, hi = max(0, a - pad), min(len(text), b + pad)
     return ("…" if lo else "") + text[lo:hi].replace("\n", " ") + ("…" if hi < len(text) else "")
 
 def find_all(text, patterns, rule_id, flags=re.I):
-    """patterns matched on the NORMALISED text; spans mapped 1:1 (norm preserves length)."""
-    n = norm(text)
+    """Match normalised text and translate all spans back to the original."""
+    view = matching_text(text or "")
+    n = view.text
     out = []
     for pat in patterns:
         for m in re.finditer(pat, n, flags):
-            out.append(dict(term=text[m.start():m.end()], rule=rule_id,
-                            span=[m.start(), m.end()], ev=snippet(text, m.start(), m.end())))
+            start, end = view.span(m.start(), m.end())
+            out.append(dict(term=text[start:end], rule=rule_id,
+                            span=[start, end], ev=snippet(text, start, end),
+                            status="pending_expert_validation"))
     # dedupe overlapping identical spans
     seen, ded = set(), []
     for o in sorted(out, key=lambda o: o["span"]):
@@ -79,53 +83,6 @@ TRIGGERS = [("supplica", [r"\bsvpplica", r"\bsvpplicant", r"\bsvpplication"]),
             ("dispute", [r"\bcontroversi", r"\bdifferen"]),
             ("petition", [r"\binstanti", r"\bpetition"])]
 
-GAZETTEER = {  # canonical: (variants..., lat, lon, approx_region, tgn_id or None)
-# tgn_id: Getty TGN identifier of the normalised place; None = not yet aligned (shown explicitly).
- "Venezia": (["venetia", "venezia", "vinegia"], 45.4375, 12.3358, False, "7018159"),
- "Costantinopoli": (["costantinopoli", "constantinopoli"], 41.0082, 28.9784, False, "7002473"),
- "Alessandria": (["alessandria"], 31.2001, 29.9187, False, None),
- "Rodi": (["rodi"], 36.4341, 28.2176, False, None),
- "Saragozza": (["saragoza", "saragozza", "zaragoza"], 41.6488, -0.8891, False, None),
- "Lisbona": (["lisbona"], 38.7223, -9.1393, False, None),
- "Padova": (["padova", "padoa"], 45.4064, 11.8768, False, None),
- "Rovigo": (["rovigo"], 45.0705, 11.7904, False, None),
- "Udine": (["vdine"], 46.0711, 13.2346, False, None),
- "Cologna": (["cologna"], 45.3097, 11.3849, False, None),
- "Narenta": (["narenta"], 43.0578, 17.6444, True, None),
- "Cipro": (["cipro"], 35.1264, 33.4299, True, None),
- "Spalato": (["spalato"], 43.5081, 16.4402, False, None),
- "Zante": (["zante"], 37.7870, 20.8999, False, None),
- "Corfù": (["corfv", "corfu"], 39.6243, 19.9217, False, None),
- "Candia": (["candia"], 35.3387, 25.1442, False, None),
- "Bergamo": (["bergamo"], 45.6983, 9.6773, False, None),
- "Milano": (["milano", "milan"], 45.4642, 9.1900, False, None),
- "Firenze": (["fiorenza", "firenze", "fiorentin"], 43.7696, 11.2558, False, "7000457"),
- "Ancona": (["ancona"], 43.6158, 13.5189, False, None),
- "Ferrara": (["ferrara"], 44.8381, 11.6198, False, None),
- "Bologna": (["bologna"], 44.4949, 11.3426, False, "7004847"),
- "Verona": (["verona"], 45.4384, 10.9916, False, None),
- "Brescia": (["brescia"], 45.5416, 10.2118, False, None),
- "Treviso": (["treviso"], 45.6669, 12.2430, False, None),
- "Ragusa": (["ragvsa", "ragusi"], 42.6507, 18.0944, False, None),
- "Dalmazia": (["dalmatia", "dalmazia"], 44.1194, 15.2314, True, None),
- "Bosnia": (["bossina", "bosna"], 43.8563, 18.4131, True, None),
- "Genova": (["genova", "genoa"], 44.4056, 8.9463, False, None),
- "Napoli": (["napoli"], 40.8518, 14.2681, False, None),
- "Roma": (["roma"], 41.9028, 12.4964, False, None),
- "Segna": (["segna"], 44.9894, 14.9058, False, None),
- "Cattaro": (["cattaro"], 42.4247, 18.7712, False, None),
- "Aleppo (Soria)": (["soria", "aleppo"], 36.2021, 37.1343, True, None),
- "Levante": (["levante"], None, None, True, None),
- "Ponente": (["ponente"], None, None, True, None),
-}
-
-PERSON_PATTERNS = [
- (r"svpplica(?:tion[ei])?\s+d(?:i|el|ella|e)\s+((?:[a-z]+\s+){0,1}[A-Z][\w']+(?:\s+[A-Z][\w']+){0,2})", "P_supplica_di"),
- (r"\bnome\s+d[ei]\s+([A-Z][\w']+(?:\s+[A-Z][\w']+){0,2})", "P_nome_di"),
- (r"\bq\.?\s*(?:m\.?)?\s*([A-Z][\w']+(?:\s+[A-Z][\w']+){0,1})", "P_quondam"),
-]
-PERSON_STOP = set("Venetia Venezia Serenità Signoria Senato Savi Savii Collegio Illustrissimi Clarissimi Eccellentissimo Dio Republica Repubblica Levante Ponente Alessandria Costantinopoli".split())
-
 def extract(text, subject=""):
     """Return the hypothesis bundle for one unit. text may be '' (regest-only units)."""
     T = text or ""
@@ -163,13 +120,12 @@ def extract(text, subject=""):
     nS, nT = norm(S), norm(T)
     scores = {}
     ev = {}
-    for dom, cues in DOMAIN_CUES.items():
-        sc = 0
-        for c in cues:
-            sc += 3 * nS.count(c) + nT.count(c)
-            if c in nS or c in nT:
-                ev.setdefault(dom, c)
-        if sc: scores[dom] = sc
+    for dom, pattern in _domain_patterns().items():
+        subject_hits, text_hits = list(pattern.finditer(nS)), list(pattern.finditer(nT))
+        score = 3 * len(subject_hits) + len(text_hits)
+        if score:
+            scores[dom] = score
+            ev[dom] = (subject_hits or text_hits)[0].group()
     dom_hyp = None
     if scores:
         top = sorted(scores.items(), key=lambda kv: -kv[1])
@@ -181,48 +137,44 @@ def extract(text, subject=""):
     # --- trigger from incipit ---
     trig = None
     head = T[:300] if T else S
-    nh = norm(head)
+    head_view = matching_text(head)
+    nh = head_view.text
     for name, pats in TRIGGERS:
         for p in pats:
             m = re.search(p, nh)
             if m:
                 trig = dict(value=name, rule="M_trigger_incipit",
-                            ev=snippet(head, m.start(), m.end()), confidence="medium")
+                            ev=snippet(head, *head_view.span(m.start(), m.end())), confidence="medium")
                 break
         if trig: break
     out["document_trigger_hyp"] = trig
 
-    # --- persons (hypotheses; signatories handled upstream as validated) ---
-    persons = []
-    for pat, rid in PERSON_PATTERNS:
-        for m in re.finditer(pat, T):
-            name = re.sub(r"\s+", " ", m.group(1)).strip(" ,.;")
-            if name.split()[0] in PERSON_STOP or len(name) < 3: continue
-            persons.append(dict(name=name, rule=rid, ev=snippet(T, m.start(), m.end())))
-    # from the subject line: leading proper-name pair (petitioner) — conservative
-    m = re.match(r"^(?:supplica\s+d\w+\s+)?([A-Z][\w']+\s+[A-Z][\w']+)", S)
-    if m and m.group(1).split()[0] not in PERSON_STOP:
-        persons.append(dict(name=m.group(1), rule="P_subject_head", ev=S[:60]))
-    seen, ded = set(), []
-    for p in persons:
-        k = norm(p["name"])
-        if k in seen: continue
-        seen.add(k); ded.append(p)
-    out["persons_hyp"] = ded
-
-    # --- places via gazetteer ---
-    places = []
-    for canon, (vars_, lat, lon, approx, tgn) in GAZETTEER.items():
-        for v in vars_:
-            i = nS.find(v)
-            src = None
-            if i >= 0: src, base, ii = "subject", S, i
-            else:
-                i = nT.find(v)
-                if i >= 0: src, base, ii = "text", T, i
-            if src:
-                places.append(dict(name=canon, lat=lat, lon=lon, approx=approx, tgn=tgn, src=src,
-                                   rule="G_gazetteer", ev=snippet(base, ii, ii + len(v))))
-                break
-    out["places_hyp"] = places
+    # One shared NER implementation; fields and exact source spans remain separate.
+    recognizer = _recognizer()
+    entities = recognizer.extract(T, "text_diplomatic") + recognizer.extract(S, "marginal_note_raw")
+    out["entities_hyp"] = entities
+    out["persons_hyp"] = [
+        dict(name=e["value"], rule=e["rule"], ev=e["evidence"], span=[e["span_start"], e["span_end"]],
+             source_field=e["source_field"], status=e["status"])
+        for e in entities if e["label"] == "PER"
+    ]
+    out["places_hyp"] = [
+        dict(name=e["value"], rule=e["rule"], ev=e["evidence"], span=[e["span_start"], e["span_end"]],
+             src="text" if e["source_field"] == "text_diplomatic" else "subject",
+             lat=None, lon=None, approx=True, tgn=None, status=e["status"])
+        for e in entities if e["label"] == "LOC"
+    ]
     return out
+
+
+@lru_cache(maxsize=1)
+def _recognizer():
+    return EntityRecognizer()
+
+@lru_cache(maxsize=1)
+def _domain_patterns():
+    # Each word counts once per domain. Stems match word starts, never inside loro/parte.
+    return {domain: re.compile(r'\b(?:' + '|'.join(
+                re.escape(norm(cue)) for cue in sorted(set(cues), key=lambda x: (-len(x), x))
+            ) + r')\w*')
+            for domain, cues in DOMAIN_CUES.items()}

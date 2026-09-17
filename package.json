@@ -1,0 +1,14 @@
+{
+  "name": "risposte-savi",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests_site.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  },
+  "packageManager": "pnpm@11.19.0"
+}
