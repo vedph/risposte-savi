@@ -1,0 +1,510 @@
+{
+  "version": 1,
+  "provenance": "Place aliases migrated from extraction.py; person mappings with explicit confirmed/proposed status migrated from names_authority.csv. Institutions from corpus readings. No coordinates inferred. All occurrences still require review.",
+  "entries": [
+    {
+      "label": "LOC",
+      "name": "Venezia",
+      "aliases": [
+        "venetia",
+        "venezia",
+        "vinegia"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Costantinopoli",
+      "aliases": [
+        "costantinopoli",
+        "constantinopoli"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Alessandria",
+      "aliases": [
+        "alessandria"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Rodi",
+      "aliases": [
+        "rodi"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Saragozza",
+      "aliases": [
+        "saragozza",
+        "zaragoza"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Seragosa",
+      "aliases": [
+        "saragoza",
+        "seragosa"
+      ],
+      "normalization_status": "unresolved",
+      "note": "Historical place name with unresolved identification. Preserve the attested forms without automatically assigning them to Zaragoza in Spain. The Siracusa hypothesis is scoped to R142_0025 in reconciliations.json; no coordinates or external identifier are assigned."
+    },
+    {
+      "label": "LOC",
+      "name": "Lisbona",
+      "aliases": [
+        "lisbona"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Padova",
+      "aliases": [
+        "padova",
+        "padoa"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Rovigo",
+      "aliases": [
+        "rovigo"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Udine",
+      "aliases": [
+        "vdine"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Cologna",
+      "aliases": [
+        "cologna"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Narenta",
+      "aliases": [
+        "narenta"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Cipro",
+      "aliases": [
+        "cipro"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Spalato",
+      "aliases": [
+        "spalato"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Zante",
+      "aliases": [
+        "zante"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Corfù",
+      "aliases": [
+        "corfv",
+        "corfu"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Candia",
+      "aliases": [
+        "candia"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Bergamo",
+      "aliases": [
+        "bergamo"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Milano",
+      "aliases": [
+        "milano",
+        "milan"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Firenze",
+      "aliases": [
+        "fiorenza",
+        "firenze"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Ancona",
+      "aliases": [
+        "ancona"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Ferrara",
+      "aliases": [
+        "ferrara"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Bologna",
+      "aliases": [
+        "bologna"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Verona",
+      "aliases": [
+        "verona"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Brescia",
+      "aliases": [
+        "brescia"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Treviso",
+      "aliases": [
+        "treviso"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Ragusa",
+      "aliases": [
+        "ragvsa",
+        "ragusi"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Dalmazia",
+      "aliases": [
+        "dalmatia",
+        "dalmazia"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Bosnia",
+      "aliases": [
+        "bossina",
+        "bosna"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Genova",
+      "aliases": [
+        "genova",
+        "genoa"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Napoli",
+      "aliases": [
+        "napoli"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Roma",
+      "aliases": [
+        "roma"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Segna",
+      "aliases": [
+        "segna"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Cattaro",
+      "aliases": [
+        "cattaro"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Soria",
+      "aliases": [
+        "soria"
+      ],
+      "note": "Identification unresolved; never automatically mapped to Aleppo."
+    },
+    {
+      "label": "LOC",
+      "name": "Aleppo",
+      "aliases": [
+        "aleppo"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Levante",
+      "aliases": [
+        "levante"
+      ]
+    },
+    {
+      "label": "LOC",
+      "name": "Ponente",
+      "aliases": [
+        "ponente"
+      ]
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Corner",
+      "aliases": [
+        "Hier.mo Corner"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Corner",
+      "aliases": [
+        "H:mo Corner"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Corner",
+      "aliases": [
+        "H.mo Corner"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Federico Dandolo",
+      "aliases": [
+        "Ferigo Dandolo"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Domenego Barbarigo",
+      "aliases": [
+        "Dn.go Barbarigo"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Francesco Diedo",
+      "aliases": [
+        "F.co Diedo"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Vendramin",
+      "aliases": [
+        "H.mo Vendramin"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Vendramin",
+      "aliases": [
+        "Hier.mo Vendramin"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Vendramin",
+      "aliases": [
+        "Hieronimo Vendramin"
+      ],
+      "normalization_status": "confirmed"
+    },
+    {
+      "label": "PER",
+      "name": "Maffio Michiel",
+      "aliases": [
+        "Maffio Michiel"
+      ],
+      "normalization_status": "confirmed"
+    },
+    {
+      "label": "PER",
+      "name": "Maffio Michiel",
+      "aliases": [
+        "Maff° Michiel"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Ruzier Ruzini",
+      "aliases": [
+        "Ruzier Ruzini"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Zuanne Garzoni",
+      "aliases": [
+        "Z: Garzoni"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Hieronimo Corner",
+      "aliases": [
+        "Hier.o Corner"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "PER",
+      "name": "Domenego Lion",
+      "aliases": [
+        "Domenico Lion"
+      ],
+      "normalization_status": "confirmed"
+    },
+    {
+      "label": "PER",
+      "name": "Piero Soranzo",
+      "aliases": [
+        "Pietro Soranzo"
+      ],
+      "normalization_status": "confirmed"
+    },
+    {
+      "label": "PER",
+      "name": "Marco da Riva",
+      "aliases": [
+        "Sier Marco da Riva"
+      ],
+      "normalization_status": "proposed"
+    },
+    {
+      "label": "ORG",
+      "name": "Senato",
+      "aliases": [
+        "senato"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Collegio",
+      "aliases": [
+        "collegio"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Cinque Savi alla Mercanzia",
+      "aliases": [
+        "cinque savi alla mercanzia",
+        "cinque savij sopra la mercantia",
+        "savi sopra la mercantia",
+        "savi alla mercantia",
+        "savij alla mercantia"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Rason Vecchie",
+      "aliases": [
+        "rason vecchie",
+        "rason v.e"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Proveditori di Commun",
+      "aliases": [
+        "proveditori di commun",
+        "prov.ri di commun"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Governatori delle Intrade",
+      "aliases": [
+        "governatori delle intrade",
+        "governatori dell'intrade"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Consiglio dei Dieci",
+      "aliases": [
+        "consiglio dei dieci",
+        "conseglio de diece"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "X officij",
+      "aliases": [
+        "x officij",
+        "dieci officij"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Cattaveri",
+      "aliases": [
+        "cattaveri"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Zecca",
+      "aliases": [
+        "zecca"
+      ]
+    },
+    {
+      "label": "ORG",
+      "name": "Quarantia",
+      "aliases": [
+        "quarantia"
+      ]
+    }
+  ]
+}

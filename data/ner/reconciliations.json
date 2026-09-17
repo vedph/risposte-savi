@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "source_documents": {
+    "R142_0007": "a1468caa7780f3c435dec377ecd3e3edf9518c2d80501ebb0b69a854d71f47ea",
+    "R142_0011": "00cd81f9ac5071e142d240a11fb161e0f82b9731c9a9d5882e0ce8e756fd02a7",
+    "R142_0014": "eb19855b122031fb192aa63ed8eb80aaf5cce9e33c2d47c52a4b159795b84467",
+    "R142_0051": "0037c7a3f067287c639c9357e7d16a862192ec0c553a92cc24fefd19672c3aa1",
+    "R142_0053": "54f4aeb7d9faf56464ed1d1db4120743e9a3670d6d601f1c50cd3dccebd1f7fe",
+    "R142_0039": "d5f37c19bf21eb0b1c8fd8f6fd4fef73a84658d70c595e9b635acae7f24ae996",
+    "R142_0040": "04cae71877b230a392c9a218c679f4bc950c234aa254a4441bee65295f501e13",
+    "R142_0041": "db476bd65e2a85bf6aa95b6d045f0af9ebe9903c559a779e88ee43b89d98fca6",
+    "R142_0025": "625b20f8f451ea15a9f4adf2559ad724bfe4fb3bd55a0b72dd636d503065500d"
+  },
+  "checked_at": "2026-09-08",
+  "note": "Research proposals based on consulted sources. An attested external identity is not automatically the identity of every same-name occurrence.",
+  "entries": [
+    {
+      "label": "LOC",
+      "aliases": [
+        "Saragoza",
+        "Seragosa"
+      ],
+      "identity": "Siracusa (ipotesi per Seragosa / Saragoza)",
+      "scope_unit_ids": [
+        "R142_0025"
+      ],
+      "status": "proposed",
+      "checked_at": "2026-09-16",
+      "reasoning": "Il contesto di Palermo e del viceré è compatibile con una sede siciliana. Burgaretta documenta l'uso storico di Seragosa/Zaragoza per Siracusa e cita documenti ufficiali del 1600 e del 1693. Di Natale menziona Valerio Morra e Bellomo nel contesto siracusano del 1627: indizio onomastico indipendente, non prova che sia il candidato del 1608. Questi riscontri sostengono l'ipotesi Siracusa per questa occorrenza, ma non identificano direttamente il consolato descritto in R142_0025.",
+      "conflicts": [
+        "L'atto specifico della nomina non è stato identificato nelle fonti esterne consultate; gli originali archivistici citati da Burgaretta non sono stati consultati direttamente.",
+        "Il console defunto Valerio Bellhomo e il nipote candidato Valerio Mora e Bell'homo restano persone distinte. L'omonimo citato nel 1627 non viene identificato automaticamente con nessuno dei due.",
+        "La proposta è limitata a R142_0025: nessuna equivalenza generale fra Saragoza e Siracusa, nessuna coordinata e nessun identificatore Getty verificato."
+      ],
+      "sources": [
+        {
+          "title": "Dario Burgaretta, Il Purim di Siracusa alla luce dei testimoni manoscritti, Materia giudaica XI/1–2 (2006)",
+          "url": "https://aisg.cise.unipi.it/Materia-giudaica-2006/XI-1-2%20del%202006/XI1-2-001pp200.pdf#page=67",
+          "locator": "p. 66, note 96–97",
+          "supports": "Documenta forme storiche Seragosa/Zaragoza per Siracusa; cita un atto inquisitoriale del 1600 e un dispaccio del 22 marzo 1693. Non documenta questa nomina consolare."
+        },
+        {
+          "title": "Maria Concetta Di Natale, Santa Lucia Patrona di Siracusa: il suo simulacro, la sua ‘vara’, il suo tesoro",
+          "url": "https://iris.unipa.it/retrieve/e3ad8925-3f9b-da0e-e053-3705fe0a2b96/Di%20Natale%20Santa%20Lucia.pdf#page=8",
+          "locator": "p. 434",
+          "supports": "Menzione di Valerio Morra e Bellomo in contesto siracusano del 1627. Riscontro onomastico locale, non prova dell'identità del candidato del 1608."
+        }
+      ]
+    },
+    {
+      "label": "PER", "aliases": ["Daniel Rodriga"],
+      "identity": "Daniel Rodriga / Daniel Rodriguez",
+      "scope_unit_ids": ["R142_0007", "R142_0053"],
+      "status": "proposed", "death_year": 1603,
+      "conflicts": ["Treccani attribuisce a Rodriguez attività del 1607; Ravid distingue il defunto Rodriga dal console Ferro. Conservare la divergenza tra le fonti."],
+      "reasoning": "Il ruolo di promotore dei privilegi ebraici è compatibile con il contesto veneziano. In R142_0007 la menzione q. Daniel Rodriga nel 1607 è coerente con la morte nel 1603. È una proposta di identificazione, da confermare sul documento.",
+      "sources": [
+        {"title": "Benjamin Ravid, The Third Charter of the Jewish Merchants of Venice, 1611 (1994)", "url": "https://jcpa.org/wp-content/uploads/2012/11/jewish-merchants-of-venice.pdf#page=17", "locator": "p. 99", "supports": "Rodriga morì nel 1603; Ferro era console nel 1607."},
+        {"title": "Early Modern Workshop 2007, inventario di Daniel Rodrigha", "url": "https://condor.wesleyan.edu/openmedia/emw/pdf/EMW2007Booklet_final.pdf#page=57", "locator": "p. 57; ASV, Notarile, Atti, b. 3376–3377, Catti, protocollo 1603, cc. 442v–444v", "supports": "Inventario del defunto datato 3 luglio 1603, presentato in traduzione."},
+        {"title": "Treccani, Gli ebrei e la città", "url": "https://www.treccani.it/enciclopedia/gli-ebrei-e-la-citta_(altro)/", "locator": "Passaggi su Daniel Rodriguez", "supports": "Contesto veneziano; contiene la divergenza cronologica segnalata."}
+      ]
+    },
+    {
+      "label": "PER", "aliases": ["Iosua Ferro"], "identity": "Joshua Ferro (proposta per Iosua Ferro)",
+      "scope_unit_ids": ["R142_0007"], "status": "proposed",
+      "reasoning": "Corrispondono nome, tre scritture di marzo 1607 e richiesta del cinque per cento. Riscontro contestuale forte; lettura paleografica ancora da verificare.",
+      "sources": [{"title": "Benjamin Ravid, The Third Charter of the Jewish Merchants of Venice, 1611, Jewish Political Studies Review 6:1–2 (1994)", "url": "https://jcpa.org/wp-content/uploads/2012/11/jewish-merchants-of-venice.pdf#page=17", "locator": "pp. 99–102; p. 128, note 54 e 59", "supports": "Ferro presenta tre memoriali; la nota 59 cita la risposta del 20 giugno 1607, registro 142."}]
+    },
+    {
+      "label": "PER", "aliases": ["Francesco Erizzo", "Francesco Erizo"],
+      "identity": "Francesco Erizzo (1566–1646)",
+      "scope_unit_ids": ["R142_0039", "R142_0040", "R142_0041"],
+      "status": "proposed",
+      "reasoning": "La forma del firmatario coincide con il patrizio veneziano Francesco Erizzo. La cronologia dei tre documenti (1608) è compatibile con il suo saviato alla Mercanzia documentato dal Dizionario Biografico degli Italiani.",
+      "sources": [{"title": "Giuseppe Gullino, Erizzo, Francesco, Dizionario Biografico degli Italiani, vol. 43 (1993)", "url": "https://www.treccani.it/enciclopedia/francesco-erizzo_(Dizionario-Biografico)/", "locator": "voce, paragrafo su 1608–1610", "supports": "Nato a Venezia nel 1566; tra 1608 e 1610 ricoprì anche il ruolo di savio alla Mercanzia; morì nel 1646."}]
+    },
+    {
+      "label": "LOC", "aliases": ["Spalato"], "identity": "Spalato / Split",
+      "scope_unit_ids": ["R142_0011"], "status": "proposed",
+      "reasoning": "La scala commerciale, la peste e la concorrenza di Ragusi collocano la menzione nel contesto adriatico di inizio Seicento. Il nome moderno aiuta il reperimento; non definisce una giurisdizione storica.",
+      "sources": [
+        {"title": "Accademia della Crusca, Toponimi stranieri in italiano", "url": "https://accademiadellacrusca.it/it/consulenza/toponimi-stranieri-in-italiano/1201", "locator": "Paragrafo su Istria e Dalmazia", "supports": "Corrispondenza linguistica Spalato/Split."},
+        {"title": "Marco Moroni, Spalato, Ragusa, Ancona e le regioni balcanico-danubiane tra Cinque e Seicento", "url": "https://www.consiglio.marche.it/informazione_e_comunicazione/pubblicazioni/quaderni/pdf/201.pdf", "locator": "Capitolo da p. 173", "supports": "Contesto commerciale adriatico tra Cinque e Seicento; non prova l'identità di Ottavio Dall'Oglio."}
+      ]
+    },
+    {
+      "label": "LOC", "aliases": ["Ragusi", "Ragusa"], "identity": "Ragusa di Dalmazia / Dubrovnik",
+      "scope_unit_ids": ["R142_0011"], "status": "proposed",
+      "reasoning": "La menzione accanto alle scale di Spalato e Narenta sostiene l'identificazione dalmata. L'omonima città siciliana resta distinta.",
+      "sources": [{"title": "Accademia della Crusca, Toponimi stranieri in italiano", "url": "https://accademiadellacrusca.it/it/consulenza/toponimi-stranieri-in-italiano/1201", "locator": "Paragrafo su Ragusa di Dalmazia e l'omonimia siciliana", "supports": "Ragusa di Dalmazia corrisponde a Dubrovnik; esiste un'omonimia siciliana."}]
+    },
+    {
+      "label": "LOC", "aliases": ["Soria"], "identity": "Soria, regione storica della Siria",
+      "scope_unit_ids": ["R142_0014", "R142_0051"], "status": "proposed",
+      "reasoning": "I viaggi di Cipro, Soria e Alessandria indicano un contesto levantino. La corrispondenza con una regione non autorizza a collocare ogni occorrenza nella città di Aleppo.",
+      "sources": [
+        {"title": "Treccani, soriano", "url": "https://www.treccani.it/vocabolario/soriano/", "locator": "Etimologia di soriano", "supports": "Sorìa è un nome storico della Siria."},
+        {"title": "La Sfera, Data on toponym Syria", "url": "https://sferaproject.org/toponyms/syria/", "locator": "Tabella dei toponimi, variante SORIA", "supports": "Attestazione della variante in un corpus cartografico storico; contesto regionale distinto da Aleppo."}
+      ]
+    }
+  ],
+  "document_notes": [
+    {
+      "unit_id": "R142_0007", "status": "requires_source_check",
+      "note": "Riferimento da verificare: il repository indica cc. 15r–16r; Ravid, nota 59, cita reg. 142, cc. 16r–17r, stessa data (20 giugno 1607). Nessuna correzione automatica.",
+      "url": "https://jcpa.org/wp-content/uploads/2012/11/jewish-merchants-of-venice.pdf#page=46", "locator": "p. 128, nota 59"
+    },
+    {
+      "unit_id": "R142_0053", "status": "requires_source_check",
+      "note": "Ravid segnala una divergenza tra la copia nel registro e l'originale: Vecchio nella menzione del ghetto del 1516. Distinguere errore del copista e trascrizione moderna prima di intervenire.",
+      "url": "https://jcpa.org/wp-content/uploads/2012/11/jewish-merchants-of-venice.pdf#page=49", "locator": "p. 131, note 77 e 79"
+    }
+  ]
+}
