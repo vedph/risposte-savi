@@ -1,0 +1,861 @@
+{
+  "schema_version": 1,
+  "thresholds": {
+    "cer_review": 0.15,
+    "wer_review": 0.4
+  },
+  "summary": {
+    "total_units": 64,
+    "status_counts": {
+      "manual_full": 49,
+      "manual_partial": 7,
+      "regest": 8
+    },
+    "manual_units": 56,
+    "regest_units": 8,
+    "evaluated_units": 27,
+    "flagged_units": 41,
+    "high_priority_units": 9,
+    "flag_counts": {
+      "high_cer": 3,
+      "high_wer": 6,
+      "partial_transcription": 7,
+      "regest_only": 8,
+      "repeated_whitespace": 16,
+      "unbalanced_brackets": 1,
+      "uncertain_reading": 31
+    },
+    "mean_cer": 0.1091,
+    "mean_wer": 0.3092,
+    "max_cer": 0.1974,
+    "max_wer": 0.4486
+  },
+  "units": [
+    {
+      "unit_id": "R142_0001",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0002",
+      "transcription_status": "manual_full",
+      "chars": 6255,
+      "words": 1045,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0003",
+      "transcription_status": "manual_full",
+      "chars": 3904,
+      "words": 631,
+      "cer": 0.1414,
+      "wer": 0.4367,
+      "flags": [
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0004",
+      "transcription_status": "manual_full",
+      "chars": 1441,
+      "words": 218,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0005",
+      "transcription_status": "manual_full",
+      "chars": 2528,
+      "words": 396,
+      "cer": 0.1974,
+      "wer": 0.4048,
+      "flags": [
+        "uncertain_reading",
+        "high_cer",
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0006",
+      "transcription_status": "manual_partial",
+      "chars": 1336,
+      "words": 220,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "partial_transcription"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0007",
+      "transcription_status": "manual_full",
+      "chars": 5799,
+      "words": 946,
+      "cer": 0.0872,
+      "wer": 0.2809,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0008",
+      "transcription_status": "manual_full",
+      "chars": 1912,
+      "words": 313,
+      "cer": 0.1457,
+      "wer": 0.3892,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0009",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0010",
+      "transcription_status": "manual_full",
+      "chars": 4335,
+      "words": 700,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0011",
+      "transcription_status": "manual_full",
+      "chars": 3360,
+      "words": 544,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0012",
+      "transcription_status": "manual_full",
+      "chars": 1881,
+      "words": 299,
+      "cer": 0.0818,
+      "wer": 0.1254,
+      "flags": [
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0013",
+      "transcription_status": "manual_full",
+      "chars": 2794,
+      "words": 420,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0014",
+      "transcription_status": "manual_full",
+      "chars": 6768,
+      "words": 1098,
+      "cer": 0.0434,
+      "wer": 0.124,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0015",
+      "transcription_status": "manual_full",
+      "chars": 2826,
+      "words": 434,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0016",
+      "transcription_status": "manual_full",
+      "chars": 1305,
+      "words": 208,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading",
+        "unbalanced_brackets"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0017",
+      "transcription_status": "manual_full",
+      "chars": 1271,
+      "words": 207,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0018",
+      "transcription_status": "manual_full",
+      "chars": 4480,
+      "words": 705,
+      "cer": 0.0166,
+      "wer": 0.0529,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0019",
+      "transcription_status": "manual_full",
+      "chars": 10751,
+      "words": 1786,
+      "cer": 0.0414,
+      "wer": 0.0843,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0020",
+      "transcription_status": "manual_full",
+      "chars": 1088,
+      "words": 174,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0021",
+      "transcription_status": "manual_full",
+      "chars": 1088,
+      "words": 175,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0022",
+      "transcription_status": "manual_full",
+      "chars": 6172,
+      "words": 1013,
+      "cer": 0.0972,
+      "wer": 0.299,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0023",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0024",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0025",
+      "transcription_status": "manual_full",
+      "chars": 1539,
+      "words": 257,
+      "cer": 0.1378,
+      "wer": 0.4,
+      "flags": [
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0026",
+      "transcription_status": "manual_full",
+      "chars": 12437,
+      "words": 2019,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0027",
+      "transcription_status": "manual_full",
+      "chars": 3436,
+      "words": 559,
+      "cer": 0.1374,
+      "wer": 0.4003,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace",
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0028",
+      "transcription_status": "manual_full",
+      "chars": 5725,
+      "words": 936,
+      "cer": 0.0917,
+      "wer": 0.2652,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0029",
+      "transcription_status": "manual_partial",
+      "chars": 1876,
+      "words": 309,
+      "cer": 0.1558,
+      "wer": 0.3903,
+      "flags": [
+        "partial_transcription",
+        "uncertain_reading",
+        "high_cer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0030",
+      "transcription_status": "manual_partial",
+      "chars": 3033,
+      "words": 479,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "partial_transcription",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0031",
+      "transcription_status": "manual_full",
+      "chars": 2394,
+      "words": 385,
+      "cer": 0.1026,
+      "wer": 0.2857,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0032",
+      "transcription_status": "manual_full",
+      "chars": 2199,
+      "words": 363,
+      "cer": 0.1028,
+      "wer": 0.2817,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0033",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0034",
+      "transcription_status": "manual_full",
+      "chars": 1637,
+      "words": 275,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0035",
+      "transcription_status": "manual_partial",
+      "chars": 2350,
+      "words": 398,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "partial_transcription"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0036",
+      "transcription_status": "manual_full",
+      "chars": 457,
+      "words": 73,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0037",
+      "transcription_status": "manual_full",
+      "chars": 600,
+      "words": 95,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0038",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0039",
+      "transcription_status": "manual_full",
+      "chars": 1930,
+      "words": 318,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0040",
+      "transcription_status": "manual_full",
+      "chars": 7119,
+      "words": 1211,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0041",
+      "transcription_status": "manual_full",
+      "chars": 4010,
+      "words": 657,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0042",
+      "transcription_status": "manual_full",
+      "chars": 9379,
+      "words": 1518,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0043",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0044",
+      "transcription_status": "manual_full",
+      "chars": 3586,
+      "words": 593,
+      "cer": 0.103,
+      "wer": 0.3007,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0045",
+      "transcription_status": "manual_full",
+      "chars": 2937,
+      "words": 468,
+      "cer": 0.0761,
+      "wer": 0.2901,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0046",
+      "transcription_status": "manual_full",
+      "chars": 1466,
+      "words": 232,
+      "cer": 0.1404,
+      "wer": 0.4486,
+      "flags": [
+        "uncertain_reading",
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0047",
+      "transcription_status": "manual_full",
+      "chars": 11157,
+      "words": 1858,
+      "cer": 0.0965,
+      "wer": 0.316,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0048",
+      "transcription_status": "manual_partial",
+      "chars": 6334,
+      "words": 1041,
+      "cer": 0.1421,
+      "wer": 0.3837,
+      "flags": [
+        "partial_transcription",
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0049",
+      "transcription_status": "manual_full",
+      "chars": 4951,
+      "words": 808,
+      "cer": 0.1008,
+      "wer": 0.3144,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0050",
+      "transcription_status": "manual_full",
+      "chars": 13332,
+      "words": 2161,
+      "cer": 0.1063,
+      "wer": 0.3198,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0051",
+      "transcription_status": "manual_full",
+      "chars": 4117,
+      "words": 664,
+      "cer": 0.158,
+      "wer": 0.3945,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace",
+        "high_cer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0052",
+      "transcription_status": "manual_partial",
+      "chars": 1039,
+      "words": 166,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "partial_transcription"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0053",
+      "transcription_status": "manual_full",
+      "chars": 18726,
+      "words": 3008,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0054",
+      "transcription_status": "manual_partial",
+      "chars": 663,
+      "words": 115,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "partial_transcription"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0055",
+      "transcription_status": "manual_full",
+      "chars": 3090,
+      "words": 496,
+      "cer": 0.1202,
+      "wer": 0.3045,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0056",
+      "transcription_status": "manual_full",
+      "chars": 742,
+      "words": 111,
+      "cer": 0.0722,
+      "wer": 0.314,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0057",
+      "transcription_status": "manual_full",
+      "chars": 1208,
+      "words": 192,
+      "cer": 0.1371,
+      "wer": 0.4179,
+      "flags": [
+        "uncertain_reading",
+        "high_wer"
+      ],
+      "priority": "high",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0058",
+      "transcription_status": "regest",
+      "chars": 0,
+      "words": 0,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "regest_only"
+      ],
+      "priority": "info",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0059",
+      "transcription_status": "manual_full",
+      "chars": 2786,
+      "words": 453,
+      "cer": 0.1133,
+      "wer": 0.3229,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0060",
+      "transcription_status": "manual_full",
+      "chars": 1272,
+      "words": 194,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0061",
+      "transcription_status": "manual_full",
+      "chars": 2796,
+      "words": 441,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0062",
+      "transcription_status": "manual_full",
+      "chars": 2251,
+      "words": 365,
+      "cer": null,
+      "wer": null,
+      "flags": [],
+      "priority": "ok",
+      "review_required": false
+    },
+    {
+      "unit_id": "R142_0063",
+      "transcription_status": "manual_full",
+      "chars": 11627,
+      "words": 1832,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading",
+        "repeated_whitespace"
+      ],
+      "priority": "medium",
+      "review_required": true
+    },
+    {
+      "unit_id": "R142_0064",
+      "transcription_status": "manual_full",
+      "chars": 10052,
+      "words": 1601,
+      "cer": null,
+      "wer": null,
+      "flags": [
+        "uncertain_reading"
+      ],
+      "priority": "medium",
+      "review_required": true
+    }
+  ],
+  "note": "Automated structural and HTR metric checks identify passages for image comparison; they do not prove philological correctness."
+}
